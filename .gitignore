@@ -1,0 +1,26 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
+.vagrant
+
+/puphpet.zip
+/puphpet/files
+/!puphpet/files/*/empty
+/puphpet/files/dot/ssh
+
+/puphpet/puppet/
+/puphpet/shell/
+/default
+/node_modules
+
+/sql
+/profiling/
+
+/default/
+!/default/
+/default/*
+!/default/templates
+!/default/modules
+/default/modules/*
+!/default/modules/mod_style*
+
+
