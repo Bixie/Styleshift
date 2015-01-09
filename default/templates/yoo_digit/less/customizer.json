@@ -805,9 +805,9 @@
             "advanced": true,
             "vars": [
                 "@global-margin",
-                "@global-large-margin",
+                "@global-margin-large",
                 "@global-grid-gutter",
-                "@global-grid-large-gutter"
+                "@global-grid-gutter-large"
             ]
         },
         {
@@ -1036,6 +1036,34 @@
             "advanced": true,
             "vars": [
                 "@utility-*"
+            ]
+        },
+        {
+            "label": "Dotnav",
+            "advanced": true,
+            "vars": [
+                "@dotnav-*"
+            ]
+        },
+        {
+            "label": "Slidenav",
+            "advanced": true,
+            "vars": [
+                "@slidenav-*"
+            ]
+        },
+        {
+            "label": "Caption",
+            "advanced": true,
+            "vars": [
+                "@caption-*"
+            ]
+        },
+        {
+            "label": "Search",
+            "advanced": true,
+            "vars": [
+                "@search-*"
             ]
         }
     ]

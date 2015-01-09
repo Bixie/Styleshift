@@ -1,15 +1,19 @@
 # Warp Theme Framework #
 
-- Version: 7.3.1
-- Date: September 2014
+- Version: 7.3.2
+- Date: December 2014
 - Author: YOOtheme GmbH
 - Website: <http://www.yootheme.com/warp>
 
+
 ## Changelog
 
-    WIP
-    ^ Updated UIkit to 2.11.1
-
+    7.3.2
+    + Added child theme support (WP)
+    + Added Widgetkit 2 support
+    ^ Updated UIkit to 2.15.0
+    # Added Less 1.5.1 for developer mode, to support compiling on IOS 8
+    
     7.3.1
     # Fixed input fields height in Woocommerce (WP)
 

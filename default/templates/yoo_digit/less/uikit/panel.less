@@ -27,11 +27,16 @@
 @panel-box-secondary-color:                         lighten(@global-secondary-background, 30%);
 @panel-box-secondary-title-color:                   tint(@global-secondary-background, 70%);
 
+@panel-hover-padding:                               @global-margin;
+@panel-hover-hover-color:                           @global-color;
+@panel-hover-hover-background:                      @global-background;
+@panel-hover-teaser-margin:                         -(@panel-hover-padding + 1);
+
 @panel-header-title-border:                         @global-border;
 @panel-header-title-color:                          @global-primary-background;
 
 @panel-divider-gutter:                              @global-grid-gutter;
-@panel-divider-gutter-large:                        @global-grid-large-gutter;
+@panel-divider-gutter-large:                        @global-grid-gutter-large;
 @panel-divider-border:                              @global-border;
 
 //
@@ -53,6 +58,8 @@
 
 @panel-box-secondary-buttons-color:                 @global-contrast-color;
 @panel-box-secondary-button-color:                  @global-color;
+
+@panel-hover-border:                                @global-border;
 
 
 // Sub-object: `uk-panel-title`
@@ -77,6 +84,8 @@
 
 .hook-panel-box() { border: 1px solid @panel-box-border; }
 
+.hook-panel-box-hover() {}
+
 //
 // Sub-modifier: `uk-panel-box-primary`
 //
@@ -89,6 +98,8 @@
 
 }
 
+.hook-panel-box-primary-hover() {}
+
 //
 // Sub-modifier: `uk-panel-box-secondary`
 //
@@ -100,6 +111,16 @@
     a:hover { color: @panel-box-secondary-link-hover-color; }
 
 }
+
+.hook-panel-box-secondary-hover() {}
+
+
+// Modifier: `uk-panel-hover`
+// ========================================================================
+
+.hook-panel-hover() { border: 1px solid transparent; }
+
+.hook-panel-hover-hover() { border-color: @panel-hover-border; }
 
 
 // Modifier: `uk-panel-header`

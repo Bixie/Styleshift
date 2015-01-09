@@ -107,9 +107,13 @@ class SystemHelper extends AbstractHelper
     public function init()
     {
         // set paths
-        $this['path']->register($this->path, 'site');
-        $this['path']->register($this->path . '/administrator', 'admin');
-        $this['path']->register($this->path . '/cache/template', 'cache');
+        $this['path']
+            ->register($this->path, 'site')
+            ->register($this->path . '/administrator', 'admin')
+            ->register($this->path . '/cache/template', 'cache');
+
+        // set theme support
+        \JFactory::getConfig()->set('widgetkit', true);
 
         // set translations
         $this->language->load('tpl_warp', $this['path']->path('warp:systems/joomla'), null, true);

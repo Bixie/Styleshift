@@ -73,7 +73,7 @@ else if ($this['config']['dev_mode']) {
     $this['asset']->addString('js', 'var less = { env: "development" }, files = '.json_encode($files).';');
     $this['asset']->addFile('js', 'warp:vendor/jquery/jquery-less.js');
     $this['asset']->addFile('js', 'warp:vendor/jquery/jquery-rtl.js');
-    $this['asset']->addFile('js', 'warp:vendor/less/less.js');
+    $this['asset']->addFile('js', 'warp:vendor/less/less-1.5.1.min.js');
     $this['asset']->addFile('js', 'warp:js/developer.js');
 }
 // compress styles and scripts

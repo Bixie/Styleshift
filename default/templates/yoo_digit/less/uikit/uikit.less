@@ -7,6 +7,21 @@
 
 @icon-font-path: "../../fonts";
 
+// Components: Layout
+@import "../../warp/vendor/uikit/less/components/flex.less";
+@import "../../warp/vendor/uikit/less/components/cover.less";
+
+// Components: Navs
+@import "../../warp/vendor/uikit/less/components/dotnav.less";
+@import "../../warp/vendor/uikit/less/components/slidenav.less";
+
+// Components: Common
+@import "../../warp/vendor/uikit/less/components/caption.less";
+
+// Components: JavaScript
+@import "../../warp/vendor/uikit/less/components/slideshow.less";
+@import "../../warp/vendor/uikit/less/components/search.less";
+
 
 // Theme
 // ========================================================================
@@ -57,8 +72,12 @@
 @import "text.less";
 @import "utility.less";
 
-// Add-ons
-// ========================================================================
+// Components: Navs
+@import "dotnav.less";
+@import "slidenav.less";
 
-@import "../../warp/vendor/uikit/less/components/search.less";
+// Components: Common
+@import "caption.less";
+
+// Components: JavaScript
 @import "search.less";
