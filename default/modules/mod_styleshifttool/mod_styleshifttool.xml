@@ -21,11 +21,6 @@
     <config>
         <fields name="params">
             <fieldset name="basic">
-                <field
-                        name="tekstregel1"
-                        type="text" size="40"
-                        label="Tekstregel 1"
-                        description="Tekstregel 1"/>
             </fieldset>
 
             <fieldset name="advanced">

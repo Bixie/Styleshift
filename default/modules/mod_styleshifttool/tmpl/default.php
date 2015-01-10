@@ -5,11 +5,41 @@
  *  Bixie.nl
  */
 
+/**
+ * @var \Joomla\Registry\Registry $config
+ * @var \Joomla\Registry\Registry $params
+ */
+
 // no direct access
 defined('_JEXEC') or die;
 
 ?>
+<script type="text/rowTemplate">
+	<li class="bix-item">
+		<div class="uk-flex uk-flex-middle uk-margin-small-top uk-margin-small-bottom">
+			<div class="uk-width-2-5 uk-width-medium-3-5">
+				<span class="">{{tekst}}</span>
+			</div>
+			<div class="uk-width-1-5 uk-width-medium-1-5 radio-toggle uk-flex uk-flex-center">
+				<i class="uk-icon-info-circle uk-icon-medium uk-text-primary"
+				   title="{{tooltip}}" data-uk-tooltip="{pos:'left'}"></i>
+			</div>
+			<div class="uk-width-2-5 uk-width-medium-1-5 radio-toggle uk-flex uk-flex-center">
+				<div class="toggle">
+					<input type="checkbox" name="{{type}}.{{naam}}" {{#defaultVal}} checked="checked"{{/defaultVal}}/>
+						<span class="tg-btn"></span>
+						<span class="tg-labels"></span>
+						<span class="tg-bg"></span>
+				</div>
+			</div>
+		</div>
+	</li>
+</script>
+<script type="text/prijsTemplate">
+	<h2 class="bps-prijs-format uk-text-success uk-text-center">&euro; <span>{{prijs}}</span></h2>
+</script>
 
+<h1 class="uk-article-title">Wat kost een website</h1>
 
 <p>Wij streven naar eenvoud en duidelijkheid. Daarom hebben wij deze tool ontwikkeld om u zelf
 	de kosten van uw toekomstige website te laten berekenen.</p>
@@ -20,150 +50,81 @@ defined('_JEXEC') or die;
 	waarnaar wij streven is een unieke en doeltreffende website geheel naar uw wensen en
 	onze kwaliteitsmaatstaven. </p>
 
-<br/><br/>
-<h3>Eenmalige investeringen</h3>
+<div class="uk-margin-large-top" data-bix-styleshifttool='<?php echo $config->toString(); ?>'>
 
+	<h3>Eenmalige investeringen</h3>
+	<ul class="bix-eenmalig uk-list uk-list-line">
+		<li class="bix-item">
+			<div class="uk-grid uk-grid-small uk-margin-small-top uk-margin-small-bottom">
+			    <div class="uk-width-medium-3-5">
+					<div class="uk-flex uk-flex-middle">
+						<div class="uk-width-4-5">
+							<span class="">Aantal pagina's</span>
+						</div>
+						<div class="uk-width-1-5 radio-toggle uk-flex uk-flex-center">
+							<i class="uk-icon-info-circle uk-icon-medium uk-text-primary"
+							   title="Geef het aantal pagina's op dat de website zal bevatten. Eerste 5 pagina's zijn gratis."
+							   data-uk-tooltip="{pos:'left'}"></i>
+						</div>
+					</div>
 
-<table class="uk-table">
-	<tr>
-		<td class="uk-width-1-2">Aantal pagina's <span
-				data-uk-tooltip title="Eerste 5 pagina's gratis"><i
-					style="color:#4c96c1" class="uk-icon-info-circle"></i></span>
-		</td>
-		<td>+ €10 p.p. en 1e vijf gratis</td>
-	</tr>
-	<tr>
-		<td>Korting gebruik bestaande template <span
-				data-uk-tooltip title="Eerste 5 pagina's gratis"><i
-					style="color:#4c96c1" class="uk-icon-info-circle"></i></span>
-		</td>
-		<td><img src="images/tool_no.png"/> (- 500)</td>
-	</tr>
-
-	<tr>
-		<td>Responsive website
-			<span data-uk-tooltip title="Eerste 5 pagina's gratis">
-				<i style="color:#4c96c1" class="uk-icon-info-circle"></i></span>
-		</td>
-		<td><img src="images/tool_no.png"/> (+ 200)</td>
-	</tr>
-	<tr>
-		<td>Zoekmachine Optimalisatie
-			<span data-uk-tooltip title="Eerste 5 pagina's gratis"><i style="color:#4c96c1"
-																	  class="uk-icon-info-circle"></i></span>
-		</td>
-		<td><img src="images/tool_no.png"/> (+ 225)</td>
-	</tr>
-	<tr>
-		<td>Uw eigen website beheren
-			<span data-uk-tooltip title="Eerste 5 pagina's gratis"><i style="color:#4c96c1"
-																	   class="uk-icon-info-circle"></i></span>
-		</td>
-		<td><img src="images/tool_no.png"/> (+ 100)</td>
-	</tr>
-	<tr>
-		<td>Training CMS
-			<span data-uk-tooltip title="Eerste 5 pagina's gratis"><i style="color:#4c96c1"
-																				   class="uk-icon-info-circle"></i></span>
-		</td>
-		<td><img src="images/tool_no.png"/> (+ 175)</td>
-	</tr>
-	<tr>
-		<td>Koppeling Facebook
-			<span data-uk-tooltip title="Eerste 5 pagina's gratis"><i style="color:#4c96c1"
-																						 class="uk-icon-info-circle"></i></span>
-		</td>
-		<td><img src="images/tool_no.png"/> (+ 75)</td>
-	</tr>
-	<tr>
-		<td>Koppeling Twitter
-			<span data-uk-tooltip title="Eerste 5 pagina's gratis"><i style="color:#4c96c1"
-																						class="uk-icon-info-circle"></i></span>
-		</td>
-		<td><img src="images/tool_no.png"/> (+ 75)</td>
-	</tr>
-	<tr>
-		<td>Animatie (60 seconden)
-			<span data-uk-tooltip title="Eerste 5 pagina's gratis"><i style="color:#4c96c1"
-																							 class="uk-icon-info-circle"></i></span>
-		</td>
-		<td><img src="images/tool_no.png"/> (+ 895)</td>
-	</tr>
-
-	<tr>
-		<td></td>
-		<td>
-			<div class="uk-margin-top uk-button uk-button-primary uk-button-large uk-width-1-1"> € 899,00</div>
-		</td>
-	</tr>
-
-
-</table>
-
-
-<br/><br/>
-
-<h3>Periodieke investeringen</h3>
-
-
-<table class="uk-table">
-	<tr>
-		<td class="uk-width-1-2">Domeinnaam & Hosting</td>
-		<td><img src="images/tool_yes.png"/></td>
-	</tr>
-	<tr>
-		<td>E-mailadressen</td>
-		<td><img src="images/tool_yes.png"/></td>
-	</tr>
-	<tr>
-		<td>Backups & Software Updates</td>
-		<td><img src="images/tool_yes.png"/></td>
-	</tr>
-	<tr>
-		<td>Google Analytics</td>
-		<td><img src="images/tool_yes.png"/></td>
-	</tr>
-	<tr>
-		<td>Helpdesk</td>
-		<td><img src="images/tool_yes.png"/></td>
-	</tr>
-	<tr>
-		<td>VIP Support (U mailt, wij plaatsen)</td>
-		<td><img src="images/tool_no.png"/> (+ 20)</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>
-			<div class="uk-margin-top uk-button uk-button-primary uk-button-large uk-width-1-1"> € 29,00 p/m</div>
-		</td>
-	</tr>
-</table>
-
-
-<div class="uk-form-row">
-	<textarea class="uk-width-1-1" style="height:150px" rows="5" placeholder="Overige vragen of opmerkingen"></textarea>
-
-</div>
-<a href="#" class="uk-button uk-button-success uk-width-1-1 uk-button-large ">Verstuur deze offerte</a>
-
-
-<br/><br/><br/>
-<div class="uk-panel">
-
-	<p>Naast bovenstaande producten en diensten hebben wij nog meer te bieden. Echter omdat deze producten zo op maat
-		voor u worden ontwikkeld, zijn ze niet geschikt voor een online offerte tool. Het gaat om de volgene
-		producten:</p>
-
-	<ul>
-
-		<li>Webshop</li>
-		<li>Animaties/Video's</li>
-		<li>SocialMedia</li>
-		<li>Landingpages</li>
-		<li>Meertaligheid</li>
-		<li>Nieuwsbriefcomponent</li>
-		<li>Ontwerp logo</li>
-
+			    </div>
+			    <div class="uk-width-medium-2-5 range-slider uk-flex uk-flex-center uk-flex-middle">
+					<div class="">
+						<input type="range" name="eenmalig.aantalpags"
+							   min="<?php echo $config->get('paginas.min', 1); ?>"
+							   max="<?php echo $config->get('paginas.max', 25); ?>"
+							   value="<?php echo $config->get('paginas.value', 5); ?>" />
+					</div>
+					<div class="uk-margin-left">
+						<strong class="output"><?php echo $config->get('paginas.value', 5); ?></strong>
+					</div>
+			    </div>
+			</div>
+		</li>
 	</ul>
+	<div class="uk-flex uk-flex-left">
+		<div class="uk-width-2-3"><em>Eenmalig:</em></div>
+		<div class="uk-width-1-3 bix-prijs-eenmalig"></div>
+	</div>
 
+	<h3>Periodieke investeringen</h3>
+	<ul class="bix-periodiek uk-list uk-list-line"></ul>
+	<div class="uk-flex uk-flex-right">
+		<div class="uk-width-2-3"><em>Per maand:</em></div>
+		<div class="uk-width-1-3 bix-prijs-periodiek"></div>
+	</div>
+
+	<div class="uk-form-row">
+		<textarea class="uk-width-1-1" style="height:150px" rows="5"
+				  placeholder="Overige vragen of opmerkingen"></textarea>
+	</div>
+
+	<div class="uk-form-row">
+		<input class="uk-width-1-1 uk-form-large" type="email" name="email"
+			   placeholder="Voer eventueel uw e-mailadres in"/>
+	</div>
+
+	<button type="button" class="uk-button uk-button-success uk-width-1-1 uk-button-large bix-submit"><i
+			class="uk-icon-paper-plane-o uk-margin-small-right"></i>Verstuur deze offerte</button>
+
+	<div class="uk-panel uk-panel-box uk-margin-top">
+
+		<p>Naast bovenstaande producten en diensten hebben wij nog meer te bieden. Echter omdat deze producten zo op maat
+			voor u worden ontwikkeld, zijn ze niet geschikt voor een online offerte tool. Het gaat om de volgende
+			producten:</p>
+
+		<ul class="uk-list">
+
+			<li><i class="uk-icon-check uk-text-success uk-margin-small-right"></i>Webshop</li>
+			<li><i class="uk-icon-check uk-text-success uk-margin-small-right"></i>Animaties/Video's</li>
+			<li><i class="uk-icon-check uk-text-success uk-margin-small-right"></i>SocialMedia</li>
+			<li><i class="uk-icon-check uk-text-success uk-margin-small-right"></i>Landingpages</li>
+			<li><i class="uk-icon-check uk-text-success uk-margin-small-right"></i>Meertaligheid</li>
+			<li><i class="uk-icon-check uk-text-success uk-margin-small-right"></i>Nieuwsbriefcomponent</li>
+			<li><i class="uk-icon-check uk-text-success uk-margin-small-right"></i>logo</li>
+
+		</ul>
+
+	</div>
 </div>

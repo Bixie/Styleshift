@@ -1,9 +1,115 @@
 {
-  "ajaxUrl":"",
-  "eenmalig": [
-
-  ],
-  "periodiek": [
-
-  ],
+  "mailOnderwerp": "Offerte bij Styleshift",
+  "mailto": "info@styleshift.nl",
+  "paginas": {
+    "perstuk": "10",
+    "vanaf": "6",
+    "min": "1",
+    "max": "25",
+    "value": "5"
+  },
+  "basisprijs": "895",
+  "eenmalig": {
+    "best_template": {
+      "tekst": "Korting gebruik bestaande template",
+      "tooltip": "tooltip",
+      "prijs": "-500",
+      "inputType": "bool",
+      "defaultVal": 0
+    },
+    "responsive": {
+      "tekst": "Responsive website",
+      "tooltip": "tooltip",
+      "prijs": "200",
+      "inputType": "bool",
+      "defaultVal": 0
+    },
+    "seo": {
+      "tekst": "Zoekmachine Optimalisatie",
+      "tooltip": "tooltip",
+      "prijs": "225",
+      "inputType": "bool",
+      "defaultVal": 0
+    },
+    "beheren": {
+      "tekst": "Uw eigen website beheren",
+      "tooltip": "tooltip",
+      "prijs": "100",
+      "inputType": "bool",
+      "defaultVal": 0
+    },
+    "training": {
+      "tekst": "Training CMS",
+      "tooltip": "tooltip",
+      "prijs": "175",
+      "inputType": "bool",
+      "defaultVal": 0
+    },
+    "facebook": {
+      "tekst": "Koppeling Facebook",
+      "tooltip": "tooltip",
+      "prijs": "75",
+      "inputType": "bool",
+      "defaultVal": 0
+    },
+    "twitter": {
+      "tekst": "Koppeling Twitter",
+      "tooltip": "tooltip",
+      "prijs": "75",
+      "inputType": "bool",
+      "defaultVal": 0
+    },
+    "animatie": {
+      "tekst": "Animatie (60 seconden)",
+      "tooltip": "tooltip",
+      "prijs": "895",
+      "inputType": "bool",
+      "defaultVal": 0
+    }
+  },
+  "permaandprijs": "0",
+  "periodiek": {
+    "domeinhosting": {
+      "tekst": "Domeinnaam & Hosting",
+      "tooltip": "tooltip",
+      "prijs": "0",
+      "inputType": "bool",
+      "defaultVal": 1
+    },
+    "email": {
+      "tekst": "E-mailadressen",
+      "tooltip": "tooltip",
+      "prijs": "0",
+      "inputType": "bool",
+      "defaultVal": 1
+    },
+    "updates": {
+      "tekst": "Backups & Software Updates",
+      "tooltip": "tooltip",
+      "prijs": "0",
+      "inputType": "bool",
+      "defaultVal": 1
+    },
+    "ganalytics": {
+      "tekst": "Google Analytics",
+      "tooltip": "tooltip",
+      "prijs": "0",
+      "inputType": "bool",
+      "defaultVal": 1
+    },
+    "helpdesk": {
+      "tekst": "Helpdesk",
+      "tooltip": "tooltip",
+      "prijs": "0",
+      "inputType": "bool",
+      "defaultVal": 0
+    },
+    "vip": {
+      "tekst": "VIP Support (U mailt, wij plaatsen)",
+      "tooltip": "tooltip",
+      "prijs": "20",
+      "inputType": "bool",
+      "defaultVal": 0
+    }
+  }
 }

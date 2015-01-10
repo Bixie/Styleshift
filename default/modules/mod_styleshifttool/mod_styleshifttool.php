@@ -9,10 +9,13 @@
 // no direct access
 defined('_JEXEC') or die;
 /**
- * @var JRegistry $params
+ * @var \Joomla\Registry\Registry $params
  */
 
-$params->get('scrollspyls', '');
-
+//init vars
+$configString = file_get_contents(__DIR__.'/config.json');
+$config = new \Joomla\Registry\Registry();
+$config->loadString($configString);
+$config->set('token',JSession::getFormToken());
 
 require JModuleHelper::getLayoutPath('mod_styleshifttool', $params->get('layout', 'default'));

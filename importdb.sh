@@ -41,9 +41,9 @@ function ask {
 }
 
 # Make sure this isn't run accidentally
-ask 'Database overschrijven voor dev omgeving??' || exit
+ask 'Database overschrijven voor dev omgeving??' Y || exit
 
-mysqlmysql -u $dev_db_user -p$dev_db_pwd $dev_db < /vagrant/sql/$sql_importfile || exit
+mysql -u $dev_db_user -p$dev_db_pwd $dev_db < /vagrant/sql/$sql_importfile || exit
 
 echo "Database geimporteerd."
 
