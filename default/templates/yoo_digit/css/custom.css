@@ -4,6 +4,108 @@
  * Custom Style Sheet - Use this file to style your content
  */
 
+/*
+*ja/nee
+*/
+
+.radio-toggle .toggle {
+	position:relative;
+	width:95px;
+	height:35px;
+	border:5px solid #e9e9e9;
+	border-radius:40px;
+}
+
+.radio-toggle .toggle input {
+	opacity:0;
+	cursor:pointer;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:6;
+	width:84px;
+	height:34px;
+}
+
+.radio-toggle .toggle input:checked ~ .tg-btn {
+	left:50px;
+}
+
+.radio-toggle .toggle input:checked ~ .bg {
+	background:linear-gradient(#809e2f,#a5c04d);
+}
+
+.radio-toggle .toggle .tg-btn {
+	display:block;
+	position:absolute;
+	z-index:4;
+	top:-10px;
+	left:-5px;
+	width:45px;
+	height:45px;
+	background:linear-gradient(rgba(253,253,253,1) 0%,rgba(255,255,255,1) 3%,rgba(252,252,252,1) 13%,rgba(228,228,228,1) 50%,rgba(221,221,221,1) 55%,rgba(208,208,208,1) 85%,rgba(205,205,205,1) 100%);
+	border:2px solid #e8e8e8;
+	border-radius:50px;
+	box-shadow:0 5px 5px rgba(50,50,50,0.2);
+	transition:left 0.25s ease;
+}
+
+.radio-toggle .toggle .tg-btn:after {
+	content:"";
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-top:-12.5px;
+	margin-left:-12.5px;
+	width:25px;
+	height:25px;
+	box-shadow:inset 0 2px 5px 0 rgba(0,0,0,0.08);
+	background:#e3e3e3;
+	border-radius:50px;
+}
+
+.radio-toggle .toggle .tg-labels {
+	position:absolute;
+	top:10px;
+	z-index:2;
+	width:100%;
+	font-family:Helvetica,sans-serif;
+	font-weight:bold;
+	color:#fff;
+	text-transform:uppercase;
+	text-shadow:1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.radio-toggle .toggle .tg-labels:before {
+	content:"JA";
+	color: #659f13;
+	position:absolute;
+	left:18px;
+}
+
+.radio-toggle .toggle .tg-labels:after {
+	content:"NEE";
+	color: #d85030;
+	position:absolute;
+	right:10px;
+}
+
+.radio-toggle .toggle .tg-bg {
+	display:block;
+	position:absolute;
+	z-index:0;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	border-radius:40px;
+	box-shadow:inset 0 2px 5px 0 rgba(0,0,0,0.2);
+	background:linear-gradient(#848484,#a2a2a2);
+}
+
+
+
+
 /* Layout
 ----------------------------------------------------------------------------------------------------*/
 
@@ -969,6 +1071,4 @@ div.box-tijdspad{
 
 color: #fff !important;
 }
-
-
 

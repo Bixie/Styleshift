@@ -146,11 +146,15 @@ $config->set('body_config', json_encode($body_config));
 // add css
 $this['asset']->addFile('css', 'css:theme.css');
 $this['asset']->addFile('css', 'css:custom.css');
+$this['asset']->addFile('css', 'css:notify.almost-flat.css');
+$this['asset']->addFile('css', 'css:flex.almost-flat.css');
 
 // add scripts
 $this['asset']->addFile('js', 'js:uikit.js');
 $this['asset']->addFile('js', 'warp:vendor/uikit/js/components/autocomplete.js');
 $this['asset']->addFile('js', 'warp:vendor/uikit/js/components/search.js');
+$this['asset']->addFile('js', 'warp:vendor/uikit/js/components/notify.js');
+$this['asset']->addFile('js', '/modules/mod_styleshifttool/assets/styleshifttool.js');
 $this['asset']->addFile('js', 'js:social.js');
 $this['asset']->addFile('js', 'js:theme.js');
 $this['asset']->addFile('js', 'js:circlechart.js');
