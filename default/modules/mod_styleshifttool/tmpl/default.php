@@ -24,12 +24,10 @@ defined('_JEXEC') or die;
 				<i class="uk-icon-info-circle uk-icon-medium uk-text-primary"
 				   title="{{tooltip}}" data-uk-tooltip="{pos:'left'}"></i>
 			</div>
-			<div class="uk-width-2-5 uk-width-medium-1-5 radio-toggle uk-flex uk-flex-center">
+			<div class="uk-width-2-5 uk-width-medium-1-5 uk-flex uk-flex-center">
 				<div class="toggle">
-					<input type="checkbox" name="{{type}}.{{naam}}" {{#defaultVal}} checked="checked"{{/defaultVal}}/>
-						<span class="tg-btn"></span>
-						<span class="tg-labels"></span>
-						<span class="tg-bg"></span>
+					<input type="checkbox" id="{{type}}_{{naam}}" name="{{type}}.{{naam}}" {{#defaultVal}} checked="checked"{{/defaultVal}}/>
+					<label for="{{type}}_{{naam}}"></label>
 				</div>
 			</div>
 		</div>
