@@ -42,12 +42,6 @@ defined('_JEXEC') or die;
 <p>Wij streven naar eenvoud en duidelijkheid. Daarom hebben wij deze tool ontwikkeld om u zelf
 	de kosten van uw toekomstige website te laten berekenen.</p>
 
-<p>Misschien goed om te weten hierbij is dat kwaliteit gaat bij ons altijd voor gaat. Om
-	tot een optimaal resultaat te komen wordt u nauw betrokken in het traject en uw feedback
-	op meerdere momenten gebruikt wordt om tot een goed resultaat te komen. Het resultaat
-	waarnaar wij streven is een unieke en doeltreffende website geheel naar uw wensen en
-	onze kwaliteitsmaatstaven. </p>
-
 <div class="uk-margin-large-top" data-bix-styleshifttool='<?php echo $config->toString(); ?>'>
 
 	<h3>Eenmalige investeringen</h3>
