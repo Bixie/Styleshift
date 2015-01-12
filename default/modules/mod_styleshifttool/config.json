@@ -19,49 +19,49 @@
     },
     "responsive": {
       "tekst": "Responsive website",
-      "tooltip": "tooltip",
+      "tooltip": "Uw website wordt geoptimaliseerd voor smartphones & tablets",
       "prijs": "200",
       "inputType": "bool",
       "defaultVal": 0
     },
     "seo": {
       "tekst": "Zoekmachine Optimalisatie",
-      "tooltip": "tooltip",
+      "tooltip": "Laat Google uw website beter vinden d.m.v. de juiste SEO technieken",
       "prijs": "225",
       "inputType": "bool",
       "defaultVal": 0
     },
     "beheren": {
       "tekst": "Uw eigen website beheren",
-      "tooltip": "tooltip",
+      "tooltip": "Pas eenvoudig (via de front-end) uw eigen website aan",
       "prijs": "100",
       "inputType": "bool",
       "defaultVal": 0
     },
     "training": {
       "tekst": "Training CMS",
-      "tooltip": "tooltip",
+      "tooltip": "Niet de vis, maar de hengel. Leer alles over uw CMS en houdt u website zelf up-to-date.",
       "prijs": "175",
       "inputType": "bool",
       "defaultVal": 0
     },
     "facebook": {
       "tekst": "Koppeling Facebook",
-      "tooltip": "tooltip",
+      "tooltip": "Integreer Facebook naadloos in uw website d.m.v. directe Likes, comments of berichten.",
       "prijs": "75",
       "inputType": "bool",
       "defaultVal": 0
     },
     "twitter": {
       "tekst": "Koppeling Twitter",
-      "tooltip": "tooltip",
+      "tooltip": "Integreer Twitter naadloos in uw website d.m.v. live tweets, follow buttons en meer.",
       "prijs": "75",
       "inputType": "bool",
       "defaultVal": 0
     },
     "animatie": {
-      "tekst": "Animatie (60 seconden)",
-      "tooltip": "tooltip",
+      "tekst": "Animatie/Promovideo (60 seconden)",
+      "tooltip": "Video is de toekomst. Of het nu gaat om een evenement, product of dienst, vaak is een video of animatie de meest effectieve manier om uw boodschap snel en doelgericht over te brengen op uw bezoeker. ",
       "prijs": "895",
       "inputType": "bool",
       "defaultVal": 0
@@ -71,42 +71,42 @@
   "periodiek": {
     "domeinhosting": {
       "tekst": "Domeinnaam & Hosting",
-      "tooltip": "tooltip",
+      "tooltip": "Inclusief 500MB hosting en  1 domeinnaam (Bijvoorbeeld .nl, .com, .eu en meer.",
       "prijs": "0",
       "inputType": "bool",
       "defaultVal": 1
     },
     "email": {
       "tekst": "E-mailadressen",
-      "tooltip": "tooltip",
+      "tooltip": "Oneindig aantal e-mailadressen aanmaken",
       "prijs": "0",
       "inputType": "bool",
       "defaultVal": 1
     },
     "updates": {
       "tekst": "Backups & Software Updates",
-      "tooltip": "tooltip",
+      "tooltip": "Er wordt dagelijks een backup van uw website en database gemaakt. Tevens zorgen wij ervoor dat de software van uw website, CMS en extensies up-to-date zijn.",
       "prijs": "0",
       "inputType": "bool",
       "defaultVal": 1
     },
     "ganalytics": {
       "tekst": "Google Analytics",
-      "tooltip": "tooltip",
+      "tooltip": "Meten + Analyse = Weten. Hoe meer u van uw bezoekers leert, des te doelgerichter kunt u uw website aanpakken. Om een basis te leggen installeren wij standaard Google Analytics om van uw gebruikersstatistieken te leren.",
       "prijs": "0",
       "inputType": "bool",
       "defaultVal": 1
     },
     "helpdesk": {
       "tekst": "Helpdesk",
-      "tooltip": "tooltip",
+      "tooltip": "U kunt ons gewoon bellen tijdens kantoortijden. Mail proberen we altijd binnen 24 uur te beantwoorden.",
       "prijs": "0",
       "inputType": "bool",
       "defaultVal": 0
     },
     "vip": {
       "tekst": "VIP Support (U mailt, wij plaatsen)",
-      "tooltip": "tooltip",
+      "tooltip": "Geen tijd of zin om zelf uw website bij te houden? Voor €20 p/m kunt u alle aanpssingen aan ons doorgeven en passen wij uw website aan. Op die manier bent u altijd verzekerd dat uw website er tot in de puntjes professioneel uit blijft zien.",
       "prijs": "20",
       "inputType": "bool",
       "defaultVal": 0
