@@ -60,7 +60,7 @@
       "defaultVal": 0
     },
     "animatie": {
-      "tekst": "Animatie/Promovideo (60 seconden)",
+      "tekst": "Animatie / Promovideo (60 seconden)",
       "tooltip": "Video is de toekomst. Of het nu gaat om een evenement, product of dienst, vaak is een video of animatie de meest effectieve manier om uw boodschap snel en doelgericht over te brengen op uw bezoeker. ",
       "prijs": "895",
       "inputType": "bool",
