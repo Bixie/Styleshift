@@ -102,7 +102,7 @@
       "tooltip": "U kunt ons gewoon bellen tijdens kantoortijden. Mail proberen we altijd binnen 24 uur te beantwoorden.",
       "prijs": "0",
       "inputType": "bool",
-      "defaultVal": 0
+      "defaultVal": 1
     },
     "vip": {
       "tekst": "VIP Support (U mailt, wij plaatsen)",
