@@ -29,4 +29,3 @@ defined('_JEXEC') or die;
 </ul>
 <p>Eventuele opmerking:</p>
 <p><?php echo $opmerking; ?></p>
-<p>Groetn!</p>
