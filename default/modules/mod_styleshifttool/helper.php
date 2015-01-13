@@ -122,7 +122,8 @@ class modStyleshifttoolHelper {
 //			echo '</pre>';
 		//aantal pags
 		if ($aantalpags >= $config->get('paginas.vanaf', 6)) {
-			$calculation['eenmalig'] += $aantalpags * $config->get('paginas.perstuk', 0);
+			$calcPags = $aantalpags - ($config->get('paginas.vanaf', 6) - 1);
+			$calculation['eenmalig'] += $calcPags * $config->get('paginas.perstuk', 0);
 		}
 		return $calculation;
 	}
