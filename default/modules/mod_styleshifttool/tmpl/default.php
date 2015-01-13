@@ -40,7 +40,7 @@ defined('_JEXEC') or die;
 <h1 class="uk-article-title">Wat kost een website</h1>
 
 <p>Wij streven naar eenvoud en duidelijkheid. Daarom hebben wij deze tool ontwikkeld om u zelf
-	de kosten van uw toekomstige website te laten berekenen.</p>
+	de kosten van uw toekomstige website te laten berekenen. Mocht u willen dan kunt u ons uw voorkeuren direct mailen in de vorm van een offerte.</p>
 
 <div class="uk-margin-large-top" data-bix-styleshifttool='<?php echo $config->toString(); ?>'>
 
