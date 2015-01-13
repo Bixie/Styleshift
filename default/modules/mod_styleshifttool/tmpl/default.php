@@ -103,7 +103,7 @@ defined('_JEXEC') or die;
 	<div class="uk-panel uk-panel-box uk-margin-top">
 
 		<p>Naast bovenstaande producten en diensten hebben wij nog meer te bieden. Echter omdat deze producten zo op maat
-			voor u worden ontwikkeld, zijn ze niet geschikt voor een online offerte tool. Voor een volledig overzicht van onze producten kunt u <a href ="webdesign-producten">hier</a> kijken.</p>
+			voor u worden ontwikkeld, zijn ze niet geschikt voor een online offerte tool. Voor een volledig overzicht van onze producten kunt u <a href="webdesign-producten">hier</a> kijken.</p>
 
 	
 
