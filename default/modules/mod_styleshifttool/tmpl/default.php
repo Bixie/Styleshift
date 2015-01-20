@@ -12,8 +12,24 @@
 
 // no direct access
 defined('_JEXEC') or die;
+//facebook crap
 
 ?>
+<!-- Facebook Conversion Crap for Conversie - Styleshift - Wat kost een website -->
+<script>(function() {
+		var _fbq = window._fbq || (window._fbq = []);
+		if (!_fbq.loaded) {
+			var fbds = document.createElement('script');
+			fbds.async = true;
+			fbds.src = '//connect.facebook.net/en_US/fbds.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(fbds, s);
+			_fbq.loaded = true;
+		}
+	})();
+</script>
+
+
 <script type="text/rowTemplate">
 	<li class="bix-item">
 		<div class="uk-flex uk-flex-middle uk-margin-small-top uk-margin-small-bottom">

@@ -29,8 +29,9 @@
     UI.component('bixstyleshifttool', {
 
         defaults: {
-            ajaxUrl:'/index.php?option=com_ajax&module=styleshifttool&format=json',
-            token:'',
+            ajaxUrl: '/index.php?option=com_ajax&module=styleshifttool&format=json',
+            fbID: '6020912795179',
+            token: '',
             eenmalig: [],
             periodiek: [],
             rowTemplate: '',
@@ -118,6 +119,10 @@
                         if (response.data.success) {
                             $this.options.token = response.data.token;
                             $this.setReturnData(response.data);
+                        }
+                        if (method === 'submit') {
+                            window._fbq = window._fbq || [];
+                            window._fbq.push(['track', $this.options.fbID, {'value':'0.00','currency':'EUR'}]);
                         }
                     } else if (response.error) {
                         UI.notify({message: response.error, status: 'danger'});
