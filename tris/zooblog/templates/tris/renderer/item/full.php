@@ -37,7 +37,7 @@ $align = ($this->checkPosition('media')) ? $view->params->get('template.item_med
 	<?php endif; ?>
 
 	<?php if ($this->checkPosition('title')) : ?>
-	<h1 class="title"><?php echo $this->renderPosition('title'); ?></h1>
+	<div style="min-width:300px"><h1 class="title"><?php echo $this->renderPosition('title'); ?></h1></div>
 	<?php endif; ?>
 
 	<?php if ($this->checkPosition('meta')) : ?>
