@@ -1,6 +1,7 @@
 {
   "mailOnderwerp": "Offerte bij Styleshift",
   "mailto": "info@styleshift.nl",
+  "thankyou": "Mail verzonden naar %s",
   "paginas": {
     "perstuk": "10",
     "vanaf": "6",

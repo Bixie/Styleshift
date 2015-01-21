@@ -110,7 +110,7 @@ defined('_JEXEC') or die;
 
 	<div class="uk-form-row">
 		<input class="uk-width-1-1 uk-form-large" type="email" name="email"
-			   placeholder="Voer eventueel uw e-mailadres in"/>
+			   placeholder="Voer uw e-mailadres in"/>
 	</div>
 
 	<button type="button" class="uk-button uk-button-success uk-width-1-1 uk-button-large bix-submit"><i

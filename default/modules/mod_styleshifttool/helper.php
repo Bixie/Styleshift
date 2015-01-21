@@ -56,6 +56,9 @@ class modStyleshifttoolHelper {
 			return $return;
 		}
 		if ($task == 'submit') {
+			if (!JMailHelper::isEmailAddress($data['email'])) {
+				throw new Exception('Voer aub uw e-mailadres in.');
+			}
 
 			//init mailvars
 			$jconfig = JFactory::getConfig();
@@ -86,7 +89,7 @@ class modStyleshifttoolHelper {
 			}
 			$result = $mail->Send();
 			if ($result) {
-				$return['messages']['success'][] = 'Mail verzonden naar ' . $email . '.';
+				$return['messages']['success'][] = sprintf($config->get('thankyou', 'Mail verzonden naar %s'), $email);
 				$return['success'] = true;
 			} else {
 				$return['messages']['danger'][] = 'Fout in verzenden mail.';

@@ -115,6 +115,9 @@
                 data: postData
             })
                 .done(function (response) {
+                    if (!response.success && response.message) {
+                        UI.notify({message: response.message, status: 'danger'});
+                    }
                     if (response.success && response.data) {
                         if (response.data.success) {
                             $this.options.token = response.data.token;
@@ -124,8 +127,6 @@
                             window._fbq = window._fbq || [];
                             window._fbq.push(['track', $this.options.fbID, {'value':'0.00','currency':'EUR'}]);
                         }
-                    } else if (response.error) {
-                        UI.notify({message: response.error, status: 'danger'});
                     }
                 })
                 .fail(function (jqXHR, textStatus) {
