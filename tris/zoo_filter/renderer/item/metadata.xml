@@ -12,4 +12,8 @@
 		<name>Layout 3</name>
 		<description>This is an alternative layout to render the items from ZOOfilter module.</description>
 	</layout>
+	<layout name="teaserlike">
+		<name>Teaser</name>
+		<description>This is a teaser layout to render the items from ZOOfilter module.</description>
+	</layout>
 </metadata>
