@@ -15,6 +15,10 @@ include($this['path']->path('layouts:theme.config.php'));
 
 <head>
 <?php echo $this['template']->render('head'); ?>
+</head>
+
+<body class="<?php echo $this['config']->get('body_classes'); ?>">
+
 	<script>(function() {
 			var _fbq = window._fbq || (window._fbq = []);
 			if (!_fbq.loaded) {
@@ -31,10 +35,6 @@ include($this['path']->path('layouts:theme.config.php'));
 		window._fbq.push(['track', 'PixelInitialized', {}]);
 	</script>
 	<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=712938138769005&amp;ev=PixelInitialized" /></noscript>
-</head>
-
-<body class="<?php echo $this['config']->get('body_classes'); ?>">
-
 	<?php if ($this['widgets']->count('toolbar-l + toolbar-r')) : ?>
 
 		<div class="tm-toolbar uk-clearfix">
