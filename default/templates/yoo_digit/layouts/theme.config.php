@@ -146,8 +146,6 @@ $config->set('body_config', json_encode($body_config));
 // add css
 $this['asset']->addFile('css', 'css:theme.css');
 $this['asset']->addFile('css', 'css:custom.css');
-$this['asset']->addFile('css', 'css:notify.almost-flat.css');
-$this['asset']->addFile('css', 'css:flex.almost-flat.css');
 
 // add scripts
 $this['asset']->addFile('js', 'js:uikit.js');
