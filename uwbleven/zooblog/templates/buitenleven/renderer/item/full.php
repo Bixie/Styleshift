@@ -67,7 +67,12 @@ $align = ($this->checkPosition('media')) ? $view->params->get('template.item_med
 <?php endif; ?>
 
 <?php if ($this->checkPosition('bottom')) : ?>
-	<?php echo $this->renderPosition('bottom', array('style' => 'uikit_block')); ?>
+	<ul class="uk-tab" data-uk-tab="{connect:'#tabs-zoofull-<?php echo $item->id; ?>'}">
+		<?php echo $this->renderPosition('bottom', array('style' => 'uikit_tabheader')); ?>
+	</ul>
+	<ul id="tabs-zoofull-<?php echo $item->id; ?>" class="uk-switcher uk-margin">
+		<?php echo $this->renderPosition('bottom', array('style' => 'uikit_tabcontent')); ?>
+	</ul>
 <?php endif; ?>
 
 <?php if ($this->checkPosition('related')) : ?>
@@ -80,3 +85,4 @@ $align = ($this->checkPosition('media')) ? $view->params->get('template.item_med
 	<?php echo $this->renderPosition('author', array('style' => 'uikit_author')); ?>
 </div>
 <?php endif;
+
