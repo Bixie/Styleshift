@@ -123,10 +123,6 @@
                             $this.options.token = response.data.token;
                             $this.setReturnData(response.data);
                         }
-                        if (method === 'submit') {
-                            window._fbq = window._fbq || [];
-                            window._fbq.push(['track', $this.options.fbID, {'value':'0.00','currency':'EUR'}]);
-                        }
                     }
                 })
                 .fail(function (jqXHR, textStatus) {

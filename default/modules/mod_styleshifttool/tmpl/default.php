@@ -15,7 +15,7 @@ defined('_JEXEC') or die;
 //facebook crap
 
 ?>
-<!-- Facebook Conversion Crap for Conversie - Styleshift - Wat kost een website -->
+<!-- Facebook Conversion Code for Styleshift - Tool pagina bezocht -->
 <script>(function() {
 		var _fbq = window._fbq || (window._fbq = []);
 		if (!_fbq.loaded) {
@@ -27,7 +27,10 @@ defined('_JEXEC') or die;
 			_fbq.loaded = true;
 		}
 	})();
+	window._fbq = window._fbq || [];
+	window._fbq.push(['track', '6021429390979', {'value':'0.00','currency':'EUR'}]);
 </script>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6021429390979&amp;cd[value]=0.00&amp;cd[currency]=EUR&amp;noscript=1" /></noscript>
 
 
 <script type="text/rowTemplate">
