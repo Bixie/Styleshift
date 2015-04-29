@@ -1060,6 +1060,13 @@
             ]
         },
         {
+            "label": "Accordion",
+            "advanced": true,
+            "vars": [
+                "@accordion-*"
+            ]
+        },
+        {
             "label": "Search",
             "advanced": true,
             "vars": [
