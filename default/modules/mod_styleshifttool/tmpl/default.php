@@ -94,7 +94,7 @@ defined('_JEXEC') or die;
 			</div>
 		</li>
 	</ul>
-	<div class="uk-flex uk-flex-left">
+	<div class="uk-flex uk-flex-right">
 		<div class="uk-width-2-3"><em>Eenmalig:</em></div>
 		<div class="uk-width-1-3 bix-prijs-eenmalig"></div>
 	</div>
