@@ -1,1 +1,220 @@
-!function(t){var i;window.UIkit&&(i=t(UIkit)),"function"==typeof define&&define.amd&&define("uikit-tooltip",["uikit"],function(){return i||t(UIkit)})}(function(t){"use strict";var i,e,o;return t.component("tooltip",{defaults:{offset:5,pos:"top",animation:!1,delay:0,cls:"",src:function(){return this.attr("title")}},tip:"",boot:function(){t.$html.on("mouseenter.tooltip.uikit focus.tooltip.uikit","[data-uk-tooltip]",function(){var i=t.$(this);if(!i.data("tooltip")){{t.tooltip(i,t.Utils.options(i.attr("data-uk-tooltip")))}i.trigger("mouseenter")}})},init:function(){var e=this;i||(i=t.$('<div class="uk-tooltip"></div>').appendTo("body")),this.on({focus:function(){e.show()},blur:function(){e.hide()},mouseenter:function(){e.show()},mouseleave:function(){e.hide()}}),this.tip="function"==typeof this.options.src?this.options.src.call(this.element):this.options.src,this.element.attr("data-cached-title",this.element.attr("title")).attr("title","")},show:function(){if(e&&clearTimeout(e),o&&clearTimeout(o),this.tip.length){i.stop().css({top:-2e3,visibility:"hidden"}).show(),i.html('<div class="uk-tooltip-inner">'+this.tip+"</div>");var n=this,s=t.$.extend({},this.element.offset(),{width:this.element[0].offsetWidth,height:this.element[0].offsetHeight}),l=i[0].offsetWidth,f=i[0].offsetHeight,h="function"==typeof this.options.offset?this.options.offset.call(this.element):this.options.offset,p="function"==typeof this.options.pos?this.options.pos.call(this.element):this.options.pos,a=p.split("-"),c={display:"none",visibility:"visible",top:s.top+s.height+f,left:s.left};if("fixed"==t.$html.css("position")||"fixed"==t.$body.css("position")){var r=t.$("body").offset(),u=t.$("html").offset(),d={top:u.top+r.top,left:u.left+r.left};s.left-=d.left,s.top-=d.top}"left"!=a[0]&&"right"!=a[0]||"right"!=t.langdirection||(a[0]="left"==a[0]?"right":"left");var m={bottom:{top:s.top+s.height+h,left:s.left+s.width/2-l/2},top:{top:s.top-f-h,left:s.left+s.width/2-l/2},left:{top:s.top+s.height/2-f/2,left:s.left-l-h},right:{top:s.top+s.height/2-f/2,left:s.left+s.width+h}};t.$.extend(c,m[a[0]]),2==a.length&&(c.left="left"==a[1]?s.left:s.left+s.width-l);var g=this.checkBoundary(c.left,c.top,l,f);if(g){switch(g){case"x":p=2==a.length?a[0]+"-"+(c.left<0?"left":"right"):c.left<0?"right":"left";break;case"y":p=2==a.length?(c.top<0?"bottom":"top")+"-"+a[1]:c.top<0?"bottom":"top";break;case"xy":p=2==a.length?(c.top<0?"bottom":"top")+"-"+(c.left<0?"left":"right"):c.left<0?"right":"left"}a=p.split("-"),t.$.extend(c,m[a[0]]),2==a.length&&(c.left="left"==a[1]?s.left:s.left+s.width-l)}c.left-=t.$body.position().left,e=setTimeout(function(){i.css(c).attr("class",["uk-tooltip","uk-tooltip-"+p,n.options.cls].join(" ")),n.options.animation?i.css({opacity:0,display:"block"}).animate({opacity:1},parseInt(n.options.animation,10)||400):i.show(),e=!1,o=setInterval(function(){n.element.is(":visible")||n.hide()},150)},parseInt(this.options.delay,10)||0)}},hide:function(){this.element.is("input")&&this.element[0]===document.activeElement||(e&&clearTimeout(e),o&&clearTimeout(o),i.stop(),this.options.animation?i.fadeOut(parseInt(this.options.animation,10)||400):i.hide())},content:function(){return this.tip},checkBoundary:function(i,e,o,n){var s="";return(0>i||i-t.$win.scrollLeft()+o>window.innerWidth)&&(s+="x"),(0>e||e-t.$win.scrollTop()+n>window.innerHeight)&&(s+="y"),s}}),t.tooltip});
+/*! UIkit 2.20.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+(function(addon) {
+    var component;
+
+    if (window.UIkit) {
+        component = addon(UIkit);
+    }
+
+    if (typeof define == "function" && define.amd) {
+        define("uikit-tooltip", ["uikit"], function(){
+            return component || addon(UIkit);
+        });
+    }
+})(function(UI){
+
+    "use strict";
+
+    var $tooltip,   // tooltip container
+        tooltipdelay, checkdelay;
+
+    UI.component('tooltip', {
+
+        defaults: {
+            "offset": 5,
+            "pos": "top",
+            "animation": false,
+            "delay": 0, // in miliseconds
+            "cls": "",
+            "src": function() { return this.attr("title"); }
+        },
+
+        tip: "",
+
+        boot: function() {
+
+            // init code
+            UI.$html.on("mouseenter.tooltip.uikit focus.tooltip.uikit", "[data-uk-tooltip]", function(e) {
+                var ele = UI.$(this);
+
+                if (!ele.data("tooltip")) {
+                    var obj = UI.tooltip(ele, UI.Utils.options(ele.attr("data-uk-tooltip")));
+                    ele.trigger("mouseenter");
+                }
+            });
+        },
+
+        init: function() {
+
+            var $this = this;
+
+            if (!$tooltip) {
+                $tooltip = UI.$('<div class="uk-tooltip"></div>').appendTo("body");
+            }
+
+            this.on({
+                "focus"     : function(e) { $this.show(); },
+                "blur"      : function(e) { $this.hide(); },
+                "mouseenter": function(e) { $this.show(); },
+                "mouseleave": function(e) { $this.hide(); }
+            });
+
+            this.tip = typeof(this.options.src) === "function" ? this.options.src.call(this.element) : this.options.src;
+
+            // disable title attribute
+            this.element.attr("data-cached-title", this.element.attr("title")).attr("title", "");
+        },
+
+        show: function() {
+
+            if (tooltipdelay)     clearTimeout(tooltipdelay);
+            if (checkdelay)       clearTimeout(checkdelay);
+            if (!this.tip.length) return;
+
+            $tooltip.stop().css({"top": -2000, "visibility": "hidden"}).show();
+            $tooltip.html('<div class="uk-tooltip-inner">' + this.tip + '</div>');
+
+            var $this      = this,
+                pos        = UI.$.extend({}, this.element.offset(), {width: this.element[0].offsetWidth, height: this.element[0].offsetHeight}),
+                width      = $tooltip[0].offsetWidth,
+                height     = $tooltip[0].offsetHeight,
+                offset     = typeof(this.options.offset) === "function" ? this.options.offset.call(this.element) : this.options.offset,
+                position   = typeof(this.options.pos) === "function" ? this.options.pos.call(this.element) : this.options.pos,
+                tmppos     = position.split("-"),
+                tcss       = {
+                    "display"    : "none",
+                    "visibility" : "visible",
+                    "top"        : (pos.top + pos.height + height),
+                    "left"       : pos.left
+                };
+
+
+            // prevent strange position
+            // when tooltip is in offcanvas etc.
+            if (UI.$html.css('position')=='fixed' || UI.$body.css('position')=='fixed'){
+                var bodyoffset = UI.$('body').offset(),
+                    htmloffset = UI.$('html').offset(),
+                    docoffset  = {'top': (htmloffset.top + bodyoffset.top), 'left': (htmloffset.left + bodyoffset.left)};
+
+                pos.left -= docoffset.left;
+                pos.top  -= docoffset.top;
+            }
+
+
+            if ((tmppos[0] == "left" || tmppos[0] == "right") && UI.langdirection == 'right') {
+                tmppos[0] = tmppos[0] == "left" ? "right" : "left";
+            }
+
+            var variants =  {
+                "bottom"  : {top: pos.top + pos.height + offset, left: pos.left + pos.width / 2 - width / 2},
+                "top"     : {top: pos.top - height - offset, left: pos.left + pos.width / 2 - width / 2},
+                "left"    : {top: pos.top + pos.height / 2 - height / 2, left: pos.left - width - offset},
+                "right"   : {top: pos.top + pos.height / 2 - height / 2, left: pos.left + pos.width + offset}
+            };
+
+            UI.$.extend(tcss, variants[tmppos[0]]);
+
+            if (tmppos.length == 2) tcss.left = (tmppos[1] == 'left') ? (pos.left) : ((pos.left + pos.width) - width);
+
+            var boundary = this.checkBoundary(tcss.left, tcss.top, width, height);
+
+            if(boundary) {
+
+                switch(boundary) {
+                    case "x":
+
+                        if (tmppos.length == 2) {
+                            position = tmppos[0]+"-"+(tcss.left < 0 ? "left": "right");
+                        } else {
+                            position = tcss.left < 0 ? "right": "left";
+                        }
+
+                        break;
+
+                    case "y":
+                        if (tmppos.length == 2) {
+                            position = (tcss.top < 0 ? "bottom": "top")+"-"+tmppos[1];
+                        } else {
+                            position = (tcss.top < 0 ? "bottom": "top");
+                        }
+
+                        break;
+
+                    case "xy":
+                        if (tmppos.length == 2) {
+                            position = (tcss.top < 0 ? "bottom": "top")+"-"+(tcss.left < 0 ? "left": "right");
+                        } else {
+                            position = tcss.left < 0 ? "right": "left";
+                        }
+
+                        break;
+
+                }
+
+                tmppos = position.split("-");
+
+                UI.$.extend(tcss, variants[tmppos[0]]);
+
+                if (tmppos.length == 2) tcss.left = (tmppos[1] == 'left') ? (pos.left) : ((pos.left + pos.width) - width);
+            }
+
+
+            tcss.left -= UI.$body.position().left;
+
+            tooltipdelay = setTimeout(function(){
+
+                $tooltip.css(tcss).attr("class", ["uk-tooltip", "uk-tooltip-"+position, $this.options.cls].join(' '));
+
+                if ($this.options.animation) {
+                    $tooltip.css({opacity: 0, display: 'block'}).animate({opacity: 1}, parseInt($this.options.animation, 10) || 400);
+                } else {
+                    $tooltip.show();
+                }
+
+                tooltipdelay = false;
+
+                // close tooltip if element was removed or hidden
+                checkdelay = setInterval(function(){
+                    if(!$this.element.is(':visible')) $this.hide();
+                }, 150);
+
+            }, parseInt(this.options.delay, 10) || 0);
+        },
+
+        hide: function() {
+            if(this.element.is("input") && this.element[0]===document.activeElement) return;
+
+            if(tooltipdelay) clearTimeout(tooltipdelay);
+            if (checkdelay)  clearTimeout(checkdelay);
+
+            $tooltip.stop();
+
+            if (this.options.animation) {
+                $tooltip.fadeOut(parseInt(this.options.animation, 10) || 400);
+            } else {
+                $tooltip.hide();
+            }
+        },
+
+        content: function() {
+            return this.tip;
+        },
+
+        checkBoundary: function(left, top, width, height) {
+
+            var axis = "";
+
+            if(left < 0 || ((left - UI.$win.scrollLeft())+width) > window.innerWidth) {
+               axis += "x";
+            }
+
+            if(top < 0 || ((top - UI.$win.scrollTop())+height) > window.innerHeight) {
+               axis += "y";
+            }
+
+            return axis;
+        }
+    });
+
+    return UI.tooltip;
+});

@@ -1,1 +1,66 @@
-!function(t){var i;window.UIkit&&(i=t(UIkit)),"function"==typeof define&&define.amd&&define("uikit-form-password",["uikit"],function(){return i||t(UIkit)})}(function(t){"use strict";return t.component("formPassword",{defaults:{lblShow:"Show",lblHide:"Hide"},boot:function(){t.$html.on("click.formpassword.uikit","[data-uk-form-password]",function(i){var e=t.$(this);if(!e.data("formPassword")){i.preventDefault();{t.formPassword(e,t.Utils.options(e.attr("data-uk-form-password")))}e.trigger("click")}})},init:function(){var t=this;this.on("click",function(i){if(i.preventDefault(),t.input.length){var e=t.input.attr("type");t.input.attr("type","text"==e?"password":"text"),t.element.text(t.options["text"==e?"lblShow":"lblHide"])}}),this.input=this.element.next("input").length?this.element.next("input"):this.element.prev("input"),this.element.text(this.options[this.input.is("[type='password']")?"lblShow":"lblHide"]),this.element.data("formPassword",this)}}),t.formPassword});
+/*! UIkit 2.20.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+(function(addon) {
+
+    var component;
+
+    if (window.UIkit) {
+        component = addon(UIkit);
+    }
+
+    if (typeof define == "function" && define.amd) {
+        define("uikit-form-password", ["uikit"], function(){
+            return component || addon(UIkit);
+        });
+    }
+
+})(function(UI){
+
+    "use strict";
+
+    UI.component('formPassword', {
+
+        defaults: {
+            "lblShow": "Show",
+            "lblHide": "Hide"
+        },
+
+        boot: function() {
+            // init code
+            UI.$html.on("click.formpassword.uikit", "[data-uk-form-password]", function(e) {
+
+                var ele = UI.$(this);
+
+                if (!ele.data("formPassword")) {
+
+                    e.preventDefault();
+
+                    var obj = UI.formPassword(ele, UI.Utils.options(ele.attr("data-uk-form-password")));
+                    ele.trigger("click");
+                }
+            });
+        },
+
+        init: function() {
+
+            var $this = this;
+
+            this.on("click", function(e) {
+
+                e.preventDefault();
+
+                if($this.input.length) {
+                    var type = $this.input.attr("type");
+                    $this.input.attr("type", type=="text" ? "password":"text");
+                    $this.element.text($this.options[type=="text" ? "lblShow":"lblHide"]);
+                }
+            });
+
+            this.input = this.element.next("input").length ? this.element.next("input") : this.element.prev("input");
+            this.element.text(this.options[this.input.is("[type='password']") ? "lblShow":"lblHide"]);
+
+            this.element.data("formPassword", this);
+        }
+    });
+
+    return UI.formPassword;
+});

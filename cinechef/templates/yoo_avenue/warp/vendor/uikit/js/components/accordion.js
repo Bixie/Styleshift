@@ -1,1 +1,172 @@
-!function(t){var i;window.UIkit&&(i=t(UIkit)),"function"==typeof define&&define.amd&&define("uikit-accordion",["uikit"],function(){return i||t(UIkit)})}(function(t){"use strict";function i(i){var o=t.$(i),e="auto";if(o.is(":visible"))e=o.outerHeight();else{var a={position:o.css("position"),visibility:o.css("visibility"),display:o.css("display")};e=o.css({position:"absolute",visibility:"hidden",display:"block"}).outerHeight(),o.css(a)}return e}return t.component("accordion",{defaults:{showfirst:!0,collapse:!0,animate:!0,easing:"swing",duration:300,toggle:".uk-accordion-title",containers:".uk-accordion-content",clsactive:"uk-active"},boot:function(){t.ready(function(i){setTimeout(function(){t.$("[data-uk-accordion]",i).each(function(){var i=t.$(this);i.data("accordion")||t.accordion(i,t.Utils.options(i.attr("data-uk-accordion")))})},0)})},init:function(){var i=this;this.element.on("click.uikit.accordion",this.options.toggle,function(o){o.preventDefault(),i.toggleItem(t.$(this).data("wrapper"),i.options.animate,i.options.collapse)}),this.update(),this.options.showfirst&&this.toggleItem(this.toggle.eq(0).data("wrapper"),!1,!1)},toggleItem:function(o,e,a){var n=this;o.data("toggle").toggleClass(this.options.clsactive);var s=o.data("toggle").hasClass(this.options.clsactive);a&&(this.toggle.not(o.data("toggle")).removeClass(this.options.clsactive),this.content.not(o.data("content")).parent().stop().animate({height:0},{easing:this.options.easing,duration:e?this.options.duration:0})),e?o.stop().animate({height:s?i(o.data("content")):0},{easing:this.options.easing,duration:this.options.duration,complete:function(){s&&(t.Utils.checkDisplay(o.data("content")),o.height("auto")),n.trigger("display.uk.check")}}):(o.stop().height(s?"auto":0),s&&t.Utils.checkDisplay(o.data("content")),this.trigger("display.uk.check")),this.element.trigger("toggle.uk.accordion",[s,o.data("toggle"),o.data("content")])},update:function(){var i,o,e,a=this;this.toggle=this.find(this.options.toggle),this.content=this.find(this.options.containers),this.content.each(function(n){i=t.$(this),o=i.parent().data("wrapper")?i.parent():t.$(this).wrap('<div data-wrapper="true" style="overflow:hidden;height:0;position:relative;"></div>').parent(),e=a.toggle.eq(n),o.data("toggle",e),o.data("content",i),e.data("wrapper",o),i.data("wrapper",o)}),this.element.trigger("update.uk.accordion",[this])}}),t.accordion});
+/*! UIkit 2.20.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+(function(addon) {
+    var component;
+
+    if (window.UIkit) {
+        component = addon(UIkit);
+    }
+
+    if (typeof define == "function" && define.amd) {
+        define("uikit-accordion", ["uikit"], function(){
+            return component || addon(UIkit);
+        });
+    }
+})(function(UI){
+
+    "use strict";
+
+    UI.component('accordion', {
+
+        defaults: {
+            showfirst  : true,
+            collapse   : true,
+            animate    : true,
+            easing     : 'swing',
+            duration   : 300,
+            toggle     : '.uk-accordion-title',
+            containers : '.uk-accordion-content',
+            clsactive  : 'uk-active'
+        },
+
+        boot:  function() {
+
+            // init code
+            UI.ready(function(context) {
+
+                setTimeout(function(){
+
+                    UI.$("[data-uk-accordion]", context).each(function(){
+
+                        var ele = UI.$(this);
+
+                        if(!ele.data("accordion")) {
+                            UI.accordion(ele, UI.Utils.options(ele.attr('data-uk-accordion')));
+                        }
+                    });
+
+                }, 0);
+            });
+        },
+
+        init: function() {
+
+            var $this = this;
+
+            this.element.on('click.uikit.accordion', this.options.toggle, function(e) {
+
+                e.preventDefault();
+
+                $this.toggleItem(UI.$(this).data('wrapper'), $this.options.animate, $this.options.collapse);
+            });
+
+            this.update();
+
+            if (this.options.showfirst) {
+                this.toggleItem(this.toggle.eq(0).data('wrapper'), false, false);
+            }
+        },
+
+        toggleItem: function(wrapper, animated, collapse) {
+
+            var $this = this;
+
+            wrapper.data('toggle').toggleClass(this.options.clsactive);
+
+            var active = wrapper.data('toggle').hasClass(this.options.clsactive);
+
+            if (collapse) {
+                this.toggle.not(wrapper.data('toggle')).removeClass(this.options.clsactive);
+                this.content.not(wrapper.data('content')).parent().stop().css('overflow', 'hidden').animate({ height: 0 }, {easing: this.options.easing, duration: animated ? this.options.duration : 0}).attr('aria-expanded', 'false');
+            }
+
+            wrapper.stop().css('overflow', 'hidden');
+
+            if (animated) {
+
+                wrapper.animate({ height: active ? getHeight(wrapper.data('content')) : 0 }, {easing: this.options.easing, duration: this.options.duration, complete: function() {
+
+                    if (active) {
+                        wrapper.css({'overflow': '', 'height': 'auto'});
+                        UI.Utils.checkDisplay(wrapper.data('content'));
+                    }
+
+                    $this.trigger('display.uk.check');
+                }});
+
+            } else {
+
+                wrapper.height(active ? 'auto' : 0);
+
+                if (active) {
+                    wrapper.css({'overflow': ''});
+                    UI.Utils.checkDisplay(wrapper.data('content'));
+                }
+
+                this.trigger('display.uk.check');
+            }
+
+            // Update ARIA
+            wrapper.attr('aria-expanded', active);
+
+            this.element.trigger('toggle.uk.accordion', [active, wrapper.data('toggle'), wrapper.data('content')]);
+        },
+
+        update: function() {
+
+            var $this = this, $content, $wrapper, $toggle;
+
+            this.toggle = this.find(this.options.toggle);
+            this.content = this.find(this.options.containers);
+
+            this.content.each(function(index) {
+
+                $content = UI.$(this);
+
+                if ($content.parent().data('wrapper')) {
+                    $wrapper = $content.parent();
+                } else {
+                    $wrapper = UI.$(this).wrap('<div data-wrapper="true" style="overflow:hidden;height:0;position:relative;"></div>').parent();
+
+                    // Init ARIA
+                    $wrapper.attr('aria-expanded', 'false');
+                }
+
+                $toggle = $this.toggle.eq(index);
+
+                $wrapper.data('toggle', $toggle);
+                $wrapper.data('content', $content);
+                $toggle.data('wrapper', $wrapper);
+                $content.data('wrapper', $wrapper);
+            });
+
+            this.element.trigger('update.uk.accordion', [this]);
+        }
+
+    });
+
+    // helper
+
+    function getHeight(ele) {
+
+        var $ele = UI.$(ele), height = "auto";
+
+        if ($ele.is(":visible")) {
+            height = $ele.outerHeight();
+        } else {
+
+            var tmp = {
+                position   : $ele.css("position"),
+                visibility : $ele.css("visibility"),
+                display    : $ele.css("display")
+            };
+
+            height = $ele.css({position: 'absolute', visibility: 'hidden', display: 'block'}).outerHeight();
+
+            $ele.css(tmp); // reset element
+        }
+
+        return height;
+    }
+
+    return UI.accordion;
+});

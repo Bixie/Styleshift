@@ -1,1 +1,622 @@
-!function(t){var e;window.UIkit&&(e=t(UIkit)),"function"==typeof define&&define.amd&&define("uikit-nestable",["uikit"],function(){return e||t(UIkit)})}(function(t){"use strict";var e,s="ontouchstart"in window,i=t.$html,n=[],a=t.$win,l=function(){var t=document.createElement("div"),e=document.documentElement;if(!("pointerEvents"in t.style))return!1;t.style.pointerEvents="auto",t.style.pointerEvents="x",e.appendChild(t);var s=window.getComputedStyle&&"auto"===window.getComputedStyle(t,"").pointerEvents;return e.removeChild(t),!!s}(),o=s?"touchstart":"mousedown",h=s?"touchmove":"mousemove",d=s?"touchend":"mouseup",r=s?"touchcancel":"mouseup";return t.component("nestable",{defaults:{prefix:"uk-",listNodeName:"ul",itemNodeName:"li",listBaseClass:"{prefix}nestable",listClass:"{prefix}nestable-list",listitemClass:"{prefix}nestable-list-item",itemClass:"{prefix}nestable-item",dragClass:"{prefix}nestable-list-dragged",movingClass:"{prefix}nestable-moving",handleClass:"{prefix}nestable-handle",collapsedClass:"{prefix}collapsed",placeClass:"{prefix}nestable-placeholder",noDragClass:"{prefix}nestable-nodrag",emptyClass:"{prefix}nestable-empty",group:0,maxDepth:10,threshold:20},boot:function(){t.$html.on("mousemove touchmove",function(){if(e){var s=e.offset().top;s<t.$win.scrollTop()?t.$win.scrollTop(t.$win.scrollTop()-Math.ceil(e.height()/2)):s+e.height()>window.innerHeight+t.$win.scrollTop()&&t.$win.scrollTop(t.$win.scrollTop()+Math.ceil(e.height()/2))}}),t.ready(function(e){t.$("[data-uk-nestable]",e).each(function(){var e=t.$(this);if(!e.data("nestable")){t.nestable(e,t.Utils.options(e.attr("data-uk-nestable")))}})})},init:function(){var i=this;Object.keys(this.options).forEach(function(t){-1!=String(i.options[t]).indexOf("{prefix}")&&(i.options[t]=i.options[t].replace("{prefix}",i.options.prefix))}),this.tplempty='<div class="'+this.options.emptyClass+'"/>',this.find(">"+this.options.itemNodeName).addClass(this.options.listitemClass).end().find("ul:not(.ignore-list)").addClass(this.options.listClass).find(">li").addClass(this.options.listitemClass),this.element.children(this.options.itemNodeName).length||this.element.append(this.tplempty),this.element.data("nestable-id","ID"+(new Date).getTime()+"RAND"+Math.ceil(1e5*Math.random())),this.reset(),this.element.data("nestable-group",this.options.group),this.placeEl=t.$('<div class="'+this.options.placeClass+'"/>'),this.find(this.options.itemNodeName).each(function(){i.setParent(t.$(this))}),this.on("click","[data-nestable-action]",function(e){if(!i.dragEl&&(s||0===e.button)){e.preventDefault();var n=t.$(e.currentTarget),a=n.data("nestableAction"),l=n.closest(i.options.itemNodeName);"collapse"===a&&i.collapseItem(l),"expand"===a&&i.expandItem(l),"toggle"===a&&i.toggleItem(l)}});var n=function(e){var n=t.$(e.target);if(!n.hasClass(i.options.handleClass)){if(n.closest("."+i.options.noDragClass).length)return;n=n.closest("."+i.options.handleClass)}!n.length||i.dragEl||!s&&0!==e.button||s&&1!==e.touches.length||(e.preventDefault(),i.dragStart(s?e.touches[0]:e),i.trigger("start.uk.nestable",[i]))},l=function(t){i.dragEl&&(t.preventDefault(),i.dragMove(s?t.touches[0]:t),i.trigger("move.uk.nestable",[i]))},p=function(t){i.dragEl&&(t.preventDefault(),i.dragStop(s?t.touches[0]:t)),e=!1};s?(this.element[0].addEventListener(o,n,!1),window.addEventListener(h,l,!1),window.addEventListener(d,p,!1),window.addEventListener(r,p,!1)):(this.on(o,n),a.on(h,l),a.on(d,p))},serialize:function(){var e,s=0,i=this,n=function(e,s){var a=[],l=e.children(i.options.itemNodeName);return l.each(function(){var e=t.$(this),l=t.$.extend({},e.data()),o=e.children(i.options.listNodeName);o.length&&(l.children=n(o,s+1)),a.push(l)}),a};return e=n(i.element,s)},list:function(e){e=t.$.extend({},i.options,e);var s=[],i=this,n=0,a=function(i,n,l){var o=i.children(e.itemNodeName);o.each(function(i){var o=t.$(this),h=t.$.extend({parent_id:l?l:null,depth:n,order:i},o.data()),d=o.children(e.listNodeName);s.push(h),d.length&&a(d,n+1,o.data(e.idProperty||"id"))})};return a(i.element,n),s},reset:function(){this.mouse={offsetX:0,offsetY:0,startX:0,startY:0,lastX:0,lastY:0,nowX:0,nowY:0,distX:0,distY:0,dirAx:0,dirX:0,dirY:0,lastDirX:0,lastDirY:0,distAxX:0,distAxY:0},this.moving=!1,this.dragEl=null,this.dragRootEl=null,this.dragDepth=0,this.hasNewRoot=!1,this.pointEl=null;for(var t=0;t<n.length;t++)n[t].children().length||n[t].append(this.tplempty);n=[]},toggleItem:function(t){this[t.hasClass(this.options.collapsedClass)?"expandItem":"collapseItem"](t)},expandItem:function(t){t.removeClass(this.options.collapsedClass)},collapseItem:function(t){var e=t.children(this.options.listNodeName);e.length&&t.addClass(this.options.collapsedClass)},expandAll:function(){var e=this;this.find(e.options.itemNodeName).each(function(){e.expandItem(t.$(this))})},collapseAll:function(){var e=this;this.find(e.options.itemNodeName).each(function(){e.collapseItem(t.$(this))})},setParent:function(t){t.children(this.options.listNodeName).length&&t.addClass("uk-parent")},unsetParent:function(t){t.removeClass("uk-parent "+this.options.collapsedClass),t.children(this.options.listNodeName).remove()},dragStart:function(s){var n=this.mouse,a=t.$(s.target),l=a.closest(this.options.itemNodeName),o=l.offset();this.placeEl.css("height",l.height()),n.offsetX=s.pageX-o.left,n.offsetY=s.pageY-o.top,n.startX=n.lastX=o.left,n.startY=n.lastY=o.top,this.dragRootEl=this.element,this.dragEl=t.$(document.createElement(this.options.listNodeName)).addClass(this.options.listClass+" "+this.options.dragClass),this.dragEl.css("width",l.width()),e=this.dragEl,this.tmpDragOnSiblings=[l[0].previousSibling,l[0].nextSibling],l.after(this.placeEl),l[0].parentNode.removeChild(l[0]),l.appendTo(this.dragEl),t.$body.append(this.dragEl),this.dragEl.css({left:o.left,top:o.top});var h,d,r=this.dragEl.find(this.options.itemNodeName);for(h=0;h<r.length;h++)d=t.$(r[h]).parents(this.options.listNodeName).length,d>this.dragDepth&&(this.dragDepth=d);i.addClass(this.options.movingClass)},dragStop:function(){var t=this.dragEl.children(this.options.itemNodeName).first();t[0].parentNode.removeChild(t[0]),this.placeEl.replaceWith(t),this.dragEl.remove(),(this.hasNewRoot||this.tmpDragOnSiblings[0]!=t[0].previousSibling||this.tmpDragOnSiblings[1]&&this.tmpDragOnSiblings[1]!=t[0].nextSibling)&&(this.element.trigger("change.uk.nestable",[t,this.hasNewRoot?"added":"moved",this.dragRootEl]),this.hasNewRoot&&this.dragRootEl.trigger("change.uk.nestable",[t,"removed",this.dragRootEl])),this.trigger("stop.uk.nestable",[this,t]),this.reset(),i.removeClass(this.options.movingClass)},dragMove:function(e){var s,i,a,o,h,d=this.options,r=this.mouse;this.dragEl.css({left:e.pageX-r.offsetX,top:e.pageY-r.offsetY}),r.lastX=r.nowX,r.lastY=r.nowY,r.nowX=e.pageX,r.nowY=e.pageY,r.distX=r.nowX-r.lastX,r.distY=r.nowY-r.lastY,r.lastDirX=r.dirX,r.lastDirY=r.dirY,r.dirX=0===r.distX?0:r.distX>0?1:-1,r.dirY=0===r.distY?0:r.distY>0?1:-1;var p=Math.abs(r.distX)>Math.abs(r.distY)?1:0;if(!r.moving)return r.dirAx=p,void(r.moving=!0);r.dirAx!==p?(r.distAxX=0,r.distAxY=0):(r.distAxX+=Math.abs(r.distX),0!==r.dirX&&r.dirX!==r.lastDirX&&(r.distAxX=0),r.distAxY+=Math.abs(r.distY),0!==r.dirY&&r.dirY!==r.lastDirY&&(r.distAxY=0)),r.dirAx=p,r.dirAx&&r.distAxX>=d.threshold&&(r.distAxX=0,a=this.placeEl.prev(d.itemNodeName),r.distX>0&&a.length&&!a.hasClass(d.collapsedClass)&&(s=a.find(d.listNodeName).last(),h=this.placeEl.parents(d.listNodeName).length,h+this.dragDepth<=d.maxDepth&&(s.length?(s=a.children(d.listNodeName).last(),s.append(this.placeEl)):(s=t.$("<"+d.listNodeName+"/>").addClass(d.listClass),s.append(this.placeEl),a.append(s),this.setParent(a)))),r.distX<0&&(o=this.placeEl.next(d.itemNodeName),o.length||(i=this.placeEl.parent(),this.placeEl.closest(d.itemNodeName).after(this.placeEl),i.children().length||this.unsetParent(i.parent()))));var c=!1;if(l||(this.dragEl[0].style.visibility="hidden"),this.pointEl=t.$(document.elementFromPoint(e.pageX-document.body.scrollLeft,e.pageY-(window.pageYOffset||document.documentElement.scrollTop))),l||(this.dragEl[0].style.visibility="visible"),this.pointEl.hasClass(d.handleClass))this.pointEl=this.pointEl.closest(d.itemNodeName);else{var m=this.pointEl.closest("."+d.itemClass);m.length&&(this.pointEl=m.closest(d.itemNodeName))}if(this.pointEl.hasClass(d.emptyClass))c=!0;else if(this.pointEl.data("nestable")&&!this.pointEl.children().length)c=!0,this.pointEl=t.$(this.tplempty).appendTo(this.pointEl);else if(!this.pointEl.length||!this.pointEl.hasClass(d.listitemClass))return;var g=this.element,u=this.pointEl.closest("."+this.options.listBaseClass),f=g[0]!==this.pointEl.closest("."+this.options.listBaseClass)[0],E=u;if(!r.dirAx||f||c){if(f&&d.group!==E.data("nestable-group"))return;if(n.push(g),h=this.dragDepth-1+this.pointEl.parents(d.listNodeName).length,h>d.maxDepth)return;var v=e.pageY<this.pointEl.offset().top+this.pointEl.height()/2;i=this.placeEl.parent(),c?this.pointEl.replaceWith(this.placeEl):v?this.pointEl.before(this.placeEl):this.pointEl.after(this.placeEl),i.children().length||i.data("nestable")||this.unsetParent(i.parent()),this.dragRootEl.find(d.itemNodeName).length||this.dragRootEl.children().length||this.dragRootEl.append(this.tplempty),f&&(this.dragRootEl=u,this.hasNewRoot=this.element[0]!==this.dragRootEl[0])}}}),t.nestable});
+/*! UIkit 2.20.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*
+ * Based on Nestable jQuery Plugin - Copyright (c) 2012 David Bushell - http://dbushell.com/
+ */
+(function(addon) {
+
+    var component;
+
+    if (window.UIkit) {
+        component = addon(UIkit);
+    }
+
+    if (typeof define == "function" && define.amd) {
+        define("uikit-nestable", ["uikit"], function(){
+            return component || addon(UIkit);
+        });
+    }
+
+})(function(UI) {
+
+    "use strict";
+
+    var hasTouch     = 'ontouchstart' in window,
+        html         = UI.$html,
+        touchedlists = [],
+        $win         = UI.$win,
+        draggingElement, dragSource;
+
+    /**
+     * Detect CSS pointer-events property
+     * events are normally disabled on the dragging element to avoid conflicts
+     * https://github.com/ausi/Feature-detection-technique-for-pointer-events/blob/master/modernizr-pointerevents.js
+     */
+    var hasPointerEvents = (function() {
+
+        var el = document.createElement('div'), docEl = document.documentElement;
+
+        if (!('pointerEvents' in el.style)) {
+            return false;
+        }
+
+        el.style.pointerEvents = 'auto';
+        el.style.pointerEvents = 'x';
+
+        docEl.appendChild(el);
+
+        var supports = window.getComputedStyle && window.getComputedStyle(el, '').pointerEvents === 'auto';
+
+        docEl.removeChild(el);
+
+        return !!supports;
+    })();
+
+    var eStart  = hasTouch ? 'touchstart'  : 'mousedown',
+        eMove   = hasTouch ? 'touchmove'   : 'mousemove',
+        eEnd    = hasTouch ? 'touchend'    : 'mouseup',
+        eCancel = hasTouch ? 'touchcancel' : 'mouseup';
+
+
+    UI.component('nestable', {
+
+        defaults: {
+            prefix          : 'uk-',
+            listNodeName    : 'ul',
+            itemNodeName    : 'li',
+            listBaseClass   : '{prefix}nestable',
+            listClass       : '{prefix}nestable-list',
+            listitemClass   : '{prefix}nestable-list-item',
+            itemClass       : '{prefix}nestable-item',
+            dragClass       : '{prefix}nestable-list-dragged',
+            movingClass     : '{prefix}nestable-moving',
+            handleClass     : '{prefix}nestable-handle',
+            collapsedClass  : '{prefix}collapsed',
+            placeClass      : '{prefix}nestable-placeholder',
+            noDragClass     : '{prefix}nestable-nodrag',
+            emptyClass      : '{prefix}nestable-empty',
+            group           : 0,
+            maxDepth        : 10,
+            threshold       : 20
+        },
+
+        boot: function() {
+
+            // adjust document scrolling
+            UI.$html.on('mousemove touchmove', function(e) {
+
+                if (draggingElement) {
+
+
+                    var top = draggingElement.offset().top;
+
+                    if (top < UI.$win.scrollTop()) {
+                        UI.$win.scrollTop(UI.$win.scrollTop() - Math.ceil(draggingElement.height()/2));
+                    } else if ( (top + draggingElement.height()) > (window.innerHeight + UI.$win.scrollTop()) ) {
+                        UI.$win.scrollTop(UI.$win.scrollTop() + Math.ceil(draggingElement.height()/2));
+                    }
+                }
+            });
+
+            // init code
+            UI.ready(function(context) {
+
+                UI.$("[data-uk-nestable]", context).each(function(){
+
+                    var ele = UI.$(this);
+
+                    if(!ele.data("nestable")) {
+                        var plugin = UI.nestable(ele, UI.Utils.options(ele.attr("data-uk-nestable")));
+                    }
+                });
+            });
+        },
+
+        init: function() {
+
+            var $this = this;
+
+            Object.keys(this.options).forEach(function(key){
+
+                if(String($this.options[key]).indexOf('{prefix}')!=-1) {
+                    $this.options[key] = $this.options[key].replace('{prefix}', $this.options.prefix);
+                }
+            });
+
+            this.tplempty = '<div class="' + this.options.emptyClass + '"/>';
+
+            this.find(">"+this.options.itemNodeName).addClass(this.options.listitemClass)
+                .end()
+                .find("ul:not(.ignore-list)").addClass(this.options.listClass)
+                .find(">li").addClass(this.options.listitemClass);
+
+            if (!this.element.children(this.options.itemNodeName).length) {
+                this.element.append(this.tplempty);
+            }
+
+            this.element.data("nestable-id", "ID"+(new Date().getTime())+"RAND"+(Math.ceil(Math.random() *100000)));
+            this.reset();
+            this.element.data('nestable-group', this.options.group);
+            this.placeEl = UI.$('<div class="' + this.options.placeClass + '"/>');
+
+            this.find(this.options.itemNodeName).each(function() {
+                $this.setParent(UI.$(this));
+            });
+
+            this.on('click', '[data-nestable-action]', function(e) {
+
+                if ($this.dragEl || (!hasTouch && e.button !== 0)) {
+                    return;
+                }
+
+                e.preventDefault();
+
+                var target = UI.$(e.currentTarget),
+                    action = target.data('nestableAction'),
+                    item   = target.closest($this.options.itemNodeName);
+                if (action === 'collapse') {
+                    $this.collapseItem(item);
+                }
+                if (action === 'expand') {
+                    $this.expandItem(item);
+                }
+                if (action === 'toggle') {
+                    $this.toggleItem(item);
+                }
+            });
+
+            var onStartEvent = function(e) {
+
+                var handle = UI.$(e.target);
+
+                if (!handle.hasClass($this.options.handleClass)) {
+                    if (handle.closest('.' + $this.options.noDragClass).length) {
+                        return;
+                    }
+                    handle = handle.closest('.' + $this.options.handleClass);
+                }
+                if (!handle.length || $this.dragEl || (!hasTouch && e.button !== 0) || (hasTouch && e.touches.length !== 1)) {
+                    return;
+                }
+                e.preventDefault();
+                $this.dragStart(hasTouch ? e.touches[0] : e);
+                $this.trigger('start.uk.nestable', [$this]);
+            };
+
+            var onMoveEvent = function(e) {
+                if ($this.dragEl) {
+                    e.preventDefault();
+                    $this.dragMove(hasTouch ? e.touches[0] : e);
+                    $this.trigger('move.uk.nestable', [$this]);
+                }
+            };
+
+            var onEndEvent = function(e) {
+                if ($this.dragEl) {
+                    e.preventDefault();
+                    $this.dragStop(hasTouch ? e.touches[0] : e);
+                }
+
+                draggingElement = false;
+            };
+
+            if (hasTouch) {
+                this.element[0].addEventListener(eStart, onStartEvent, false);
+                window.addEventListener(eMove, onMoveEvent, false);
+                window.addEventListener(eEnd, onEndEvent, false);
+                window.addEventListener(eCancel, onEndEvent, false);
+            } else {
+                this.on(eStart, onStartEvent);
+                $win.on(eMove, onMoveEvent);
+                $win.on(eEnd, onEndEvent);
+            }
+
+        },
+
+        serialize: function() {
+
+            var data,
+                depth = 0,
+                list  = this,
+                step  = function(level, depth) {
+
+                    var array = [ ], items = level.children(list.options.itemNodeName);
+
+                    items.each(function() {
+
+                        var li    = UI.$(this),
+                            item  = {}, attribute,
+                            sub   = li.children(list.options.listNodeName);
+
+                        for (var i = 0; i < li[0].attributes.length; i++) {
+                            attribute = li[0].attributes[i];
+                            if (attribute.name.indexOf('data-') === 0) {
+                                item[attribute.name.substr(5)] = UI.Utils.str2json(attribute.value);
+                            }
+                        }
+
+                        if (sub.length) {
+                            item.children = step(sub, depth + 1);
+                        }
+
+                        array.push(item);
+
+                    });
+                    return array;
+                };
+
+            data = step(list.element, depth);
+
+            return data;
+        },
+
+        list: function(options) {
+
+            var data  = [],
+                list  = this,
+                depth = 0,
+                step  = function(level, depth, parent) {
+
+                    var items = level.children(options.itemNodeName);
+
+                    items.each(function(index) {
+                        var li   = UI.$(this),
+                            item = UI.$.extend({parent_id: (parent ? parent : null), depth: depth, order: index}, li.data()),
+                            sub  = li.children(options.listNodeName);
+
+                        data.push(item);
+
+                        if (sub.length) {
+                            step(sub, depth + 1, li.data(options.idProperty || 'id'));
+                        }
+                    });
+                };
+
+            options = UI.$.extend({}, list.options, options);
+
+            step(list.element, depth);
+
+            return data;
+        },
+
+        reset: function() {
+
+            this.mouse = {
+                offsetX   : 0,
+                offsetY   : 0,
+                startX    : 0,
+                startY    : 0,
+                lastX     : 0,
+                lastY     : 0,
+                nowX      : 0,
+                nowY      : 0,
+                distX     : 0,
+                distY     : 0,
+                dirAx     : 0,
+                dirX      : 0,
+                dirY      : 0,
+                lastDirX  : 0,
+                lastDirY  : 0,
+                distAxX   : 0,
+                distAxY   : 0
+            };
+            this.moving     = false;
+            this.dragEl     = null;
+            this.dragRootEl = null;
+            this.dragDepth  = 0;
+            this.hasNewRoot = false;
+            this.pointEl    = null;
+
+            for (var i=0; i<touchedlists.length; i++) {
+
+                this.checkEmptyList(touchedlists[i]);
+            }
+
+            touchedlists = [];
+        },
+
+        toggleItem: function(li) {
+            this[li.hasClass(this.options.collapsedClass) ? "expandItem":"collapseItem"](li);
+        },
+
+        expandItem: function(li) {
+            li.removeClass(this.options.collapsedClass);
+        },
+
+        collapseItem: function(li) {
+            var lists = li.children(this.options.listNodeName);
+            if (lists.length) {
+                li.addClass(this.options.collapsedClass);
+            }
+        },
+
+        expandAll: function() {
+            var list = this;
+            this.find(list.options.itemNodeName).each(function() {
+                list.expandItem(UI.$(this));
+            });
+        },
+
+        collapseAll: function() {
+            var list = this;
+            this.find(list.options.itemNodeName).each(function() {
+                list.collapseItem(UI.$(this));
+            });
+        },
+
+        setParent: function(li) {
+            if (li.children(this.options.listNodeName).length) {
+                li.addClass("uk-parent");
+            }
+        },
+
+        unsetParent: function(li) {
+            li.removeClass('uk-parent '+this.options.collapsedClass);
+            li.children(this.options.listNodeName).remove();
+        },
+
+        dragStart: function(e) {
+            var mouse    = this.mouse,
+                target   = UI.$(e.target),
+                dragItem = target.closest(this.options.itemNodeName),
+                offset   = dragItem.offset();
+
+            this.placeEl.css('height', dragItem.height());
+
+            mouse.offsetX = e.pageX - offset.left;
+            mouse.offsetY = e.pageY - offset.top;
+
+            mouse.startX = mouse.lastX = offset.left;
+            mouse.startY = mouse.lastY = offset.top;
+
+            this.dragRootEl = this.element;
+
+            this.dragEl = UI.$(document.createElement(this.options.listNodeName)).addClass(this.options.listClass + ' ' + this.options.dragClass);
+            this.dragEl.css('width', dragItem.width());
+
+            draggingElement = this.dragEl;
+
+            this.tmpDragOnSiblings = [dragItem[0].previousSibling, dragItem[0].nextSibling];
+
+            // fix for zepto.js
+            //dragItem.after(this.placeEl).detach().appendTo(this.dragEl);
+            dragItem.after(this.placeEl);
+            dragItem[0].parentNode.removeChild(dragItem[0]);
+            dragItem.appendTo(this.dragEl);
+
+            UI.$body.append(this.dragEl);
+
+            this.dragEl.css({
+                left : offset.left,
+                top  : offset.top
+            });
+
+            // total depth of dragging item
+            var i, depth,
+                items = this.dragEl.find(this.options.itemNodeName);
+            for (i = 0; i < items.length; i++) {
+                depth = UI.$(items[i]).parents(this.options.listNodeName).length;
+                if (depth > this.dragDepth) {
+                    this.dragDepth = depth;
+                }
+            }
+
+            html.addClass(this.options.movingClass);
+        },
+
+        dragStop: function(e) {
+
+            // fix for zepto.js
+            //this.placeEl.replaceWith(this.dragEl.children(this.options.itemNodeName + ':first').detach());
+            var el   = this.dragEl.children(this.options.itemNodeName).first(),
+                root = this.placeEl.parents('.'+this.options.listBaseClass+':first');
+
+            el[0].parentNode.removeChild(el[0]);
+
+            this.placeEl.replaceWith(el);
+
+            this.dragEl.remove();
+
+            if (this.element[0] !== root[0]) {
+
+                root.trigger('change.uk.nestable',[el, "added", root, root.data('nestable')]);
+                this.element.trigger('change.uk.nestable', [el, "removed", this.element, this]);
+
+            } else {
+                this.element.trigger('change.uk.nestable',[el, "moved", this.element, this]);
+            }
+
+            this.trigger('stop.uk.nestable', [this, el]);
+
+            this.reset();
+
+            html.removeClass(this.options.movingClass);
+        },
+
+        dragMove: function(e) {
+            var list, parent, prev, next, depth,
+                opt   = this.options,
+                mouse = this.mouse;
+
+            this.dragEl.css({
+                left : e.pageX - mouse.offsetX,
+                top  : e.pageY - mouse.offsetY
+            });
+
+            // mouse position last events
+            mouse.lastX = mouse.nowX;
+            mouse.lastY = mouse.nowY;
+            // mouse position this events
+            mouse.nowX  = e.pageX;
+            mouse.nowY  = e.pageY;
+            // distance mouse moved between events
+            mouse.distX = mouse.nowX - mouse.lastX;
+            mouse.distY = mouse.nowY - mouse.lastY;
+            // direction mouse was moving
+            mouse.lastDirX = mouse.dirX;
+            mouse.lastDirY = mouse.dirY;
+            // direction mouse is now moving (on both axis)
+            mouse.dirX = mouse.distX === 0 ? 0 : mouse.distX > 0 ? 1 : -1;
+            mouse.dirY = mouse.distY === 0 ? 0 : mouse.distY > 0 ? 1 : -1;
+            // axis mouse is now moving on
+            var newAx   = Math.abs(mouse.distX) > Math.abs(mouse.distY) ? 1 : 0;
+
+            // do nothing on first move
+            if (!mouse.moving) {
+                mouse.dirAx  = newAx;
+                mouse.moving = true;
+                return;
+            }
+
+            // calc distance moved on this axis (and direction)
+            if (mouse.dirAx !== newAx) {
+                mouse.distAxX = 0;
+                mouse.distAxY = 0;
+            } else {
+                mouse.distAxX += Math.abs(mouse.distX);
+                if (mouse.dirX !== 0 && mouse.dirX !== mouse.lastDirX) {
+                    mouse.distAxX = 0;
+                }
+                mouse.distAxY += Math.abs(mouse.distY);
+                if (mouse.dirY !== 0 && mouse.dirY !== mouse.lastDirY) {
+                    mouse.distAxY = 0;
+                }
+            }
+            mouse.dirAx = newAx;
+
+            /**
+             * move horizontal
+             */
+            if (mouse.dirAx && mouse.distAxX >= opt.threshold) {
+                // reset move distance on x-axis for new phase
+                mouse.distAxX = 0;
+                prev = this.placeEl.prev(opt.itemNodeName);
+                // increase horizontal level if previous sibling exists and is not collapsed
+                if (mouse.distX > 0 && prev.length && !prev.hasClass(opt.collapsedClass)) {
+                    // cannot increase level when item above is collapsed
+                    list = prev.find(opt.listNodeName).last();
+                    // check if depth limit has reached
+                    depth = this.placeEl.parents(opt.listNodeName).length;
+                    if (depth + this.dragDepth <= opt.maxDepth) {
+                        // create new sub-level if one doesn't exist
+                        if (!list.length) {
+                            list = UI.$('<' + opt.listNodeName + '/>').addClass(opt.listClass);
+                            list.append(this.placeEl);
+                            prev.append(list);
+                            this.setParent(prev);
+                        } else {
+                            // else append to next level up
+                            list = prev.children(opt.listNodeName).last();
+                            list.append(this.placeEl);
+                        }
+                    }
+                }
+                // decrease horizontal level
+                if (mouse.distX < 0) {
+                    // we can't decrease a level if an item preceeds the current one
+                    next = this.placeEl.next(opt.itemNodeName);
+                    if (!next.length) {
+                        parent = this.placeEl.parent();
+                        this.placeEl.closest(opt.itemNodeName).after(this.placeEl);
+                        if (!parent.children().length) {
+                            this.unsetParent(parent.parent());
+                        }
+                    }
+                }
+            }
+
+            var isEmpty = false;
+
+            // find list item under cursor
+            if (!hasPointerEvents) {
+                this.dragEl[0].style.visibility = 'hidden';
+            }
+            this.pointEl = UI.$(document.elementFromPoint(e.pageX - document.body.scrollLeft, e.pageY - (window.pageYOffset || document.documentElement.scrollTop)));
+            if (!hasPointerEvents) {
+                this.dragEl[0].style.visibility = 'visible';
+            }
+
+            if (this.pointEl.hasClass(opt.handleClass)) {
+                this.pointEl = this.pointEl.closest(opt.itemNodeName);
+            } else {
+
+                var nestableitem = this.pointEl.closest('.'+opt.itemClass);
+
+                if (nestableitem.length) {
+                    this.pointEl = nestableitem.closest(opt.itemNodeName);
+                }
+            }
+
+            if (this.pointEl.hasClass(opt.emptyClass)) {
+                isEmpty = true;
+            } else if (this.pointEl.data('nestable') && !this.pointEl.children().length) {
+                isEmpty = true;
+                this.pointEl = UI.$(this.tplempty).appendTo(this.pointEl);
+            } else if (!this.pointEl.length || !this.pointEl.hasClass(opt.listitemClass)) {
+                return;
+            }
+
+            // find parent list of item under cursor
+            var pointElRoot = this.element,
+                tmpRoot     = this.pointEl.closest('.'+this.options.listBaseClass),
+                isNewRoot   = pointElRoot[0] !== this.pointEl.closest('.'+this.options.listBaseClass)[0];
+
+            /**
+             * move vertical
+             */
+            if (!mouse.dirAx || isNewRoot || isEmpty) {
+
+                // check if groups match if dragging over new root
+                if (isNewRoot && opt.group !== tmpRoot.data('nestable-group')) {
+                    return;
+                } else {
+                    touchedlists.push(pointElRoot);
+                }
+
+                // check depth limit
+                depth = this.dragDepth - 1 + this.pointEl.parents(opt.listNodeName).length;
+
+                if (depth > opt.maxDepth) {
+                    return;
+                }
+
+                var before = e.pageY < (this.pointEl.offset().top + this.pointEl.height() / 2);
+
+                parent = this.placeEl.parent();
+
+                // if empty create new list to replace empty placeholder
+                if (isEmpty) {
+                    this.pointEl.replaceWith(this.placeEl);
+                } else if (before) {
+                    this.pointEl.before(this.placeEl);
+                } else {
+                    this.pointEl.after(this.placeEl);
+                }
+
+                if (!parent.children().length) {
+                    if(!parent.data("nestable")) this.unsetParent(parent.parent());
+                }
+
+                this.checkEmptyList(this.dragRootEl);
+                this.checkEmptyList(pointElRoot);
+
+                // parent root list has changed
+                if (isNewRoot) {
+                    this.dragRootEl = tmpRoot;
+                    this.hasNewRoot = this.element[0] !== this.dragRootEl[0];
+                }
+            }
+        },
+
+        checkEmptyList: function(list) {
+
+            list  = list ? UI.$(list) : this.element;
+
+            if (!list.children().length) {
+                list.find('.'+this.options.emptyClass).remove().end().append(this.tplempty);
+            }
+        }
+
+    });
+
+    return UI.nestable;
+});
