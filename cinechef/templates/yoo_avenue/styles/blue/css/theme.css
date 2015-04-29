@@ -405,8 +405,7 @@ a:not([class]),
    Component: Grid
  ========================================================================== */
 /*
- * 1. Needed for the gutter
- * 2. Makes grid more robust so that it can be used with other block elements like lists
+ * 1. Makes grid more robust so that it can be used with other block elements like lists
  */
 .uk-grid {
   display: -ms-flexbox;
@@ -416,8 +415,7 @@ a:not([class]),
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
   /* 1 */
-  margin: 0 0 0 -20px;
-  /* 2 */
+  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -439,8 +437,7 @@ a:not([class]),
  * Grid cell
  * 1. Space is allocated solely based on content dimensions
  * 2. Makes grid more robust so that it can be used with other block elements
- * 3. Create horizontal gutter
- * 4. DEPRECATED Using `float` to support IE9
+ * 3. DEPRECATED Using `float` to support IE9
  */
 .uk-grid > * {
   /* 1 */
@@ -450,8 +447,6 @@ a:not([class]),
   /* 2 */
   margin: 0;
   /* 3 */
-  padding-left: 20px;
-  /* 4 */
   float: left;
 }
 /*
@@ -463,72 +458,91 @@ a:not([class]),
 /* Grid gutter
  ========================================================================== */
 /*
- * Vertical gutter
+ * Default gutter
  */
-.uk-grid + .uk-grid {
-  margin-top: 20px;
+/* Horizontal */
+.uk-grid {
+  margin-left: -20px;
 }
-/*
- * This class is set by JavaScript and applies a vertical gutter if the columns stack or float into the next row
- * Higher specificity to override margin
- */
-.uk-grid > .uk-grid-margin {
-  margin-top: 20px;
+.uk-grid > * {
+  padding-left: 20px;
 }
-/*
- * Vertical gutter for panels
- */
+/* Vertical */
+.uk-grid + .uk-grid,
+.uk-grid-margin,
 .uk-grid > * > .uk-panel + .uk-panel {
   margin-top: 20px;
 }
-/*
- * Larger gutter for large screens
- */
 /* Large screen and bigger */
 @media (min-width: 1220px) {
-  /* Horizontal gutter */
-  .uk-grid:not(.uk-grid-preserve) {
+  /* Horizontal */
+  .uk-grid {
     margin-left: -20px;
   }
-  .uk-grid:not(.uk-grid-preserve) > * {
+  .uk-grid > * {
     padding-left: 20px;
   }
-  /* Vertical gutter */
-  .uk-grid:not(.uk-grid-preserve) + .uk-grid {
+  /* Vertical */
+  .uk-grid + .uk-grid,
+  .uk-grid-margin,
+  .uk-grid > * > .uk-panel + .uk-panel {
     margin-top: 20px;
   }
-  .uk-grid:not(.uk-grid-preserve) > .uk-grid-margin {
-    margin-top: 20px;
-  }
-  /* Vertical gutter for panels */
-  .uk-grid:not(.uk-grid-preserve) > * > .uk-panel + .uk-panel {
-    margin-top: 20px;
-  }
+}
+/*
+ * Collapse gutter
+ */
+/* Horizontal */
+.uk-grid-collapse {
+  margin-left: 0;
+}
+.uk-grid-collapse > * {
+  padding-left: 0;
+}
+/* Vertical */
+.uk-grid-collapse + .uk-grid-collapse,
+.uk-grid-collapse > .uk-grid-margin,
+.uk-grid-collapse > * > .uk-panel + .uk-panel {
+  margin-top: 0;
 }
 /*
  * Small gutter
- * Higher specificity to override large gutter
  */
-.uk-grid.uk-grid-small {
+/* Horizontal */
+.uk-grid-small {
   margin-left: -10px;
 }
-.uk-grid.uk-grid-small > * {
+.uk-grid-small > * {
   padding-left: 10px;
 }
-.uk-grid.uk-grid-small + .uk-grid-small {
+/* Vertical */
+.uk-grid-small + .uk-grid-small,
+.uk-grid-small > .uk-grid-margin,
+.uk-grid-small > * > .uk-panel + .uk-panel {
   margin-top: 10px;
 }
-.uk-grid.uk-grid-small > .uk-grid-margin {
-  margin-top: 10px;
+/*
+ * Medium gutter
+ */
+/* Horizontal */
+.uk-grid-medium {
+  margin-left: -20px;
 }
-.uk-grid.uk-grid-small > * > .uk-panel + .uk-panel {
-  margin-top: 10px;
+.uk-grid-medium > * {
+  padding-left: 20px;
+}
+/* Vertical */
+.uk-grid-medium + .uk-grid-medium,
+.uk-grid-medium > .uk-grid-margin,
+.uk-grid-medium > * > .uk-panel + .uk-panel {
+  margin-top: 20px;
 }
 /* Modifier: `uk-grid-divider`
  ========================================================================== */
 /*
  * Horizontal divider
- * Does not work with `uk-push-*`, `uk-pull-*` and not if the columns float into the next row
+ * Only works with the default gutter. Does not work with gutter collapse, small or large.
+ * Does not work with `uk-push-*`, `uk-pull-*` and not if the columns float into the next row.
  */
 .uk-grid-divider:not(:empty) {
   margin-left: -20px;
@@ -566,15 +580,15 @@ a:not([class]),
   /*
      * Large gutter
      */
-  .uk-grid-divider:not(.uk-grid-preserve):not(:empty) {
+  .uk-grid-divider:not(:empty) {
     margin-left: -20px;
     margin-right: -20px;
   }
-  .uk-grid-divider:not(.uk-grid-preserve) > * {
+  .uk-grid-divider > * {
     padding-left: 20px;
     padding-right: 20px;
   }
-  .uk-grid-divider:not(.uk-grid-preserve):empty {
+  .uk-grid-divider:empty {
     margin-top: 20px;
     margin-bottom: 20px;
   }
@@ -1146,8 +1160,7 @@ a:not([class]),
  * Allow panels to be anchors
  */
 .uk-panel,
-a.uk-panel:hover {
-  color: inherit;
+.uk-panel:hover {
   text-decoration: none;
 }
 /*
@@ -1186,6 +1199,11 @@ a.uk-panel:hover {
   right: 0;
   z-index: 1;
 }
+/* Sub-object: `uk-panel-teaser`
+ ========================================================================== */
+.uk-panel-teaser {
+  margin-bottom: 15px;
+}
 /* Modifier: `uk-panel-box`
  ========================================================================== */
 .uk-panel-box {
@@ -1193,7 +1211,7 @@ a.uk-panel:hover {
   background: #ffffff;
   color: #515456;
 }
-a.uk-panel-box:hover {
+.uk-panel-box-hover:hover {
   color: #515456;
 }
 .uk-panel-box .uk-panel-title {
@@ -1204,7 +1222,9 @@ a.uk-panel-box:hover {
   right: 25px;
 }
 .uk-panel-box .uk-panel-teaser {
-  margin: -25px -25px 15px -25px;
+  margin-top: -25px;
+  margin-left: -25px;
+  margin-right: -25px;
 }
 /*
  * Nav in panel
@@ -1232,7 +1252,7 @@ a.uk-panel-box:hover {
   color: #3792b5;
   text-shadow: none;
 }
-a.uk-panel-box-primary:hover {
+.uk-panel-box-primary-hover:hover {
   color: #d1efff;
 }
 .uk-panel-box-primary .uk-panel-title {
@@ -1245,7 +1265,7 @@ a.uk-panel-box-primary:hover {
   background-color: #f7f7f7;
   color: #515456;
 }
-a.uk-panel-box-secondary:hover {
+.uk-panel-box-secondary-hover:hover {
   color: #515456;
 }
 .uk-panel-box-secondary .uk-panel-title {
@@ -1255,6 +1275,7 @@ a.uk-panel-box-secondary:hover {
  ========================================================================== */
 .uk-panel-hover {
   padding: 15px;
+  color: #444444;
   border: 1px solid transparent;
 }
 .uk-panel-hover:hover {
@@ -1267,7 +1288,9 @@ a.uk-panel-box-secondary:hover {
   right: 10px;
 }
 .uk-panel-hover .uk-panel-teaser {
-  margin: -16px -16px 15px -16px;
+  margin-top: -16px;
+  margin-left: -16px;
+  margin-right: -16px;
 }
 /* Modifier: `uk-panel-header`
  ========================================================================== */
@@ -1481,6 +1504,53 @@ a.uk-panel-box-secondary:hover {
 }
 .uk-comment-primary .uk-comment-title {
   color: #54aacb;
+}
+/* ========================================================================
+   Component: Cover
+ ========================================================================== */
+/*
+ * Background image always covers and centers its element
+ */
+.uk-cover-background {
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+/*
+ * Emulates image cover, works with video and image elements
+ * 1. Parent container which clips resized object
+ * 2. Resizes the object to always covers its container
+ * 3. Reset the responsive image CSS
+ * 4. Center object
+ */
+/* 1 */
+.uk-cover {
+  overflow: hidden;
+}
+.uk-cover-object {
+  /* 2 */
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  /* 3 */
+  max-width: none;
+  /* 4 */
+  position: relative;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+/*
+ * To center iframes use `data-uk-cover` JavaScript
+ */
+[data-uk-cover] {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 /* ========================================================================
    Component: Nav
@@ -1980,70 +2050,91 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
    Component: Subnav
  ========================================================================== */
 /*
- * 1. Remove default list style
- * 2. Remove whitespace between child elements when using `inline-block`
+ * 1. Gutter
+ * 2. Remove default list style
  */
 .uk-subnav {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
   /* 1 */
+  margin-left: -10px;
+  margin-top: -10px;
+  /* 2 */
   padding: 0;
   list-style: none;
+}
+/*
+ * 1. Space is allocated solely based on content dimensions
+ * 2. Horizontal gutter is using `padding` so `uk-width-*` classes can be applied
+ * 3. Create position context for dropdowns
+ */
+.uk-subnav > * {
+  /* 1 */
+  -ms-flex: none;
+  -webkit-flex: none;
+  flex: none;
   /* 2 */
-  font-size: 0.001px;
+  padding-left: 10px;
+  margin-top: 10px;
+  /* 3 */
+  position: relative;
+}
+/*
+ * DEPRECATED IE9 Support
+ */
+.uk-subnav:before,
+.uk-subnav:after {
+  content: "";
+  display: block;
+  overflow: hidden;
+}
+.uk-subnav:after {
+  clear: both;
+}
+.uk-subnav > * {
+  float: left;
 }
 /* Items
  ========================================================================== */
-/*
- * 1. Create position context for dropdowns
- * 2. Reset whitespace hack
- */
-.uk-subnav > li {
-  /* 1 */
-  position: relative;
-  /* 2 */
-  font-size: 1rem;
-  vertical-align: top;
-}
-.uk-subnav > li,
-.uk-subnav > li > a,
-.uk-subnav > li > span {
+.uk-subnav > * > * {
   display: inline-block;
-}
-.uk-subnav > li:nth-child(n+2) {
-  margin-left: 10px;
+  color: #515456;
 }
 /*
- * Items
+ * Hover
+ * 1. Apply hover style also to focus state
  */
-.uk-subnav > li > a {
+.uk-subnav > * > *:hover,
+.uk-subnav > * > *:focus {
   color: #54aacb;
-}
-.uk-subnav > li > a:hover {
-  color: #2b728e;
+  text-decoration: none;
 }
 /*
  * Active
  */
-/*
- * Disabled
- */
-.uk-subnav > li > span {
-  color: #92969a;
+.uk-subnav > .uk-active > * {
+  color: #54aacb;
 }
 /* Modifier: 'subnav-line'
  ========================================================================== */
-.uk-subnav-line > li:nth-child(n+2):before {
+.uk-subnav-line > :before {
   content: "";
   display: inline-block;
   height: 10px;
+  vertical-align: middle;
+}
+.uk-subnav-line > :nth-child(n+2):before {
   margin-right: 10px;
   border-left: 1px solid rgba(0, 0, 0, 0.07);
 }
 /* Modifier: 'subnav-pill'
  ========================================================================== */
-.uk-subnav-pill > li > a,
-.uk-subnav-pill > li > span {
+.uk-subnav-pill > * > * {
   padding: 3px 9px;
-  text-decoration: none;
   border-radius: 2px;
 }
 /*
@@ -2051,10 +2142,11 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
  * 1. Apply hover style also to focus state
  * 2. Remove default focus style
  */
-.uk-subnav-pill > li > a:hover,
-.uk-subnav-pill > li > a:focus {
+.uk-subnav-pill > * > *:hover,
+.uk-subnav-pill > * > *:focus {
   background: #f7f7f7;
   color: #515456;
+  text-decoration: none;
   /* 2 */
   outline: none;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
@@ -2063,10 +2155,18 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
  * Active
  * `li` needed for higher specificity to override hover
  */
-.uk-subnav-pill > li.uk-active > a {
+.uk-subnav-pill > .uk-active > * {
   background: #52a9ca;
   color: #ffffff;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+/* Disabled state
+ ========================================================================== */
+.uk-subnav > .uk-disabled > * {
+  background: none;
+  color: #92969a;
+  text-decoration: none;
+  cursor: text;
 }
 /* ========================================================================
    Component: Breadcrumb
@@ -2312,7 +2412,7 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 /* Disabled */
 .uk-tab > li.uk-disabled > a {
   color: #92969a;
-  cursor: auto;
+  cursor: text;
 }
 .uk-tab > li.uk-disabled > a:hover,
 .uk-tab > li.uk-disabled > a:focus,
@@ -2629,6 +2729,79 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
     margin-left: 0;
     padding-left: 18px;
   }
+}
+/* ========================================================================
+   Component: Thumbnav
+ ========================================================================== */
+/*
+ * 1. Gutter
+ * 2. Remove default list style
+ */
+.uk-thumbnav {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  /* 1 */
+  margin-left: -10px;
+  margin-top: -10px;
+  /* 2 */
+  padding: 0;
+  list-style: none;
+}
+/*
+ * 1. Space is allocated solely based on content dimensions
+ * 2. Horizontal gutter is using `padding` so `uk-width-*` classes can be applied
+ */
+.uk-thumbnav > * {
+  /* 1 */
+  -ms-flex: none;
+  -webkit-flex: none;
+  flex: none;
+  /* 2 */
+  padding-left: 10px;
+  margin-top: 10px;
+}
+/*
+ * DEPRECATED IE9 Support
+ */
+.uk-thumbnav:before,
+.uk-thumbnav:after {
+  content: "";
+  display: block;
+  overflow: hidden;
+}
+.uk-thumbnav:after {
+  clear: both;
+}
+.uk-thumbnav > * {
+  float: left;
+}
+/* Items
+ ========================================================================== */
+.uk-thumbnav > * > * {
+  display: block;
+  background: #ffffff;
+}
+.uk-thumbnav > * > * > img {
+  opacity: 0.7;
+  -webkit-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
+}
+/*
+ * Hover
+ */
+.uk-thumbnav > * > *:hover > img,
+.uk-thumbnav > * > *:focus > img {
+  opacity: 1;
+}
+/*
+ * Active
+ */
+.uk-thumbnav > .uk-active > * > img {
+  opacity: 1;
 }
 /* ========================================================================
    Component: List
@@ -3586,7 +3759,7 @@ select.uk-form-width-mini {
 @font-face {
   font-family: 'FontAwesome';
   src: url("../../../warp/vendor/uikit/fonts/fontawesome-webfont.eot");
-  src: url("../../../warp/vendor/uikit/fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("../../../warp/vendor/uikit/fonts/fontawesome-webfont.woff") format("woff"), url("../../../warp/vendor/uikit/fonts/fontawesome-webfont.ttf") format("truetype");
+  src: url("../../../warp/vendor/uikit/fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("../../../warp/vendor/uikit/fonts/fontawesome-webfont.woff2") format('woff2'), url("../../../warp/vendor/uikit/fonts/fontawesome-webfont.woff") format("woff"), url("../../../warp/vendor/uikit/fonts/fontawesome-webfont.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -3595,6 +3768,7 @@ select.uk-form-width-mini {
  * 2. Prevent inherit font style
  * 4. Correct line-height
  * 5. Better font rendering
+ * 6. Remove `text-decoration` for anchors
  */
 [class*='uk-icon-'] {
   font-family: FontAwesome;
@@ -3608,6 +3782,12 @@ select.uk-form-width-mini {
   /* 5 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+/* 6 */
+[class*='uk-icon-'],
+[class*='uk-icon-']:hover,
+[class*='uk-icon-']:focus {
+  text-decoration: none;
 }
 /* Size modifiers
  ========================================================================== */
@@ -3629,6 +3809,17 @@ select.uk-form-width-mini {
   display: inline-block;
   -webkit-animation: uk-rotate 2s infinite linear;
   animation: uk-rotate 2s infinite linear;
+}
+/* Modifier: `uk-icon-hover`
+ ========================================================================== */
+.uk-icon-hover {
+  color: #92969a;
+}
+/*
+ * Hover
+ */
+.uk-icon-hover:hover {
+  color: #54aacb;
 }
 /* Modifier: `uk-icon-button`
  ========================================================================== */
@@ -3656,7 +3847,6 @@ select.uk-form-width-mini {
 .uk-icon-button:focus {
   background-color: rgba(0, 0, 0, 0.16);
   color: #ffffff;
-  text-decoration: none;
   /* 2 */
   outline: none;
   background-image: none;
@@ -4117,6 +4307,7 @@ select.uk-form-width-mini {
 .uk-icon-twitter:before {
   content: "\f099";
 }
+.uk-icon-facebook-f:before,
 .uk-icon-facebook:before {
   content: "\f09a";
 }
@@ -4766,7 +4957,8 @@ select.uk-form-width-mini {
 .uk-icon-male:before {
   content: "\f183";
 }
-.uk-icon-gittip:before {
+.uk-icon-gittip:before,
+.uk-icon-gratipay:before {
   content: "\f184";
 }
 .uk-icon-sun-o:before {
@@ -5033,6 +5225,7 @@ select.uk-form-width-mini {
 .uk-icon-history:before {
   content: "\f1da";
 }
+.uk-icon-genderless:before,
 .uk-icon-circle-thin:before {
   content: "\f1db";
 }
@@ -5176,6 +5369,127 @@ select.uk-form-width-mini {
 }
 .uk-icon-meanpath:before {
   content: "\f20c";
+}
+.uk-icon-buysellads:before {
+  content: "\f20d";
+}
+.uk-icon-connectdevelop:before {
+  content: "\f20e";
+}
+.uk-icon-dashcube:before {
+  content: "\f210";
+}
+.uk-icon-forumbee:before {
+  content: "\f211";
+}
+.uk-icon-leanpub:before {
+  content: "\f212";
+}
+.uk-icon-sellsy:before {
+  content: "\f213";
+}
+.uk-icon-shirtsinbulk:before {
+  content: "\f214";
+}
+.uk-icon-simplybuilt:before {
+  content: "\f215";
+}
+.uk-icon-skyatlas:before {
+  content: "\f216";
+}
+.uk-icon-cart-plus:before {
+  content: "\f217";
+}
+.uk-icon-cart-arrow-down:before {
+  content: "\f218";
+}
+.uk-icon-diamond:before {
+  content: "\f219";
+}
+.uk-icon-ship:before {
+  content: "\f21a";
+}
+.uk-icon-user-secret:before {
+  content: "\f21b";
+}
+.uk-icon-motorcycle:before {
+  content: "\f21c";
+}
+.uk-icon-street-view:before {
+  content: "\f21d";
+}
+.uk-icon-heartbeat:before {
+  content: "\f21e";
+}
+.uk-icon-venus:before {
+  content: "\f221";
+}
+.uk-icon-mars:before {
+  content: "\f222";
+}
+.uk-icon-mercury:before {
+  content: "\f223";
+}
+.uk-icon-transgender:before {
+  content: "\f224";
+}
+.uk-icon-transgender-alt:before {
+  content: "\f225";
+}
+.uk-icon-venus-double:before {
+  content: "\f226";
+}
+.uk-icon-mars-double:before {
+  content: "\f227";
+}
+.uk-icon-venus-mars:before {
+  content: "\f228";
+}
+.uk-icon-mars-stroke:before {
+  content: "\f229";
+}
+.uk-icon-mars-stroke-v:before {
+  content: "\f22a";
+}
+.uk-icon-mars-stroke-h:before {
+  content: "\f22b";
+}
+.uk-icon-neuter:before {
+  content: "\f22c";
+}
+.uk-icon-facebook-official:before {
+  content: "\f230";
+}
+.uk-icon-pinterest-p:before {
+  content: "\f231";
+}
+.uk-icon-whatsapp:before {
+  content: "\f232";
+}
+.uk-icon-server:before {
+  content: "\f233";
+}
+.uk-icon-user-plus:before {
+  content: "\f234";
+}
+.uk-icon-user-times:before {
+  content: "\f235";
+}
+.uk-icon-hotel:before,
+.uk-icon-bed:before {
+  content: "\f236";
+}
+.uk-icon-viacoin:before {
+  content: "\f237";
+}
+.uk-icon-train:before {
+  content: "\f238";
+}
+.uk-icon-subway:before {
+  content: "\f239";
+}
+.uk-icon-medium-logo:before {
+  content: "\f23a";
 }
 /* ========================================================================
    Component: Close
@@ -5479,7 +5793,9 @@ a.uk-thumbnail:focus {
  * 2. Create position context
  * 3. Set max-width for responsive images to prevent `inline-block` consequences
  * 4. Remove the gap between the container and its child element
- * 5. Fixed wrong scaling calculation for images in Chrome
+ * 5. Needed for transitions and to fixed wrong scaling calculation for images in Chrome
+ * 6. Fixed `overflow: hidden` to be ignored with border-radius and CSS transforms in Webkit
+ * 7. Reset margin
  */
 .uk-overlay {
   /* 1 */
@@ -5492,6 +5808,14 @@ a.uk-thumbnail:focus {
   vertical-align: middle;
   /* 5 */
   overflow: hidden;
+  /* 6 */
+  -webkit-transform: translateZ(0);
+  /* 7 */
+  margin: 0;
+}
+/* 6 for Safari */
+.uk-overlay.uk-border-circle {
+  -webkit-mask-image: -webkit-radial-gradient(circle, #ffffff 100%, #000000 100%);
 }
 /*
  * Remove margin from content
@@ -5499,7 +5823,191 @@ a.uk-thumbnail:focus {
 .uk-overlay > :first-child {
   margin-bottom: 0;
 }
-/* Sub-object `uk-overlay-area`
+/* Sub-object `uk-overlay-panel`
+ ========================================================================== */
+/*
+ * 1. Position cover
+ * 2. Style
+ */
+.uk-overlay-panel {
+  /* 1 */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* 2 */
+  padding: 20px;
+  color: #ffffff;
+}
+/*
+ * Remove margin from the last-child
+ */
+.uk-overlay-panel > :last-child,
+.uk-overlay-panel.uk-flex > * > :last-child {
+  margin-bottom: 0;
+}
+/*
+ * Keep color for headings if the default heading color is changed
+ */
+.uk-overlay-panel h1,
+.uk-overlay-panel h2,
+.uk-overlay-panel h3,
+.uk-overlay-panel h4,
+.uk-overlay-panel h5,
+.uk-overlay-panel h6 {
+  color: inherit;
+}
+.uk-overlay-panel a:not([class]) {
+  color: inherit;
+  text-decoration: underline;
+}
+.uk-overlay-panel a[class*='uk-icon-']:not(.uk-icon-button) {
+  color: inherit;
+}
+/* Sub-object `uk-overlay-hover` and `uk-overlay-active`
+ ========================================================================== */
+.uk-overlay-hover:not(:hover):not(.uk-hover) .uk-overlay-panel:not(.uk-ignore) {
+  opacity: 0;
+}
+.uk-overlay-active :not(.uk-active) > .uk-overlay-panel:not(.uk-ignore) {
+  opacity: 0;
+}
+/* Modifier `uk-overlay-background`
+ ========================================================================== */
+.uk-overlay-background {
+  background: rgba(0, 0, 0, 0.5);
+}
+/* Position modifiers
+ ========================================================================== */
+.uk-overlay-top {
+  bottom: auto;
+}
+.uk-overlay-bottom {
+  top: auto;
+}
+.uk-overlay-left {
+  right: auto;
+}
+.uk-overlay-right {
+  left: auto;
+}
+/* Sub-object `uk-overlay-icon`
+ ========================================================================== */
+.uk-overlay-icon:before {
+  content: "\f002";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin-top: -25px;
+  margin-left: -25px;
+  font-size: 50px;
+  line-height: 1;
+  font-family: FontAwesome;
+  text-align: center;
+  color: #ffffff;
+}
+/* Transitions
+ ========================================================================== */
+.uk-overlay-fade,
+.uk-overlay-scale,
+.uk-overlay-spin,
+.uk-overlay-grayscale,
+.uk-overlay-blur,
+[class*='uk-overlay-slide'] {
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  transition-property: opacity transform filter;
+}
+.uk-overlay-active .uk-overlay-fade,
+.uk-overlay-active .uk-overlay-scale,
+.uk-overlay-active .uk-overlay-spin,
+.uk-overlay-active [class*='uk-overlay-slide'] {
+  transition-duration: 0.8s;
+}
+/*
+ * Fade
+ */
+.uk-overlay-fade {
+  opacity: 0.7;
+}
+.uk-overlay-hover:hover .uk-overlay-fade,
+.uk-overlay-active .uk-active > .uk-overlay-fade {
+  opacity: 1;
+}
+/*
+ * Scale
+ */
+.uk-overlay-scale {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+.uk-overlay-hover:hover .uk-overlay-scale,
+.uk-overlay-active .uk-active > .uk-overlay-scale {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+/*
+ * Spin
+ */
+.uk-overlay-spin {
+  -webkit-transform: scale(1) rotate(0deg);
+  transform: scale(1) rotate(0deg);
+}
+.uk-overlay-hover:hover .uk-overlay-spin,
+.uk-overlay-active .uk-active > .uk-overlay-spin {
+  -webkit-transform: scale(1.1) rotate(3deg);
+  transform: scale(1.1) rotate(3deg);
+}
+/*
+ * Grayscale
+ */
+.uk-overlay-grayscale {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+.uk-overlay-hover:hover .uk-overlay-grayscale,
+.uk-overlay-active .uk-active > .uk-overlay-grayscale {
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
+/*
+ * Slide
+ */
+[class*='uk-overlay-slide'] {
+  opacity: 0;
+}
+/* Top */
+.uk-overlay-slide-top {
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+/* Bottom */
+.uk-overlay-slide-bottom {
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+}
+/* Left */
+.uk-overlay-slide-left {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+/* Right */
+.uk-overlay-slide-right {
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+}
+/* Hover */
+.uk-overlay-hover:hover [class*='uk-overlay-slide'],
+.uk-overlay-active .uk-active > [class*='uk-overlay-slide'] {
+  opacity: 1;
+  -webkit-transform: translateX(0) translateY(0);
+  transform: translateX(0) translateY(0);
+}
+/* DEPRECATED
+ * Sub-object `uk-overlay-area`
  ========================================================================== */
 /*
  * 1. Set position
@@ -5550,7 +6058,8 @@ a.uk-thumbnail:focus {
   text-align: center;
   color: #ffffff;
 }
-/* Sub-object `uk-overlay-area-content`
+/* DEPRECATED
+ * Sub-object `uk-overlay-area-content`
  ========================================================================== */
 /*
  * Remove whitespace between child elements when using `inline-block`
@@ -5654,116 +6163,6 @@ a.uk-thumbnail:focus {
   transform: scale(1.2) translate(-20px);
 }
 /* ========================================================================
-   Component: Progress
- ========================================================================== */
-/*
- * 1. Clearing
- * 2. Vertical alignment if text is used
- */
-.uk-progress {
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  height: 20px;
-  margin-bottom: 15px;
-  background: rgba(0, 0, 0, 0.03);
-  /* 1 */
-  overflow: hidden;
-  /* 2 */
-  line-height: 20px;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06);
-  border-radius: 100px;
-}
-/*
- * Add margin if adjacent element
- */
-* + .uk-progress {
-  margin-top: 15px;
-}
-/* Sub-object: `uk-progress-bar`
- ========================================================================== */
-/*
- * 1. Transition
- * 2. Needed for text
- */
-.uk-progress-bar {
-  width: 0;
-  height: 100%;
-  background: #52a9ca;
-  float: left;
-  /* 1 */
-  -webkit-transition: width 0.6s ease;
-  transition: width 0.6s ease;
-  /* 2 */
-  font-size: 12px;
-  color: #ffffff;
-  text-align: center;
-  background-image: -webkit-linear-gradient(top, #66b2d1, #44a3c6);
-  background-image: linear-gradient(to bottom, #66b2d1, #44a3c6);
-}
-/* Size modifiers
- ========================================================================== */
-/* Mini */
-.uk-progress-mini {
-  height: 6px;
-}
-/* Small */
-.uk-progress-small {
-  height: 12px;
-}
-/* Color modifiers
- ========================================================================== */
-.uk-progress-success .uk-progress-bar {
-  background-color: #6fc39b;
-  background-image: -webkit-linear-gradient(top, #82d2ad, #63b98f);
-  background-image: linear-gradient(to bottom, #82d2ad, #63b98f);
-}
-.uk-progress-warning .uk-progress-bar {
-  background-color: #fea52a;
-  background-image: -webkit-linear-gradient(top, #ffb23d, #fd9c1e);
-  background-image: linear-gradient(to bottom, #ffb23d, #fd9c1e);
-}
-.uk-progress-danger .uk-progress-bar {
-  background-color: #dd435c;
-  background-image: -webkit-linear-gradient(top, #e55761, #d83558);
-  background-image: linear-gradient(to bottom, #e55761, #d83558);
-}
-/* Modifier: `uk-progress-striped`
- ========================================================================== */
-.uk-progress-striped .uk-progress-bar {
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-size: 30px 30px;
-}
-/*
- * Animation
- */
-.uk-progress-striped.uk-active .uk-progress-bar {
-  -webkit-animation: uk-progress-bar-stripes 2s linear infinite;
-  animation: uk-progress-bar-stripes 2s linear infinite;
-}
-@-webkit-keyframes uk-progress-bar-stripes {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 30px 0;
-  }
-}
-@keyframes uk-progress-bar-stripes {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 30px 0;
-  }
-}
-/* Size modifiers
-     ========================================================================== */
-.uk-progress-mini,
-.uk-progress-small {
-  border-radius: 500px;
-}
-/* ========================================================================
    Component: Animation
  ========================================================================== */
 [class*='uk-animation-'] {
@@ -5776,7 +6175,7 @@ a.uk-thumbnail:focus {
 }
 /* Hide animated element if scrollspy is used */
 @media screen {
-  [data-uk-scrollspy*='uk-animation-'] {
+  [data-uk-scrollspy*='uk-animation-']:not([data-uk-scrollspy*='target']) {
     opacity: 0;
   }
 }
@@ -5888,7 +6287,7 @@ a.uk-thumbnail:focus {
 ========================================================================== */
 /*
  * Enable animation only on hover
- * Needed for Firefox because animations are not triggered when switching between display `hidden` and `block`
+ * Note: Firefox also needs this because animations are not triggered when switching between display `hidden` and `block`
  */
 .uk-animation-hover:not(:hover),
 .uk-animation-hover:not(:hover) [class*='uk-animation-'],
@@ -6515,6 +6914,7 @@ a.uk-thumbnail:focus {
  * 3. Allow scrolling for the modal dialog
  * 4. Mask the background page
  * 5. Fade-in transition
+ * 6. Deactivate browser history navigation in IE11
  */
 .uk-modal {
   /* 1 */
@@ -6535,6 +6935,8 @@ a.uk-thumbnail:focus {
   opacity: 0;
   -webkit-transition: opacity 0.15s linear;
   transition: opacity 0.15s linear;
+  /* 6 */
+  touch-action: cross-slide-y pinch-zoom double-tap-zoom;
 }
 /*
  * Open state
@@ -6552,11 +6954,10 @@ a.uk-thumbnail:focus {
 /* Sub-object: `uk-modal-dialog`
  ========================================================================== */
 /*
- * 1. Create position context for `uk-modal-dialog-frameless`
+ * 1. Create position context for caption, spinner and close button
  * 2. Set box sizing
- * 3. Min-height needed for initial loading and spinner
- * 4. Set style
- * 5. Slide-in transition
+ * 3. Set style
+ * 4. Slide-in transition
  */
 .uk-modal-dialog {
   /* 1 */
@@ -6570,10 +6971,8 @@ a.uk-thumbnail:focus {
   max-width: 100%;
   max-width: calc(100% - 20px);
   /* 3 */
-  min-height: 200px;
-  /* 4 */
   background: #f0f1f3;
-  /* 5 */
+  /* 4 */
   opacity: 0;
   -webkit-transform: translateY(-100px);
   transform: translateY(-100px);
@@ -6589,7 +6988,7 @@ a.uk-thumbnail:focus {
      */
   .uk-modal-dialog {
     width: auto;
-    margin: 10px;
+    margin: 10px auto;
   }
 }
 /*
@@ -6619,15 +7018,20 @@ a.uk-thumbnail:focus {
 .uk-modal-dialog > .uk-close:first-child + *:not([class*='uk-modal-']) {
   margin-top: 0;
 }
-/* Modifier: `uk-modal-dialog-frameless`
+/* Modifier: `uk-modal-dialog-lightbox`
  ========================================================================== */
-.uk-modal-dialog-frameless {
+.uk-modal-dialog-lightbox {
+  margin: 15px auto;
   padding: 0;
+  min-height: 200px;
+  max-width: 95%;
+  max-width: calc(100% - 30px);
+  border-radius: 0;
 }
 /*
- * Close in modal
+ * Close button
  */
-.uk-modal-dialog-frameless > .uk-close:first-child {
+.uk-modal-dialog-lightbox > .uk-close:first-child {
   position: absolute;
   top: -12px;
   right: -12px;
@@ -6636,7 +7040,7 @@ a.uk-thumbnail:focus {
 }
 /* Phone landscape and smaller */
 @media (max-width: 767px) {
-  .uk-modal-dialog-frameless > .uk-close:first-child {
+  .uk-modal-dialog-lightbox > .uk-close:first-child {
     top: -7px;
     right: -7px;
   }
@@ -6655,19 +7059,20 @@ a.uk-thumbnail:focus {
     width: 1130px;
   }
 }
-/* Sub-Object: `uk-modal-header`
+/* Sub-Object: `uk-modal-header` and `uk-modal-footer`
  ========================================================================== */
 .uk-modal-header {
-  margin-top: 0;
   margin-bottom: 15px;
-  font-size: 24px;
-  line-height: 30px;
 }
-/* Sub-Object: `uk-modal-footer`
- ========================================================================== */
 .uk-modal-footer {
   margin-top: 15px;
-  text-align: right;
+}
+/*
+ * Remove margin from the last-child
+ */
+.uk-modal-header > :last-child,
+.uk-modal-footer > :last-child {
+  margin-bottom: 0;
 }
 /* Sub-Object: `uk-modal-caption`
  ========================================================================== */
@@ -6679,6 +7084,9 @@ a.uk-thumbnail:focus {
   margin-bottom: -10px;
   color: #ffffff;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 /* Sub-Object: `uk-modal-spinner`
  ========================================================================== */
@@ -6820,134 +7228,21 @@ a.uk-thumbnail:focus {
 /* ========================================================================
    Component: Switcher
  ========================================================================== */
+/*
+ * 1. Deactivate browser history navigation in IE11
+ */
 .uk-switcher {
   margin: 0;
   padding: 0;
   list-style: none;
+  /* 1 */
+  touch-action: cross-slide-y pinch-zoom double-tap-zoom;
 }
 /*
  * Items
  */
 .uk-switcher > *:not(.uk-active) {
   display: none;
-}
-/* ========================================================================
-   Component: Tooltip
- ========================================================================== */
-/*
- * 1. Hide by default
- * 2. Set fixed position
- * 3. Set dimensions
- * 4. Set style
- */
-.uk-tooltip {
-  /* 1 */
-  display: none;
-  /* 2 */
-  position: absolute;
-  z-index: 1030;
-  /* 3 */
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  max-width: 200px;
-  padding: 5px 8px;
-  /* 4 */
-  background: #52a9ca;
-  color: #ffffff;
-  font-size: 13px;
-  line-height: 20px;
-  text-align: center;
-  border-radius: 2px;
-}
-/* Triangle
- ========================================================================== */
-/*
- * 1. Dashed is less antialised than solid
- */
-.uk-tooltip:after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 0;
-  height: 0;
-  /* 1 */
-  border: 5px dashed #52a9ca;
-}
-/* Direction modifiers
- ========================================================================== */
-/*
- * Top
- */
-.uk-tooltip-top:after,
-.uk-tooltip-top-left:after,
-.uk-tooltip-top-right:after {
-  bottom: -5px;
-  border-top-style: solid;
-  border-bottom: none;
-  border-left-color: transparent;
-  border-right-color: transparent;
-  border-top-color: #52a9ca;
-}
-/*
- * Bottom
- */
-.uk-tooltip-bottom:after,
-.uk-tooltip-bottom-left:after,
-.uk-tooltip-bottom-right:after {
-  top: -5px;
-  border-bottom-style: solid;
-  border-top: none;
-  border-left-color: transparent;
-  border-right-color: transparent;
-  border-bottom-color: #52a9ca;
-}
-/*
- * Top/Bottom center
- */
-.uk-tooltip-top:after,
-.uk-tooltip-bottom:after {
-  left: 50%;
-  margin-left: -5px;
-}
-/*
- * Top/Bottom left
- */
-.uk-tooltip-top-left:after,
-.uk-tooltip-bottom-left:after {
-  left: 10px;
-}
-/*
- * Top/Bottom right
- */
-.uk-tooltip-top-right:after,
-.uk-tooltip-bottom-right:after {
-  right: 10px;
-}
-/*
- * Left
- */
-.uk-tooltip-left:after {
-  right: -5px;
-  top: 50%;
-  margin-top: -5px;
-  border-left-style: solid;
-  border-right: none;
-  border-top-color: transparent;
-  border-bottom-color: transparent;
-  border-left-color: #52a9ca;
-}
-/*
- * Right
- */
-.uk-tooltip-right:after {
-  left: -5px;
-  top: 50%;
-  margin-top: -5px;
-  border-right-style: solid;
-  border-left: none;
-  border-top-color: transparent;
-  border-bottom-color: transparent;
-  border-right-color: #52a9ca;
 }
 /* ========================================================================
    Component: Text
@@ -7016,11 +7311,17 @@ a.uk-thumbnail:focus {
   .uk-text-center-medium {
     text-align: center !important;
   }
+  .uk-text-left-medium {
+    text-align: left !important;
+  }
 }
 /* Phone landscape and smaller */
 @media (max-width: 767px) {
   .uk-text-center-small {
     text-align: center !important;
+  }
+  .uk-text-left-small {
+    text-align: left !important;
   }
 }
 /* Wrap modifiers
@@ -7333,6 +7634,10 @@ a.uk-thumbnail:focus {
 }
 /* Headings
  ========================================================================== */
+.uk-heading-large {
+  font-size: 36px;
+  line-height: 42px;
+}
 /* Tablet and bigger */
 @media (min-width: 768px) {
   .uk-heading-large {
@@ -7405,17 +7710,38 @@ a.uk-thumbnail:focus {
 }
 /* Position
  ========================================================================== */
-.uk-position-top,
-.uk-position-bottom {
+.uk-position-absolute,
+[class*='uk-position-top'],
+[class*='uk-position-bottom'] {
   position: absolute !important;
-  width: 100%;
 }
 .uk-position-top {
   top: 0;
+  width: 100%;
 }
 .uk-position-bottom {
   bottom: 0;
+  width: 100%;
 }
+.uk-position-top-left {
+  top: 0;
+  left: 0;
+}
+.uk-position-top-right {
+  top: 0;
+  right: 0;
+}
+.uk-position-bottom-left {
+  bottom: 0;
+  left: 0;
+}
+.uk-position-bottom-right {
+  bottom: 0;
+  right: 0;
+}
+/*
+ * Cover
+ */
 .uk-position-cover {
   position: absolute;
   top: 0;
@@ -7423,6 +7749,9 @@ a.uk-thumbnail:focus {
   left: 0;
   right: 0;
 }
+/*
+ * Relative
+ */
 .uk-position-relative {
   position: relative !important;
 }
@@ -7503,50 +7832,7 @@ a.uk-thumbnail:focus {
 /* Hide on touch */
 .uk-touch .uk-hidden-touch,
 .uk-notouch .uk-hidden-notouch {
-  display: none;
-}
-/* ========================================================================
-   Component: Print
- ========================================================================== */
-@media print {
-  * {
-    background: transparent !important;
-    color: black !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-  }
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
-  thead {
-    display: table-header-group;
-  }
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-  img {
-    max-width: 100% !important;
-  }
-  @page {
-    margin: 0.5cm;
-  }
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3;
-  }
-  h2,
-  h3 {
-    page-break-after: avoid;
-  }
+  display: none !important;
 }
 /* ========================================================================
    Component: Flex
@@ -7775,89 +8061,105 @@ a.uk-thumbnail:focus {
   flex: 1;
 }
 /* ========================================================================
-   Component: Cover
+   Component: Print
  ========================================================================== */
-/*
- * Background image always covers and centers its element
- */
-.uk-cover-background {
-  background-position: 50% 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-/*
- * Emulates image cover, works with video and image elements
- * 1. Parent container which clips resized object
- * 2. Resizes the object to always covers its container
- * 3. Reset the responsive image CSS
- * 4. Center object
- */
-/* 1 */
-.uk-cover {
-  overflow: hidden;
-}
-.uk-cover-object {
-  /* 2 */
-  width: auto;
-  height: auto;
-  min-width: 100%;
-  min-height: 100%;
-  /* 3 */
-  max-width: none;
-  /* 4 */
-  position: relative;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-/*
- * To center iframes use `data-uk-cover` JavaScript
- */
-[data-uk-cover] {
-  position: relative;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  @page {
+    margin: 0.5cm;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
 }
 /* ========================================================================
    Component: Dotnav
  ========================================================================== */
 /*
- * 1. Remove default list style
- * 2. Remove whitespace between child elements when using `inline-block`
+ * 1. Gutter
+ * 2. Remove default list style
  */
 .uk-dotnav {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
   /* 1 */
+  margin-left: -12px;
+  margin-top: -12px;
+  /* 2 */
   padding: 0;
   list-style: none;
+}
+/*
+ * 1. Space is allocated solely based on content dimensions
+ * 2. Horizontal gutter is using `padding` so `uk-width-*` classes can be applied
+ */
+.uk-dotnav > * {
+  /* 1 */
+  -ms-flex: none;
+  -webkit-flex: none;
+  flex: none;
   /* 2 */
-  font-size: 0.001px;
+  padding-left: 12px;
+  margin-top: 12px;
+}
+/*
+ * DEPRECATED IE9 Support
+ */
+.uk-dotnav:before,
+.uk-dotnav:after {
+  content: "";
+  display: block;
+  overflow: hidden;
+}
+.uk-dotnav:after {
+  clear: both;
+}
+.uk-dotnav > * {
+  float: left;
 }
 /* Items
  ========================================================================== */
 /*
- * 1. Reset whitespace hack
- * 2. Remove the gap at the bottom of it container
- */
-.uk-dotnav > li {
-  display: inline-block;
-  /* 1 */
-  font-size: 1rem;
-  /* 2 */
-  vertical-align: top;
-}
-.uk-dotnav > li:nth-child(n+2) {
-  margin-left: 12px;
-}
-/*
  * Items
- * 1. Remove the gap at the bottom of it container
- * 2. Hide text if present
+ * 1. Hide text if present
  */
-.uk-dotnav > li > a {
-  display: inline-block;
+.uk-dotnav > * > * {
+  display: block;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
   width: 16px;
@@ -7865,8 +8167,6 @@ a.uk-thumbnail:focus {
   border-radius: 50%;
   background: rgba(42, 45, 49, 0.2);
   /* 1 */
-  vertical-align: top;
-  /* 2 */
   text-indent: 100%;
   overflow: hidden;
   white-space: nowrap;
@@ -7878,53 +8178,60 @@ a.uk-thumbnail:focus {
  * 1. Apply hover style also to focus state
  * 2. Remove default focus style
  */
-.uk-dotnav > li > a:hover,
-.uk-dotnav > li > a:focus {
+.uk-dotnav > * > *:hover,
+.uk-dotnav > * > *:focus {
   background: rgba(42, 45, 49, 0.5);
   /* 2 */
   outline: none;
 }
 /* OnClick */
-.uk-dotnav > li > a:active {
+.uk-dotnav > * > *:active {
   background: #2a2d31;
   -webkit-transform: scale(0.9);
   transform: scale(0.9);
 }
 /* Active */
-.uk-dotnav > li.uk-active > a {
+.uk-dotnav > *.uk-active > * {
   background: #52a9ca;
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
 /* Modifier: `uk-dotnav-contrast`
  ========================================================================== */
-.uk-dotnav-contrast > li > a {
+.uk-dotnav-contrast > * > * {
   background: rgba(255, 255, 255, 0.4);
 }
 /*
  * Hover
  * 1. Apply hover style also to focus state
  */
-.uk-dotnav-contrast > li > a:hover,
-.uk-dotnav-contrast > li > a:focus {
+.uk-dotnav-contrast > * > *:hover,
+.uk-dotnav-contrast > * > *:focus {
   background: rgba(255, 255, 255, 0.7);
 }
 /* OnClick */
-.uk-dotnav-contrast > li > a:active {
+.uk-dotnav-contrast > * > *:active {
   background: rgba(255, 255, 255, 0.9);
 }
 /* Active */
-.uk-dotnav-contrast > li.uk-active > a {
+.uk-dotnav-contrast > *.uk-active > * {
   background: rgba(255, 255, 255, 0.9);
 }
 /* Modifier: 'uk-dotnav-vertical'
  ========================================================================== */
-.uk-dotnav-vertical > li {
-  display: block;
+/*
+ * DEPRECATED
+ */
+.uk-dotnav-vertical {
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
 }
-.uk-dotnav-vertical > li:nth-child(n+2) {
-  margin-left: 0;
-  margin-top: 12px;
+/*
+ * DEPRECATED IE9 Support
+ */
+.uk-dotnav-vertical > * {
+  float: none;
 }
 /* ========================================================================
    Component: Slidenav
@@ -8029,123 +8336,155 @@ a.uk-thumbnail:focus {
   color: rgba(81, 84, 86, 0.9);
 }
 /* ========================================================================
-   Addon: Caption
+   Component: Progress
  ========================================================================== */
 /*
- * 1. Hide by default
- * 2. Position cover
- * 3. Style
+ * 1. Clearing
+ * 2. Vertical alignment if text is used
  */
-.uk-caption {
+.uk-progress {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 20px;
+  margin-bottom: 15px;
+  background: rgba(0, 0, 0, 0.03);
   /* 1 */
-  display: none;
+  overflow: hidden;
   /* 2 */
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  /* 3 */
-  padding: 15px;
-  color: #ffffff;
-}
-.uk-caption a:not([class]) {
-  color: #ffffff;
-  text-decoration: underline;
-}
-.uk-caption a:not([class]):hover {
-  color: rgba(255, 255, 255, 0.8);
-}
-.uk-caption .uk-button {
-  border: none;
-  background: rgba(255, 255, 255, 0.35);
-  color: #ffffff;
-  box-shadow: none;
-  text-shadow: none;
-}
-.uk-caption .uk-button:hover {
-  border: none;
-  background: #ffffff;
-  color: #515456;
-  box-shadow: none;
-  text-shadow: none;
+  line-height: 20px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06);
+  border-radius: 100px;
 }
 /*
- * Show caption
- * 1. `uk-hover` to support touch devices
+ * Add margin if adjacent element
  */
-.uk-caption-toggle:hover .uk-caption,
-.uk-caption-toggle.uk-hover .uk-caption,
-.uk-active > .uk-caption {
-  display: block;
+* + .uk-progress {
+  margin-top: 15px;
 }
-.uk-caption-toggle:hover .uk-caption.uk-flex,
-.uk-caption-toggle.uk-hover .uk-caption.uk-flex,
-.uk-active > .uk-caption.uk-flex {
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
+/* Sub-object: `uk-progress-bar`
+ ========================================================================== */
+/*
+ * 1. Transition
+ * 2. Needed for text
+ */
+.uk-progress-bar {
+  width: 0;
+  height: 100%;
+  background: #52a9ca;
+  float: left;
+  /* 1 */
+  -webkit-transition: width 0.6s ease;
+  transition: width 0.6s ease;
+  /* 2 */
+  font-size: 12px;
+  color: #ffffff;
+  text-align: center;
+  background-image: -webkit-linear-gradient(top, #66b2d1, #44a3c6);
+  background-image: linear-gradient(to bottom, #66b2d1, #44a3c6);
+}
+/* Size modifiers
+ ========================================================================== */
+/* Mini */
+.uk-progress-mini {
+  height: 6px;
+}
+/* Small */
+.uk-progress-small {
+  height: 12px;
+}
+/* Color modifiers
+ ========================================================================== */
+.uk-progress-success .uk-progress-bar {
+  background-color: #6fc39b;
+  background-image: -webkit-linear-gradient(top, #82d2ad, #63b98f);
+  background-image: linear-gradient(to bottom, #82d2ad, #63b98f);
+}
+.uk-progress-warning .uk-progress-bar {
+  background-color: #fea52a;
+  background-image: -webkit-linear-gradient(top, #ffb23d, #fd9c1e);
+  background-image: linear-gradient(to bottom, #ffb23d, #fd9c1e);
+}
+.uk-progress-danger .uk-progress-bar {
+  background-color: #dd435c;
+  background-image: -webkit-linear-gradient(top, #e55761, #d83558);
+  background-image: linear-gradient(to bottom, #e55761, #d83558);
+}
+/* Modifier: `uk-progress-striped`
+ ========================================================================== */
+.uk-progress-striped .uk-progress-bar {
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 30px 30px;
+}
+/*
+ * Animation
+ */
+.uk-progress-striped.uk-active .uk-progress-bar {
+  -webkit-animation: uk-progress-bar-stripes 2s linear infinite;
+  animation: uk-progress-bar-stripes 2s linear infinite;
+}
+@-webkit-keyframes uk-progress-bar-stripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 30px 0;
+  }
+}
+@keyframes uk-progress-bar-stripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 30px 0;
+  }
+}
+/* Size modifiers
+     ========================================================================== */
+.uk-progress-mini,
+.uk-progress-small {
+  border-radius: 500px;
+}
+/* ========================================================================
+   Component: Accordion
+ ========================================================================== */
+/* Sub-object: `uk-accordion-title`
+ ========================================================================== */
+.uk-accordion-title {
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding: 6px 10px;
+  background: #f7f7f7;
+  font-size: 18px;
+  line-height: 24px;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 2px;
+}
+/* Sub-object: `uk-accordion-content`
+ ========================================================================== */
+.uk-accordion-content {
+  padding: 0 10px 10px 10px;
+}
+/*
+ * Micro clearfix to make panels more robust
+ */
+.uk-accordion-content:before,
+.uk-accordion-content:after {
+  content: "";
+  display: table;
+}
+.uk-accordion-content:after {
+  clear: both;
 }
 /*
  * Remove margin from the last-child
  */
-.uk-caption > :last-child {
+.uk-accordion-content > :last-child {
   margin-bottom: 0;
 }
-/*
- * Keep color for headings if the default heading color is changed
- */
-.uk-caption h1,
-.uk-caption h2,
-.uk-caption h3,
-.uk-caption h4,
-.uk-caption h5,
-.uk-caption h6 {
-  color: inherit;
-}
-/* Sub-object: `uk-caption-toggle`
- ========================================================================== */
-/*
- * 1. Container width fits its content
- * 2. Create position context
- * 3. Set max-width for responsive images to prevent `inline-block` consequences
- * 4. Remove the gap between the container and its child element
- * 5. Fixed wrong scaling calculation for images in Chrome
- */
-.uk-caption-toggle {
-  /* 1 */
-  display: inline-block;
-  /* 2 */
-  position: relative;
-  /* 3 */
-  max-width: 100%;
-  /* 4 */
-  vertical-align: middle;
-  /* 5 */
-  overflow: hidden;
-}
-/* Position modifiers
- ========================================================================== */
-.uk-caption-top {
-  bottom: auto;
-}
-.uk-caption-bottom {
-  top: auto;
-}
-.uk-caption-left {
-  right: auto;
-}
-.uk-caption-right {
-  left: auto;
-}
-/* Sub-object: `uk-caption-panel`
- ========================================================================== */
-.uk-caption-panel {
-  color: #ffffff;
-  background: rgba(0, 0, 0, 0.35);
-}
 /* ========================================================================
-   Addon: Slideshow
+   Component: Slideshow
  ========================================================================== */
 /*
  * 1. Create position context
@@ -8479,6 +8818,124 @@ a.uk-thumbnail:focus {
 }
 .uk-offcanvas .uk-search-field::-webkit-input-placeholder {
   color: #777777;
+}
+/* ========================================================================
+   Component: Tooltip
+ ========================================================================== */
+/*
+ * 1. Hide by default
+ * 2. Set fixed position
+ * 3. Set dimensions
+ * 4. Set style
+ */
+.uk-tooltip {
+  /* 1 */
+  display: none;
+  /* 2 */
+  position: absolute;
+  z-index: 1030;
+  /* 3 */
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  max-width: 200px;
+  padding: 5px 8px;
+  /* 4 */
+  background: #52a9ca;
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 2px;
+}
+/* Triangle
+ ========================================================================== */
+/*
+ * 1. Dashed is less antialised than solid
+ */
+.uk-tooltip:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  /* 1 */
+  border: 5px dashed #52a9ca;
+}
+/* Direction modifiers
+ ========================================================================== */
+/*
+ * Top
+ */
+.uk-tooltip-top:after,
+.uk-tooltip-top-left:after,
+.uk-tooltip-top-right:after {
+  bottom: -5px;
+  border-top-style: solid;
+  border-bottom: none;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: #52a9ca;
+}
+/*
+ * Bottom
+ */
+.uk-tooltip-bottom:after,
+.uk-tooltip-bottom-left:after,
+.uk-tooltip-bottom-right:after {
+  top: -5px;
+  border-bottom-style: solid;
+  border-top: none;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: #52a9ca;
+}
+/*
+ * Top/Bottom center
+ */
+.uk-tooltip-top:after,
+.uk-tooltip-bottom:after {
+  left: 50%;
+  margin-left: -5px;
+}
+/*
+ * Top/Bottom left
+ */
+.uk-tooltip-top-left:after,
+.uk-tooltip-bottom-left:after {
+  left: 10px;
+}
+/*
+ * Top/Bottom right
+ */
+.uk-tooltip-top-right:after,
+.uk-tooltip-bottom-right:after {
+  right: 10px;
+}
+/*
+ * Left
+ */
+.uk-tooltip-left:after {
+  right: -5px;
+  top: 50%;
+  margin-top: -5px;
+  border-left-style: solid;
+  border-right: none;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: #52a9ca;
+}
+/*
+ * Right
+ */
+.uk-tooltip-right:after {
+  left: -5px;
+  top: 50%;
+  margin-top: -5px;
+  border-right-style: solid;
+  border-left: none;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: #52a9ca;
 }
 /* ========================================================================
    Warp theme
@@ -9030,20 +9487,8 @@ body {
 .tm-subnav {
   margin: 15px 25px !important;
 }
-/* Only phones */
-@media (max-width: 767px) {
-  .tm-subnav > li {
-    display: block;
-    margin: 10px 0 !important;
-    padding: 0;
-  }
-  .tm-subnav > li:nth-child(n+2) {
-    margin-left: 0;
-  }
-  .tm-subnav > li:nth-child(n+2):before {
-    margin-right: 0;
-    border-left: 0;
-  }
+.tm-subnav > * {
+  margin-top: 0 !important;
 }
 /* Modifier: `tm-list-image` */
 .tm-list-image > li {

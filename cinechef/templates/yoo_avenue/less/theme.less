@@ -855,28 +855,8 @@ html[dir="rtl"] {
 /* Modifier: `tm-subnav` */
 .tm-subnav { margin: @global-margin @global-margin-large !important; }
 
-/* Only phones */
-@media (max-width: @breakpoint-small-max) {
+.tm-subnav > * { margin-top: 0 !important; }
 
-	.tm-subnav {
-
-		> li {
-			display: block;
-			margin: (@global-margin - 5px) 0 !important;
-			padding: 0;
-
-			&:nth-child(n+2) {
-				margin-left: 0;
-
-				&:before {
-					margin-right: 0;
-					border-left: 0;
-				}
-			}
-		}
-	}
-
-}
 
  /* Modifier: `tm-list-image` */
 .tm-list-image {

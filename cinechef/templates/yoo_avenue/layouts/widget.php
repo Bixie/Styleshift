@@ -55,6 +55,7 @@ if ($widget->menu) {
     } else if (in_array($widget->position, array('toolbar-l', 'toolbar-r', 'footer'))) {
         $renderer = 'subnav';
         $widget->nav_settings["modifier"] = "uk-subnav-line";
+		if ($widget->position == 'footer') $widget->nav_settings["modifier"] .= " uk-flex-center";
     } else if (in_array($widget->position, array('offcanvas'))) {
         $renderer = 'nav';
         $widget->nav_settings["modifier"] = "uk-nav-offcanvas";

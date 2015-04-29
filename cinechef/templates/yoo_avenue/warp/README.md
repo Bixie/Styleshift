@@ -1,12 +1,28 @@
 # Warp Theme Framework #
 
-- Version: 7.3.2
-- Date: December 2014
+- Version: 7.3.4
+- Date: March 2015
 - Author: YOOtheme GmbH
 - Website: <http://www.yootheme.com/warp>
 
 
 ## Changelog
+    
+    7.3.4
+    # Fixed render menu position only if menu assigned (WP)
+    # Fixed validation on front-end editing
+    + Added option for WooCommerce products per page (WP)
+    + Added option for number of posts on frontpage (WP)
+
+    7.3.3
+    + Added ARIA support for Navbar
+    + Added option to disable page title (WP)
+    + Added icon replacement for RTL mode
+    ^ Updated UIkit to 2.17.0
+    ^ Updated language files (J)
+    # Fixed developer mode, trigger resize event after redraw
+    # Fixed .uk-link-reset in bootstrap-fix.less (J)
+    # Fixed pagination (J34)
 
     7.3.2
     + Added child theme support (WP)

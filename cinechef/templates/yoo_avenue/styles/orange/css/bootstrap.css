@@ -1690,6 +1690,10 @@ legend + .control-group {
 .form-horizontal .form-actions {
   padding-left: 180px;
 }
+/*Fix for tooltips wrong positioning*/
+.control-label .hasTooltip {
+  display: inline-block;
+}
 table {
   max-width: 100%;
   background-color: transparent;
@@ -3940,13 +3944,15 @@ input[type="submit"].btn.btn-mini {
   line-height: 30px;
 }
 .modal-body {
+  width: 98%;
   position: relative;
   overflow-y: auto;
   max-height: 400px;
-  padding: 15px;
+  padding: 1%;
 }
 .modal-body iframe {
-  max-height: 390px;
+  width: 100%;
+  max-height: none;
   border: 0 !important;
 }
 .modal-form {
@@ -6180,6 +6186,11 @@ fieldset.radio.btn-group {
 input.invalid {
   border: 1px solid #ee7683;
 }
+select.chzn-done.invalid + .chzn-container.chzn-container-single > a.chzn-single,
+select.chzn-done.invalid + .chzn-container.chzn-container-multi > ul.chzn-choices {
+  border-color: #ee7683;
+  color: #ee7683;
+}
 /* Tweaking of tooltips */
 .tooltip {
   max-width: 400px;
@@ -6255,8 +6266,16 @@ th .tooltip-inner {
   display: inline-block;
   width: 14px;
   height: 14px;
-  *margin-right: .3em;
+  margin-right: .25em;
   line-height: 14px;
+}
+dd > span[class^="icon-"] + time,
+dd > span[class*=" icon-"] + time {
+  margin-left: -0.25em;
+}
+dl.article-info dd.hits span[class^="icon-"],
+dl.article-info dd.hits span[class*=" icon-"] {
+  margin-right: 0;
 }
 /* Use the following CSS code if you want to have a class per icon */
 [class^="icon-"]:before,
@@ -6442,7 +6461,6 @@ th .tooltip-inner {
 .icon-plus-2:before {
   content: "\5d";
 }
-.icon-ban-circle:before,
 .icon-minus-sign:before,
 .icon-minus-2:before {
   content: "\5e";
@@ -6469,6 +6487,7 @@ th .tooltip-inner {
 .icon-not-ok:before {
   content: "\4b";
 }
+.icon-ban-circle:before,
 .icon-minus-circle:before {
   content: "\e216";
 }
@@ -6597,7 +6616,6 @@ th .tooltip-inner {
 .icon-file-plus:before {
   content: "\29";
 }
-.icon-file-remove:before,
 .icon-file-minus:before {
   content: "\e017";
 }
@@ -7577,11 +7595,11 @@ input.search-query {
 /* Navs overrides
  ========================================================================== */
 .nav > li > a {
-  color: #ee9e79;
+  color: #4f5054;
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
-  color: #e35c1e;
+  color: #ee9e79;
 }
 .nav-header {
   text-shadow: none;
@@ -8075,6 +8093,13 @@ iframe {
 .uk-form input[type="radio"],
 .uk-form input[type="checkbox"] {
   vertical-align: baseline;
+}
+/*
+ * Utility
+ */
+.uk-link-reset:focus,
+.uk-link-reset a:focus {
+  text-decoration: none;
 }
 /*
  * Search

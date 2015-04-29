@@ -1057,10 +1057,10 @@
             ]
         },
         {
-            "label": "Caption",
+            "label": "Accordion",
             "advanced": true,
             "vars": [
-                "@caption-*"
+                "@accordion-*"
             ]
         },
         {
