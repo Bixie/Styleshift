@@ -141,11 +141,18 @@ include($this['path']->path('layouts:theme.config.php'));
 				</div>
 				<?php endif; ?>
 
-	            <?php foreach($columns as $name => &$column) : ?>
-	            <?php if ($name != 'main' && $this['widgets']->count($name)) : ?>
-	            <aside class="<?php echo $column['class'] ?>"><?php echo $this['widgets']->render($name) ?></aside>
-	            <?php endif ?>
-	            <?php endforeach ?>
+				<?php foreach($columns as $name => &$column) : ?>
+					<?php if ($name != 'main' && $this['widgets']->count($name)) :
+						$stickyTagA = '';
+						$stickyTagB = '';
+						if ($name == 'sidebar-a') {
+							$stickyTagA = '<div data-uk-sticky="{media: 640, boundary: true}">';
+							$stickyTagB = '</div>';
+						}
+						?>
+						<aside class="<?php echo $column['class'] ?>"><?php echo $stickyTagA . $this['widgets']->render($name) . $stickyTagB; ?></aside>
+					<?php endif ?>
+				<?php endforeach ?>
 
 			</div>
 		</div>
