@@ -35,7 +35,7 @@ defined('_JEXEC') or die;
 
 <script type="text/rowTemplate">
 	<li class="bix-item">
-		<div class="uk-flex uk-flex-middle uk-margin-small-top uk-margin-small-bottom">
+		<div class="uk-grid uk-flex uk-flex-middle uk-margin-small-top uk-margin-small-bottom">
 			<div class="uk-width-2-5 uk-width-medium-3-5">
 				<span class="">{{tekst}}</span>
 			</div>
@@ -68,7 +68,7 @@ defined('_JEXEC') or die;
 		<li class="bix-item">
 			<div class="uk-grid uk-grid-small uk-margin-small-top uk-margin-small-bottom">
 			    <div class="uk-width-medium-3-5">
-					<div class="uk-flex uk-flex-middle">
+					<div class="uk-grid uk-flex uk-flex-middle">
 						<div class="uk-width-4-5">
 							<span class="">Aantal pagina's</span>
 						</div>
