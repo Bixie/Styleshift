@@ -1015,8 +1015,8 @@
 				"text": ""
 			},
 			"display": {
-				"large": "0",
-				"medium": "0",
+				"large": "1",
+				"medium": "1",
 				"small": "1"
 			}
 		},
@@ -1225,7 +1225,7 @@
 				"text": ""
 			},
 			"display": {
-				"large": "1",
+				"large": "0",
 				"medium": "0",
 				"small": "0"
 			}

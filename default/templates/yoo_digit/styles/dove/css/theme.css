@@ -1186,9 +1186,9 @@ blockquote small {
   clear: both;
 }
 /*
- * Remove margin from the last-child
+ * Remove margin from the last-child if not `uk-widget-title`
  */
-.uk-panel > :last-child {
+.uk-panel > :not(.uk-panel-title):last-child {
   margin-bottom: 0;
 }
 /* Sub-object: `uk-panel-title`
@@ -1366,6 +1366,98 @@ blockquote small {
 }
 .uk-panel-box-secondary .uk-button {
   color: #919191;
+}
+/* ========================================================================
+   Component: Block
+ ========================================================================== */
+.uk-block {
+  position: relative;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+/* Phone landscape and bigger */
+@media (min-width: 768px) {
+  .uk-block {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+/*
+ * Micro clearfix to make blocks more robust
+ */
+.uk-block:before,
+.uk-block:after {
+  content: "";
+  display: table;
+}
+.uk-block:after {
+  clear: both;
+}
+/*
+ * Remove margin from the last-child
+ */
+.uk-block > :last-child {
+  margin-bottom: 0;
+}
+/* Padding Modifier
+ ========================================================================== */
+/*
+ * Large padding
+ */
+.uk-block-large {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+/* Tablets and bigger */
+@media (min-width: 768px) {
+  .uk-block-large {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+/* Desktop and bigger */
+@media (min-width: 960px) {
+  .uk-block-large {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+}
+/* Color Modifier
+ ========================================================================== */
+/*
+ * Default
+ */
+.uk-block-default {
+  background: #ffffff;
+}
+/*
+ * Muted
+ */
+.uk-block-muted {
+  background: #f9f9f9;
+}
+/*
+ * Primary
+ */
+.uk-block-primary {
+  background: #00a8e6;
+}
+/*
+ * Secondary
+ */
+.uk-block-secondary {
+  background: #222222;
+}
+/*
+ * Adjust padding between equal colored blocks
+ */
+.uk-block-default + .uk-block-default,
+.uk-block-muted + .uk-block-muted,
+.uk-block-primary + .uk-block-primary,
+.uk-block-secondary + .uk-block-secondary {
+  padding-top: 0;
 }
 /* ========================================================================
    Component: Article
@@ -2089,8 +2181,8 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
  * Hover
  * 1. Apply hover style also to focus state
  */
-.uk-subnav > * > *:hover,
-.uk-subnav > * > *:focus {
+.uk-subnav > * > :hover,
+.uk-subnav > * > :focus {
   color: #b3c0c7;
   text-decoration: none;
 }
@@ -2123,8 +2215,8 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
  * 1. Apply hover style also to focus state
  * 2. Remove default focus style
  */
-.uk-subnav-pill > * > *:hover,
-.uk-subnav-pill > * > *:focus {
+.uk-subnav-pill > * > :hover,
+.uk-subnav-pill > * > :focus {
   background: #f5f5f5;
   color: #919191;
   text-decoration: none;
@@ -2672,8 +2764,8 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 /*
  * Hover
  */
-.uk-thumbnav > * > *:hover > img,
-.uk-thumbnav > * > *:focus > img {
+.uk-thumbnav > * > :hover > img,
+.uk-thumbnav > * > :focus > img {
   opacity: 1;
 }
 /*
@@ -2819,6 +2911,12 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 .uk-table caption {
   text-align: left;
   color: #bbbbbb;
+}
+/*
+ * Active State
+ */
+.uk-table tbody tr.uk-active {
+  background: rgba(0, 0, 0, 0.02);
 }
 /* Sub-modifier: `uk-table-middle`
  ========================================================================== */
@@ -6892,7 +6990,7 @@ a.uk-thumbnail:focus {
 /*
  * Remove margin from adjacent element
  */
-.uk-modal-dialog > .uk-close:first-child + *:not([class*='uk-modal-']) {
+.uk-modal-dialog > .uk-close:first-child + :not([class*='uk-modal-']) {
   margin-top: 0;
 }
 /* Modifier: `uk-modal-dialog-lightbox`
@@ -7112,7 +7210,7 @@ a.uk-thumbnail:focus {
 /*
  * Items
  */
-.uk-switcher > *:not(.uk-active) {
+.uk-switcher > :not(.uk-active) {
   display: none;
 }
 /* ========================================================================
@@ -7495,6 +7593,21 @@ a.uk-thumbnail:focus {
 .uk-margin-bottom-remove {
   margin-bottom: 0 !important;
 }
+/* Padding
+ ========================================================================== */
+.uk-padding-remove {
+  padding: 0 !important;
+}
+.uk-padding-top-remove {
+  padding-top: 0 !important;
+}
+.uk-padding-bottom-remove {
+  padding-bottom: 0 !important;
+}
+.uk-padding-vertical-remove {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
 /* Border
  ========================================================================== */
 .uk-border-circle {
@@ -7535,7 +7648,9 @@ a.uk-thumbnail:focus {
 .uk-link-reset,
 .uk-link-reset a,
 .uk-link-reset:hover,
-.uk-link-reset a:hover {
+.uk-link-reset a:hover,
+.uk-link-reset:focus,
+.uk-link-reset a:focus {
   color: inherit;
   text-decoration: none;
 }
@@ -7940,6 +8055,202 @@ a.uk-thumbnail:focus {
   flex: 1;
 }
 /* ========================================================================
+   Component: Contrast
+ ========================================================================== */
+.uk-contrast {
+  color: #ffffff;
+}
+.uk-contrast a:not([class]),
+.uk-contrast .uk-link {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+}
+.uk-contrast a:not([class]):hover,
+.uk-contrast .uk-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+.uk-contrast :not(pre) > code,
+.uk-contrast :not(pre) > kbd,
+.uk-contrast :not(pre) > samp {
+  color: #ffffff;
+}
+.uk-contrast em {
+  color: #ffffff;
+}
+.uk-contrast h1,
+.uk-contrast h2,
+.uk-contrast h3,
+.uk-contrast h4,
+.uk-contrast h5,
+.uk-contrast h6 {
+  color: #ffffff;
+}
+.uk-contrast hr {
+  border-top-color: rgba(255, 255, 255, 0.2);
+}
+.uk-contrast .uk-nav li > a,
+.uk-contrast .uk-nav li > a:hover {
+  text-decoration: none;
+}
+.uk-contrast .uk-nav-side > li > a {
+  color: #ffffff;
+}
+.uk-contrast .uk-nav-side > li > a:hover,
+.uk-contrast .uk-nav-side > li > a:focus {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+.uk-contrast .uk-nav-side > li.uk-active > a {
+  background: #ffffff;
+  color: #444444;
+}
+.uk-contrast .uk-nav-side .uk-nav-header {
+  color: #ffffff;
+}
+.uk-contrast .uk-nav-side .uk-nav-divider {
+  border-top-color: rgba(255, 255, 255, 0.2);
+}
+.uk-contrast .uk-nav-side ul a {
+  color: rgba(255, 255, 255, 0.7);
+}
+.uk-contrast .uk-nav-side ul a:hover {
+  color: #ffffff;
+}
+.uk-contrast .uk-subnav > * > a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+}
+.uk-contrast .uk-subnav > * > a:hover,
+.uk-contrast .uk-subnav > * > a:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.uk-contrast .uk-subnav > .uk-active > a {
+  color: #ffffff;
+}
+.uk-contrast .uk-subnav-line > :nth-child(n+2):before {
+  border-left-color: rgba(255, 255, 255, 0.2);
+}
+.uk-contrast .uk-subnav-pill > * > a:hover,
+.uk-contrast .uk-subnav-pill > * > a:focus {
+  background: rgba(255, 255, 255, 0.7);
+  color: #444444;
+  text-decoration: none;
+}
+.uk-contrast .uk-subnav-pill > .uk-active > a {
+  background: #ffffff;
+  color: #444444;
+}
+.uk-contrast .uk-list-line > li:nth-child(n+2) {
+  border-top-color: rgba(255, 255, 255, 0.2);
+}
+.uk-contrast .uk-form select,
+.uk-contrast .uk-form textarea,
+.uk-contrast .uk-form input:not([type]),
+.uk-contrast .uk-form input[type="text"],
+.uk-contrast .uk-form input[type="password"],
+.uk-contrast .uk-form input[type="datetime"],
+.uk-contrast .uk-form input[type="datetime-local"],
+.uk-contrast .uk-form input[type="date"],
+.uk-contrast .uk-form input[type="month"],
+.uk-contrast .uk-form input[type="time"],
+.uk-contrast .uk-form input[type="week"],
+.uk-contrast .uk-form input[type="number"],
+.uk-contrast .uk-form input[type="email"],
+.uk-contrast .uk-form input[type="url"],
+.uk-contrast .uk-form input[type="search"],
+.uk-contrast .uk-form input[type="tel"],
+.uk-contrast .uk-form input[type="color"] {
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.8);
+  color: #444444;
+  background-clip: padding-box;
+}
+.uk-contrast .uk-form select:focus,
+.uk-contrast .uk-form textarea:focus,
+.uk-contrast .uk-form input:not([type]):focus,
+.uk-contrast .uk-form input[type="text"]:focus,
+.uk-contrast .uk-form input[type="password"]:focus,
+.uk-contrast .uk-form input[type="datetime"]:focus,
+.uk-contrast .uk-form input[type="datetime-local"]:focus,
+.uk-contrast .uk-form input[type="date"]:focus,
+.uk-contrast .uk-form input[type="month"]:focus,
+.uk-contrast .uk-form input[type="time"]:focus,
+.uk-contrast .uk-form input[type="week"]:focus,
+.uk-contrast .uk-form input[type="number"]:focus,
+.uk-contrast .uk-form input[type="email"]:focus,
+.uk-contrast .uk-form input[type="url"]:focus,
+.uk-contrast .uk-form input[type="search"]:focus,
+.uk-contrast .uk-form input[type="tel"]:focus,
+.uk-contrast .uk-form input[type="color"]:focus {
+  border-color: #ffffff;
+  background: #ffffff;
+  color: #444444;
+}
+.uk-contrast .uk-form :-ms-input-placeholder {
+  color: rgba(68, 68, 68, 0.7) !important;
+}
+.uk-contrast .uk-form ::-moz-placeholder {
+  color: rgba(68, 68, 68, 0.7);
+}
+.uk-contrast .uk-form ::-webkit-input-placeholder {
+  color: rgba(68, 68, 68, 0.7);
+}
+.uk-contrast .uk-button {
+  color: #444444;
+  background: #ffffff;
+}
+.uk-contrast .uk-button:hover,
+.uk-contrast .uk-button:focus {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #444444;
+}
+.uk-contrast .uk-button:active,
+.uk-contrast .uk-button.uk-active {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #444444;
+}
+.uk-contrast .uk-button-primary {
+  background-color: #a7b6be;
+  color: #ffffff;
+}
+.uk-contrast .uk-button-primary:hover,
+.uk-contrast .uk-button-primary:focus {
+  background-color: #a1b1ba;
+  color: #ffffff;
+}
+.uk-contrast .uk-button-primary:active,
+.uk-contrast .uk-button-primary.uk-active {
+  background-color: #9cadb6;
+  color: #ffffff;
+}
+.uk-contrast .uk-icon-hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+.uk-contrast .uk-icon-hover:hover {
+  color: #ffffff;
+}
+.uk-contrast .uk-icon-button {
+  background: #ffffff;
+  color: #444444;
+}
+.uk-contrast .uk-icon-button:hover,
+.uk-contrast .uk-icon-button:focus {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #444444;
+}
+.uk-contrast .uk-icon-button:active {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #444444;
+}
+.uk-contrast .uk-text-muted {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+.uk-contrast .uk-text-primary {
+  color: #2d7091 !important;
+}
+/* ========================================================================
    Component: Print
  ========================================================================== */
 @media print {
@@ -8057,20 +8368,20 @@ a.uk-thumbnail:focus {
  * 1. Apply hover style also to focus state
  * 2. Remove default focus style
  */
-.uk-dotnav > * > *:hover,
-.uk-dotnav > * > *:focus {
+.uk-dotnav > * > :hover,
+.uk-dotnav > * > :focus {
   background: rgba(145, 145, 145, 0.5);
   /* 2 */
   outline: none;
 }
 /* OnClick */
-.uk-dotnav > * > *:active {
+.uk-dotnav > * > :active {
   background: #919191;
   -webkit-transform: scale(0.9);
   transform: scale(0.9);
 }
 /* Active */
-.uk-dotnav > *.uk-active > * {
+.uk-dotnav > .uk-active > * {
   background: #b3c0c7;
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
@@ -8084,16 +8395,16 @@ a.uk-thumbnail:focus {
  * Hover
  * 1. Apply hover style also to focus state
  */
-.uk-dotnav-contrast > * > *:hover,
-.uk-dotnav-contrast > * > *:focus {
+.uk-dotnav-contrast > * > :hover,
+.uk-dotnav-contrast > * > :focus {
   background: rgba(255, 255, 255, 0.7);
 }
 /* OnClick */
-.uk-dotnav-contrast > * > *:active {
+.uk-dotnav-contrast > * > :active {
   background: rgba(255, 255, 255, 0.9);
 }
 /* Active */
-.uk-dotnav-contrast > *.uk-active > * {
+.uk-dotnav-contrast > .uk-active > * {
   background: rgba(255, 255, 255, 0.9);
 }
 /* Modifier: 'uk-dotnav-vertical'
@@ -8213,6 +8524,138 @@ a.uk-thumbnail:focus {
 /* Active */
 .uk-slidenav-contrast:active {
   color: rgba(145, 145, 145, 0.9);
+}
+/* ========================================================================
+   Component: Progress
+ ========================================================================== */
+/*
+ * 1. Clearing
+ * 2. Vertical alignment if text is used
+ */
+.uk-progress {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 25px;
+  margin-bottom: 15px;
+  background: rgba(128, 128, 128, 0.1);
+  /* 1 */
+  overflow: hidden;
+  /* 2 */
+  line-height: 25px;
+}
+/*
+ * Add margin if adjacent element
+ */
+* + .uk-progress {
+  margin-top: 15px;
+}
+/* Sub-object: `uk-progress-bar`
+ ========================================================================== */
+/*
+ * 1. Transition
+ * 2. Needed for text
+ */
+.uk-progress-bar {
+  width: 0;
+  height: 100%;
+  background: #b3c0c7;
+  float: left;
+  /* 1 */
+  -webkit-transition: width 0.6s ease;
+  transition: width 0.6s ease;
+  /* 2 */
+  font-size: 14px;
+  color: #ffffff;
+  text-align: center;
+}
+/* Size modifiers
+ ========================================================================== */
+/* Mini */
+.uk-progress-mini {
+  height: 10px;
+}
+/* Small */
+.uk-progress-small {
+  height: 15px;
+}
+/* Color modifiers
+ ========================================================================== */
+.uk-progress-success .uk-progress-bar {
+  background-color: #9ecd64;
+}
+.uk-progress-warning .uk-progress-bar {
+  background-color: #edbb74;
+}
+.uk-progress-danger .uk-progress-bar {
+  background-color: #e16e6e;
+}
+/* Modifier: `uk-progress-striped`
+ ========================================================================== */
+.uk-progress-striped .uk-progress-bar {
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 30px 30px;
+}
+/*
+ * Animation
+ */
+.uk-progress-striped.uk-active .uk-progress-bar {
+  -webkit-animation: uk-progress-bar-stripes 2s linear infinite;
+  animation: uk-progress-bar-stripes 2s linear infinite;
+}
+@-webkit-keyframes uk-progress-bar-stripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 30px 0;
+  }
+}
+@keyframes uk-progress-bar-stripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 30px 0;
+  }
+}
+/* ========================================================================
+   Component: Accordion
+ ========================================================================== */
+/* Sub-object: `uk-accordion-title`
+ ========================================================================== */
+.uk-accordion-title {
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding: 6px 10px;
+  background: #ffffff;
+  font-size: 20px;
+  line-height: 26px;
+  cursor: pointer;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+}
+/* Sub-object: `uk-accordion-content`
+ ========================================================================== */
+.uk-accordion-content {
+  padding: 0 10px 10px 10px;
+}
+/*
+ * Micro clearfix to make panels more robust
+ */
+.uk-accordion-content:before,
+.uk-accordion-content:after {
+  content: "";
+  display: table;
+}
+.uk-accordion-content:after {
+  clear: both;
+}
+/*
+ * Remove margin from the last-child
+ */
+.uk-accordion-content > :last-child {
+  margin-bottom: 0;
 }
 /* ========================================================================
    Component: Slideshow
@@ -8589,6 +9032,124 @@ a.uk-thumbnail:focus {
   color: rgba(0, 0, 0, 0) !important;
 }
 /* ========================================================================
+   Component: Tooltip
+ ========================================================================== */
+/*
+ * 1. Hide by default
+ * 2. Set fixed position
+ * 3. Set dimensions
+ * 4. Set style
+ */
+.uk-tooltip {
+  /* 1 */
+  display: none;
+  /* 2 */
+  position: absolute;
+  z-index: 1030;
+  /* 3 */
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  max-width: 200px;
+  padding: 5px 8px;
+  /* 4 */
+  background: #b3c0c7;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  border-radius: 3px;
+}
+/* Triangle
+ ========================================================================== */
+/*
+ * 1. Dashed is less antialised than solid
+ */
+.uk-tooltip:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  /* 1 */
+  border: 5px dashed #b3c0c7;
+}
+/* Direction modifiers
+ ========================================================================== */
+/*
+ * Top
+ */
+.uk-tooltip-top:after,
+.uk-tooltip-top-left:after,
+.uk-tooltip-top-right:after {
+  bottom: -5px;
+  border-top-style: solid;
+  border-bottom: none;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: #b3c0c7;
+}
+/*
+ * Bottom
+ */
+.uk-tooltip-bottom:after,
+.uk-tooltip-bottom-left:after,
+.uk-tooltip-bottom-right:after {
+  top: -5px;
+  border-bottom-style: solid;
+  border-top: none;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: #b3c0c7;
+}
+/*
+ * Top/Bottom center
+ */
+.uk-tooltip-top:after,
+.uk-tooltip-bottom:after {
+  left: 50%;
+  margin-left: -5px;
+}
+/*
+ * Top/Bottom left
+ */
+.uk-tooltip-top-left:after,
+.uk-tooltip-bottom-left:after {
+  left: 10px;
+}
+/*
+ * Top/Bottom right
+ */
+.uk-tooltip-top-right:after,
+.uk-tooltip-bottom-right:after {
+  right: 10px;
+}
+/*
+ * Left
+ */
+.uk-tooltip-left:after {
+  right: -5px;
+  top: 50%;
+  margin-top: -5px;
+  border-left-style: solid;
+  border-right: none;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: #b3c0c7;
+}
+/*
+ * Right
+ */
+.uk-tooltip-right:after {
+  left: -5px;
+  top: 50%;
+  margin-top: -5px;
+  border-right-style: solid;
+  border-left: none;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: #b3c0c7;
+}
+/* ========================================================================
    Component: Notify
  ========================================================================== */
 /*
@@ -8691,6 +9252,14 @@ a.uk-thumbnail:focus {
   /* 1 */
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+/*
+ * 1. Resolve frame-rate issues on devices with lower frame-rates. Forces hardware acceleration
+ */
+.uk-sticky-placeholder > * {
+  /* 1 */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 /*
  * Faster animations
