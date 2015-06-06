@@ -1,7 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea/
 .vagrant
-
+/Oudelandkaarten
 /puphpet.zip
 /puphpet/files
 /!puphpet/files/*/empty
@@ -22,5 +22,3 @@
 !/default/modules
 /default/modules/*
 !/default/modules/mod_style*
-
-
