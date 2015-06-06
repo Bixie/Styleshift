@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.1" type="plugin" group="content" method="upgrade">
+	<name>plg_content_loadcockpit</name>
+	<author>Matthijs Alles</author>
+	<creationDate>June 2015</creationDate>
+	<copyright>Copyright (C) 2015 Bixie.nl</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>matthijs@bixie.nl</authorEmail>
+	<authorUrl>www.bixie.nl</authorUrl>
+	<version>1.0.0</version>
+	<description>PLG_LOADCOCKPIT_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="loadcockpit">loadcockpit.php</filename>
+	</files>
+	<languages>
+		<language tag="nl-NL">nl-NL.plg_content_loadcockpit.ini</language>
+		<language tag="nl-NL">nl-NL.plg_content_loadcockpit.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+			</fieldset>
+		</fields>
+	</config>
+</extension>
