@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="triangle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="600px" height="600px" viewBox="-179.5 125.5 600 600" enable-background="new -179.5 125.5 600 600" xml:space="preserve">
+<g id="group" enable-background="new    ">
+
+		<linearGradient id="path_2_" gradientUnits="userSpaceOnUse" x1="1084.5" y1="668.5" x2="1084.5" y2="188.5005" gradientTransform="matrix(1 0 0 1 -964 12)">
+		<stop  offset="0" style="stop-color:#355153"/>
+		<stop  offset="1" style="stop-color:#D0D0A6"/>
+	</linearGradient>
+	<path id="path_1_" opacity="0.2" fill="url(#path_2_)" enable-background="new    " d="M-179.5,200.5l300,480l300-480H-179.5z
+		 M120.5,628.5l-249-400h498L120.5,628.5z"/>
+
+		<linearGradient id="path_3_" gradientUnits="userSpaceOnUse" x1="1084.5" y1="607.5" x2="1084.5" y2="220.5005" gradientTransform="matrix(1 0 0 1 -964 12)">
+		<stop  offset="0" style="stop-color:#355153"/>
+		<stop  offset="1" style="stop-color:#D0D0A6"/>
+	</linearGradient>
+	<polygon id="path" opacity="0.2" fill="url(#path_3_)" enable-background="new    " points="-120.5,232.5 120.5,619.5 361.5,232.5
+			"/>
+</g>
+</svg>

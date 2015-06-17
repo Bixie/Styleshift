@@ -1,0 +1,113 @@
+// Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+//
+// Component: Base
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@base-body-background:                          @global-background;
+@base-body-font-family:                         'Droid Serif';
+@base-body-font-size:                           @global-font-size;
+@base-body-line-height:                         @global-line-height;
+@base-body-color:                               @global-color;
+
+@base-link-color:                               @global-link-color;
+@base-link-text-decoration:                     underline;
+@base-link-hover-color:                         @global-link-hover-color;
+@base-link-hover-text-decoration:               none;
+@base-ins-background:                           rgba(0,0,0,0.1);
+@base-ins-color:                                @global-color;
+@base-mark-color:                               @global-color;
+@base-selection-background:                     fade(@global-primary-background, 80%);
+
+@base-margin-vertical:                          @global-margin;
+
+@base-heading-font-weight:                      700;
+@base-heading-font-family:                      'Montserrat';
+@base-heading-color:                            @global-heading-color;
+@base-heading-text-transform:                   @global-text-transform;
+@base-heading-margin-top:                       @global-margin-large;
+@base-heading-letter-spacing:                   @global-letter-spacing;
+@base-h1-font-size:                             round((@global-font-size * 2.6)); //
+@base-h1-line-height:                           round((@base-h1-font-size * 1.154)); //
+@base-h2-font-size:                             round((@global-font-size * 1.74)); //
+@base-h2-line-height:                           round((@base-h2-font-size * 1.27)); //
+@base-h3-font-size:                             round((@global-font-size * 1.2)); // 18px
+@base-h3-line-height:                           round((@base-h3-font-size * 1.222)); // 22px
+@base-h4-font-size:                             @global-font-size; // 15px
+@base-h4-line-height:                           round((@base-h4-font-size * 1.26)); // 19
+@base-h5-font-size:                             round((@global-font-size * 0.8)); // 12px
+@base-h5-line-height:                           round((@base-h5-font-size * 1.333)); // 16px
+@base-h6-font-size:                             round((@global-font-size * 0.67)); // 10px
+@base-h6-line-height:                           round((@base-h6-font-size * 1.4)); // 14px
+
+@base-hr-border:                                @global-muted-border;
+@base-hr-border-width:                          @global-border-width;
+
+@base-blockquote-border:                        @global-muted-border;
+@base-blockquote-small-color:                   @global-muted-color;
+@base-blockquote-font-size:                     round((@global-font-size * 1.2)); // 18px
+@base-blockquote-line-height:                   round((@base-blockquote-font-size * 1.222)); // 22px
+
+@base-code-font-size:                           round((@global-font-size * 0.86)); // 13px
+
+@base-pre-background:                           rgba(0,0,0,0.01);
+@base-pre-color:                                @global-color;
+@base-pre-font-size:                            round((@global-font-size * 0.86)); // 13px
+@base-pre-line-height:                          round((@base-pre-font-size * 1.3)); // 17px
+
+//
+// New
+//
+
+@base-pre-border-width:                         @global-border-width;
+@base-pre-border:                               @global-muted-border;
+
+
+// Body
+// ========================================================================
+
+.hook-base-body() {}
+
+
+// Code and preformatted text
+// ========================================================================
+
+.hook-base-code() {}
+
+.hook-base-code-reset() {}
+
+.hook-base-pre() { border: @base-pre-border-width solid @base-pre-border; }
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-base-misc() {
+
+    a {
+        -webkit-transition: border-color 0.1s, background 0.1s, color 0.1s ease-in-out;
+        transition: border-color 0.1s, background 0.1s, color 0.1s ease-in-out;
+
+        &:hover { text-decoration: @base-link-hover-text-decoration; }
+
+    }
+
+    h1,
+    .uk-h1,
+    h2,
+    .uk-h2,
+    h3,
+    .uk-h3,
+    h4,
+    .uk-h4,
+    h5,
+    .uk-h5,
+    h6,
+    .uk-h6 { letter-spacing: @base-heading-letter-spacing; }
+
+}

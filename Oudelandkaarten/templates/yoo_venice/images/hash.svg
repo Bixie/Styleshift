@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="hash" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="10px" height="10px" viewBox="0 0 10 10" enable-background="new 0 0 10 10" xml:space="preserve">
+<rect id="dot_24_" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_23_" x="2" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_22_" x="4" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_21_" x="6" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_20_" x="8" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_19_" y="2" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_18_" x="2" y="2" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_17_" x="4" y="2" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_16_" x="6" y="2" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_15_" x="8" y="2" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_14_" y="4" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_13_" x="2" y="4" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_12_" x="4" y="4" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_11_" x="6" y="4" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_10_" x="8" y="4" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_9_" y="6" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_8_" x="2" y="6" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_7_" x="4" y="6" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_6_" x="6" y="6" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_5_" x="8" y="6" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_4_" y="8" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_3_" x="2" y="8" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_2_" x="4" y="8" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot_1_" x="6" y="8" opacity="0.35" enable-background="new    " width="1" height="1"/>
+<rect id="dot" x="8" y="8" opacity="0.35" enable-background="new    " width="1" height="1"/>
+</svg>

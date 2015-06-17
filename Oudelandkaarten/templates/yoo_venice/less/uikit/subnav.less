@@ -1,0 +1,71 @@
+// Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+//
+// Component: Subnav
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@subnav-color:                                  @global-color;
+@subnav-hover-color:                            @global-link-hover-color;
+@subnav-active-color:                           @global-link-hover-color;
+
+@subnav-line-border:                            @global-muted-border;
+@subnav-line-border-width:                      @global-border-width;
+
+@subnav-pill-hover-background:                  @global-primary-background;
+@subnav-pill-hover-color:                       @global-contrast-color;
+@subnav-pill-active-background:                 rgba(0,0,0,0);
+@subnav-pill-active-color:                      @global-color;
+
+@subnav-disabled-color:                         @global-muted-color;
+
+//
+// New
+//
+
+@subnav-pill-border-width:                      @global-border-width;
+@subnav-pill-active-border:                     @global-border;
+
+
+// Component
+// ========================================================================
+
+.hook-subnav() { text-decoration: none; }
+
+.hook-subnav-hover() {}
+
+.hook-subnav-active() {}
+
+
+// Modifier: `uk-subnav-line`
+// ========================================================================
+
+.hook-subnav-line-divider() {}
+
+
+// Modifier: `uk-subnav-pill`
+// ========================================================================
+
+.hook-subnav-pill() { border: @subnav-pill-border-width solid transparent; }
+
+// Hover
+.hook-subnav-pill-hover() {}
+
+// Active
+.hook-subnav-pill-active() { border-color: @subnav-pill-active-border; }
+
+
+// Disabled state
+// ========================================================================
+
+.hook-subnav-disabled() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-subnav-misc() {}

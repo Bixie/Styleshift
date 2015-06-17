@@ -1,0 +1,50 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+/* ========================================================================
+   Use this file to add custom CSS easily
+ ========================================================================== */
+ 
+ 
+ .tm-block-top-a{
+	 background: url(../../../images/bg_search.jpg) 50% 0%;
+	 margin-bottom:30px;
+ }
+ 
+ .uk-search {
+ width: 375px;
+  background: #fff;
+}
+
+
+
+input.uk-search-field {
+
+  border-radius: 0;
+   width: 375px;
+}
+
+.uk-search-field:focus, .uk-search.uk-active .uk-search-field {
+   width: 375px;
+}
+
+.uk-dropdown-search {
+   width: 375px;
+
+  }
+  
+.yoo-zoo h1.uk-article-title {
+	font-size:14px;
+	line-height:1.4em;
+}
+
+.tm-navbar:not(.uk-navbar-attached) .tm-nav-logo {
+  top: -43px;
+}
+
+.tm-navbar-fullscreen-contrast:not(.uk-navbar-attached) .uk-navbar-nav > li > a:hover {
+  color: #cccccc;
+}
+
+.chrono_credits{
+	visibility: hidden;
+}

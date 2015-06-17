@@ -1,0 +1,97 @@
+// Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+//
+// Component: Comment
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@comment-header-margin-bottom:                  @global-margin;
+
+@comment-avatar-margin-right:                   @global-margin;
+
+@comment-title-font-size:                       round((@global-font-size * 1.067)); // 16px
+@comment-title-line-height:                     round((@comment-title-font-size * 1.375)); // 22px
+
+@comment-meta-color:                            @global-muted-color;
+@comment-meta-font-size:                        round((@global-font-size * 0.867)); // 13px
+@comment-meta-line-height:                      round((@comment-meta-font-size * 1.31)); // 17px
+
+@comment-list-margin-top:                       @global-margin;
+
+//
+// New
+//
+
+@comment-meta-font-style:                       italic;
+
+@comment-primary-border-width:                  @global-border-width;
+@comment-primary-border:                        @global-muted-border;
+
+@comment-primary-header-padding:                @global-margin;
+
+
+// Component
+// ========================================================================
+
+.hook-comment() {}
+
+
+// Sub-object `uk-comment-header`
+// ========================================================================
+
+.hook-comment-header() {}
+
+
+// Sub-object `uk-comment-avatar`
+// ========================================================================
+
+.hook-comment-avatar() {}
+
+
+// Sub-object `uk-comment-title`
+// ========================================================================
+
+.hook-comment-title() {}
+
+
+// Sub-object `uk-comment-meta`
+// ========================================================================
+
+.hook-comment-meta() {
+
+    font-style: @comment-meta-font-style;
+
+    &.uk-subnav > li,
+    &.uk-subnav > li > a,
+    &.uk-subnav > li > span { font-size: @comment-meta-font-size; }
+
+}
+
+
+// Sub-object `uk-comment-body`
+// ========================================================================
+
+.hook-comment-body() {}
+
+
+// Sub-object `uk-comment-primary`
+// ========================================================================
+
+.hook-comment-primary() {
+
+    .uk-comment-header {
+        padding: @comment-primary-header-padding;
+        border: @comment-primary-border-width solid @comment-primary-border;
+    }
+
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-comment-misc() {}

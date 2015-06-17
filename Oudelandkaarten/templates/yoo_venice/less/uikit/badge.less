@@ -1,0 +1,131 @@
+// Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+//
+// Component: Badge
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@badge-background:                              rgba(0,0,0,0);
+@badge-padding-horizontal:                      0;
+@badge-font-size:                               round((@global-font-size * 0.67)); // 10px
+@badge-line-height:                             round((@badge-font-size * 1.3)); // 13px
+@badge-color:                                   @global-primary-background;
+@badge-text-transform:                          uppercase;
+@badge-hover-color:                             @global-primary-background;
+
+@badge-notification-font-size:                  round((@global-font-size * 0.733)); // 11px
+@badge-notification-line-height:                round((@badge-notification-font-size * 2)); // 22px
+
+@badge-success-background:                      rgba(0,0,0,0);
+@badge-warning-background:                      rgba(0,0,0,0);
+@badge-danger-background:                       rgba(0,0,0,0);
+
+//
+// New
+//
+
+@badge-border:                                  @global-primary-background;
+@badge-border-width:                            @global-border-width;
+@badge-font-family:                             'Montserrat';
+@badge-font-weight:                             700;
+@badge-letter-spacing:                          @global-letter-spacing;
+
+@badge-success-border:                          @global-success-background;
+@badge-success-color:                           @global-success-background;
+@badge-warning-border:                          @global-warning-background;
+@badge-warning-color:                           @global-warning-background;
+@badge-danger-border:                           @global-danger-background;
+@badge-danger-color:                            @global-danger-background;
+
+@badge-notification-padding-horizontal:         5px;
+@badge-notification-background:                 @global-primary-background;
+@badge-notification-color:                      @global-contrast-color;
+@badge-notification-letter-spacing:             0;
+
+
+// Component
+// ========================================================================
+
+.hook-badge() {
+
+    border-bottom: @badge-border-width solid @badge-border;
+    font-family: @badge-font-family;
+    font-weight: @badge-font-weight;
+    letter-spacing: @badge-letter-spacing;
+
+    &.uk-badge-notification {
+
+        padding: 0 @badge-notification-padding-horizontal;
+        border-bottom: none;
+        background: @badge-notification-background;
+        color: @badge-notification-color;
+        letter-spacing: @badge-notification-letter-spacing;
+
+        &:hover { color: @badge-notification-color; }
+
+    }
+
+}
+
+
+// Color modifier
+// ========================================================================
+
+//
+// Modifier: `badge-success`
+//
+
+.hook-badge-success() {
+
+    border-color: @badge-success-border;
+    color: @badge-success-color;
+
+    &:not(.uk-badge-notification):hover { color: @badge-success-color; }
+
+    &.uk-badge-notification { background: @badge-success-border; }
+
+}
+
+//
+// Modifier: `badge-warning`
+//
+
+.hook-badge-warning() {
+
+    border-color: @badge-warning-border;
+    color: @badge-warning-color;
+
+    &:not(.uk-badge-notification):hover { color: @badge-warning-color; }
+
+    &.uk-badge-notification { background: @badge-warning-border; }
+
+}
+
+//
+// Modifier: `badge-danger`
+//
+
+.hook-badge-danger() {
+
+    border-color: @badge-danger-border;
+    color: @badge-danger-color;
+
+    &:not(.uk-badge-notification):hover { color: @badge-danger-color; }
+
+    &.uk-badge-notification { background: @badge-danger-border; }
+
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-badge-misc() {
+
+    a.uk-badge { text-decoration: none; }
+
+}

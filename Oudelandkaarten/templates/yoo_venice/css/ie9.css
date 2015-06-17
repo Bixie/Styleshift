@@ -1,0 +1,16 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+/* ========================================================================
+   Defines styles for Internet Explorer 9
+ ========================================================================== */
+
+/* Disabling animations */
+[data-uk-scrollspy*='uk-animation-'] { opacity: 1; }
+
+/* Widgetkit Slideshow */
+[data-uk-cover] { -ms-transform: translate(-50%, -50%); }
+
+.tm-slideshow-fullscreen .uk-slideshow > li { z-index: 0; }
+
+/* Venice Blog Layout */
+.uk-article .tm-article-blog-content:before { display: none; }

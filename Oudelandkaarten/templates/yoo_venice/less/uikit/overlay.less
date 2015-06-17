@@ -1,0 +1,133 @@
+// Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+//
+// Component: Overlay
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@overlay-panel-background:                      @global-primary-background;
+
+// DEPRECATED
+@overlay-area-background:                       @global-primary-background;
+
+@overlay-area-icon-color:                       @global-contrast-color;
+
+@overlay-area-content-color:                    @global-contrast-color;
+
+@overlay-caption-padding:                       @global-margin;
+@overlay-caption-color:                         @global-contrast-color;
+
+
+// Sub-object `uk-overlay-panel`
+// ========================================================================
+
+.hook-overlay-panel() {
+
+    .uk-button:not(.uk-button-primary):not(.uk-button-success):not(.uk-button-danger),
+    .uk-icon-button {
+
+        border-color: @panel-box-primary-button-border;
+        color: @panel-box-primary-button-color;
+
+        &:hover,
+        &:focus { border-color: transparent; }
+
+    }
+
+}
+
+
+// Modifier `uk-overlay-background`
+// ==========================================================================
+
+.hook-overlay-background() {
+
+    .uk-button,
+    .uk-icon-button {
+
+        border-color: @panel-box-primary-button-border;
+        color: @panel-box-primary-button-color;
+
+        &:hover,
+        &:focus {
+            background: @panel-box-primary-button-hover-background;
+            border-color: transparent;
+            color: @panel-box-primary-button-hover-color !important;
+        }
+
+        &:active,
+        &.uk-active { background-color: fade( @panel-box-primary-button-hover-background, 80%); }
+
+    }
+
+    .uk-button-success,
+    .uk-button-danger { background: none; }
+
+}
+
+
+// Sub-object `uk-overlay-icon`
+// ========================================================================
+
+.hook-overlay-icon() {}
+
+
+// DEPRECATED
+// Sub-object `uk-overlay-area`
+// ========================================================================
+
+.hook-overlay-area() {
+
+    a {
+        color: @panel-box-primary-link-color;
+        &:hover { color: fade(@panel-box-primary-link-color, 80%); }
+    }
+
+    .uk-button,
+    .uk-icon-button {
+
+        border-color: @panel-box-primary-button-border;
+        color: @panel-box-primary-button-color;
+
+        &:hover,
+        &:focus {
+            background-color: @panel-box-primary-button-hover-background;
+            border-color: transparent;
+            color: @panel-box-primary-button-hover-color;
+        }
+
+        &:active,
+        &.uk-active { background-color: fade( @panel-box-primary-button-hover-background, 80%); }
+
+    }
+
+    .uk-button-success,
+    .uk-button-danger { background: none; }
+
+}
+
+.hook-overlay-area-icon() {}
+
+
+// DEPRECATED
+// Sub-object `uk-overlay-area-content`
+// ========================================================================
+
+.hook-overlay-area-content() {}
+
+
+// DEPRECATED
+// Sub-object `uk-overlay-caption`
+// ========================================================================
+
+.hook-overlay-caption() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-overlay-misc() {}

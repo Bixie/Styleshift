@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="circles" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="600px" height="415px" viewBox="-179.5 125.5 600 415" enable-background="new -179.5 125.5 600 415" xml:space="preserve">
+<path id="circle_1_" opacity="0.2" fill="#00394C" enable-background="new    " d="M28,125c114.6,0,207.5,92.902,207.5,207.5
+	C235.5,447.099,142.6,540,28,540c-114.6,0-207.5-92.901-207.5-207.5C-179.5,217.902-86.6,125,28,125z"/>
+<path id="circle" opacity="0.2" fill="#00394C" enable-background="new    " d="M212.999,125C327.601,125,420.5,217.902,420.5,332.5
+	c0,114.599-92.9,207.5-207.501,207.5C98.4,540,5.5,447.099,5.5,332.5C5.499,217.902,98.4,125,212.999,125z"/>
+</svg>

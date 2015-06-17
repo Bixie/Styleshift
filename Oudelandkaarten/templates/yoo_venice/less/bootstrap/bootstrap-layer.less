@@ -1,0 +1,243 @@
+// Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+@bs-input-height:           22px;
+
+
+/* Button overrides
+ ========================================================================== */
+
+.btn,
+.btn-group > .btn,
+.btn-group > .dropdown-menu,
+.btn-group > .popover { font-size: @button-font-size; }
+
+a.btn,
+.close { text-decoration: none; }
+
+body .btn-group .btn:hover,
+body .btn-group .btn:focus,
+.btn-group.open .btn.dropdown-toggle { background-color: @button-border; }
+
+body .btn-group .btn:active {
+    background-color: darken(@button-border, 10%);
+    border-color: darken(@button-border, 10%);
+}
+
+.input-append .btn:nth-child(n+2),
+.btn-group:not(.btn-group-vertical) .btn:nth-child(n+2) { margin-left: -@button-border-width; }
+
+.input-prepend .btn:first-child,
+.input-prepend > .btn-group:first-child .btn { margin-right: -@button-border-width!important; }
+
+.btn-group-vertical .btn:nth-child(n+2) { margin-top: -@global-border-width; }
+
+.btn.disabled,
+.btn[disabled] { background-color: transparent; }
+
+.btn-group .btn,
+.input-prepend .btn,
+.input-append .btn { border-color: @global-border; }
+
+
+/* Form overrides
+ ========================================================================== */
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input,
+.control-group .input-prepend span,
+.control-group .input-append span { border-width: @global-border-width; }
+
+.control-group .input-prepend span:last-child,
+.control-group .input-append span:last-child {
+    margin-left: -@global-border-width;
+    border-left-color: transparent;
+}
+
+.control-group .input-prepend span:first-child,
+.control-group .input-append span:first-child {
+    margin-right: -@global-border-width;
+    border-right-color: transparent;
+}
+
+
+/* Dropdown overrides
+ ========================================================================== */
+
+.dropdown-menu { border: @dropdown-border-width solid @dropdown-border; }
+
+.dropdown-menu > li > a {
+    padding-left: 0;
+    padding-right: 0;
+    text-decoration: none;
+    font-size: @global-font-size;
+}
+
+.dropdown-menu .divider { border-width: @global-border-width; }
+
+
+/* Badge overrides
+ ========================================================================== */
+
+.label,
+.badge {
+    padding-left: @badge-padding-horizontal;
+    padding-right: @badge-padding-horizontal;
+    border-radius: 0;
+    text-transform: @global-text-transform;
+}
+
+
+/* Navs overrides
+ ========================================================================== */
+
+.well .nav-list {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.nav > li > a {
+    text-decoration: none;
+    color: @nav-side-color;
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus { background-color: transparent; }
+
+.nav-header {
+    font-family: @base-heading-font-family;
+    font-size: @nav-header-font-size;
+    font-weight: @nav-header-font-weight;
+}
+
+/*
+ * List
+ */
+
+.nav-list .divider { border-width: @global-border-width; }
+
+/*
+ * Pills
+ */
+
+.nav-pills > li > a { color: @global-color; }
+
+.nav-pills > li > a:hover,
+.nav-pills > li > a:focus,
+.nav-pills .open .dropdown-toggle {
+    background: @global-primary-background;
+    color: @global-contrast-color;
+}
+
+.nav-pills .open .dropdown-toggle { border-color: transparent; }
+
+.nav-pills > .active > a,
+.nav-pills > .active > a:hover,
+.nav-pills > .active > a:focus {
+    background: none;
+    color: @global-color;
+}
+
+.nav-pills li.disabled a:hover { color: @global-muted-color; }
+
+/*
+ * Tabs Stacked
+ */
+
+.nav-tabs.nav-stacked > li > a,
+.nav-tabs.nav-stacked > li > a:hover,
+.nav-tabs.nav-stacked > li > a:focus { border-width: @global-border-width; }
+
+.nav-tabs.nav-stacked > li > a:hover,
+.nav-tabs.nav-stacked > li > a:focus {
+    background: none;
+    color: @global-color;
+}
+
+.nav-tabs.nav-stacked > li:nth-child(n+2) > a { border-top-color: transparent; }
+
+/*
+ * Tabs
+ */
+
+.nav-tabs { border-bottom-width: @global-border-width; }
+.nav-tabs > li { margin-bottom: -@global-border-width; }
+
+.nav-tabs > li > a,
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover,
+.nav-tabs > .active > a:focus { border-width: @global-border-width; }
+
+.nav-tabs > li > a:hover,
+.nav-tabs .open .dropdown-toggle,
+.nav > li.dropdown.open.active > a:hover,
+.nav > li.dropdown.open.active > a:focus {
+    border-color: transparent;
+    background: @global-primary-background;
+}
+
+// Bottom
+.tabs-below > .nav-tabs { border-top-width: @global-border-width; }
+.tabs-below > .nav-tabs > li { margin-top: -@global-border-width; }
+.tabs-below > .nav-tabs > li > a:hover,
+.tabs-below > .nav-tabs > li > a:focus { border-top-color: transparent; }
+
+// Tabs on the left
+.tabs-left > .nav-tabs { border-right-width: @global-border-width; }
+.tabs-left > .nav-tabs > li > a { margin-right: -@global-border-width; }
+.tabs-left > .nav-tabs > li > a:hover { border-right-color: transparent; }
+
+// Tabs on the right
+.tabs-right > .nav-tabs { border-left-width: @global-border-width; }
+.tabs-right > .nav-tabs > li > a { margin-left: -@global-border-width; }
+.tabs-right > .nav-tabs > li > a:hover { border-left-color: transparent; }
+
+
+/* Accordion overrides
+ ========================================================================== */
+
+.accordion-group { border-width: @global-border-width!important; }
+.accordion-inner { border-top-width: @global-border-width!important; }
+
+.accordion-group a,
+.accordion-inner a { text-decoration: none; }
+
+
+/* Page header overrides
+ ========================================================================== */
+
+.page-header {
+
+    border-bottom-width: @global-border-width;
+
+    a { text-decoration: none; }
+
+}
+
+.item-title a { text-decoration: none; }
+
+
+/* Scaffolding overrides
+ ========================================================================== */
+
+.img-polaroid { border-width: @global-border-width; }
+
+
+/* Thumbnail overrides
+ ========================================================================== */
+
+.thumbnail { border-width: @global-border-width; }

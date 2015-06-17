@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="squares" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="600px" height="600px" viewBox="-399.5 150.5 600 600" enable-background="new -399.5 150.5 600 600" xml:space="preserve">
+<linearGradient id="square_2_" gradientUnits="userSpaceOnUse" x1="403.5" y1="-190.9995" x2="403.5" y2="409.0005" gradientTransform="matrix(1 0 0 -1 -503 559.5)">
+	<stop  offset="0" style="stop-color:#F2F5B9;stop-opacity:0.5"/>
+	<stop  offset="1" style="stop-color:#F3BB71"/>
+</linearGradient>
+<path id="square_1_" opacity="0.2" fill="url(#square_2_)" enable-background="new    " d="M-99.5,150.5l300,300l-300,300l-300-300
+	L-99.5,150.5z"/>
+<linearGradient id="square_3_" gradientUnits="userSpaceOnUse" x1="403.5" y1="366.5" x2="403.5" y2="-148.5" gradientTransform="matrix(1 0 0 -1 -503 559.5)">
+	<stop  offset="0" style="stop-color:#FFFFFF"/>
+	<stop  offset="1" style="stop-color:#F3BB71"/>
+</linearGradient>
+<path id="square" opacity="0.1" fill="url(#square_3_)" enable-background="new    " d="M-99.5,193L158,450.5L-99.5,708L-357,450.5
+	L-99.5,193z"/>
+</svg>

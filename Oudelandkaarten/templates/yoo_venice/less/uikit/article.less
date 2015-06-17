@@ -1,0 +1,64 @@
+// Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+//
+// Component: Article
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+@article-margin-top:                            @global-margin-large;
+
+@article-title-font-size:                       round((@global-font-size * 1.6)); // 24px
+@article-title-line-height:                     round((@article-title-font-size * 1.167)); // 28px
+@article-title-font-weight:                     700;
+@article-title-text-transform:                  @global-text-transform;
+
+@article-meta-font-size:                        @global-font-size;
+@article-meta-line-height:                      @global-line-height;
+@article-meta-color:                            @global-color;
+
+@article-lead-color:                            @global-color;
+@article-lead-font-size:                        round((@global-font-size * 1.28)); // 18px / 20px
+@article-lead-line-height:                      round((@article-lead-font-size * 1.32)); // 24px / 26px
+
+@article-divider-margin:                        @global-margin-large;
+@article-divider-border:                        @global-muted-border;
+
+//
+// New
+//
+
+@article-lead-font-style:                       italic;
+
+
+// Sub-object `uk-article-title`
+// ========================================================================
+
+.hook-article-title() {}
+
+
+// Sub-object `uk-article-meta`
+// ========================================================================
+
+.hook-article-meta() {}
+
+
+// Sub-object `uk-article-lead`
+// ========================================================================
+
+.hook-article-lead() { font-style: @article-lead-font-style; }
+
+
+// Sub-object `uk-article-divider`
+// ========================================================================
+
+.hook-article-divider() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-article-misc() {}
