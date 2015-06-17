@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<name>ZOOcart</name>
+	<params>
+		<param name="enable_cart" type="radio" default="0" label="PLG_ZOOCART_CONFIG_ENABLE_CART" description="PLG_ZOOCART_CONFIG_ENABLE_CART_DESC">
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</param>
+		<param name="show_price_with_tax" type="hidden" default="1" />
+		<param name="default_tax_class" type="hidden" default="0" />
+		<param name="billing_address_type" type="hidden" default="billing" />
+		<param name="load_bootstrap" type="hidden" default="1" />
+		<param name="vies_validation" type="hidden" default="1" />
+		<param name="vies_validation_hard" type="hidden" default="0" />
+		<param name="accept_terms" type="hidden" default="1" />
+		<param name="terms_url" type="hidden" default="" />
+		<param name="enable_shipping" type="hidden" default="1" />
+		<param name="check_quantities" type="hidden" default="1" />
+		<param name="update_quantities" type="hidden" default="1" />
+		<param name="require_address" type="hidden" default="1" />
+		<param name="quantity_update_state" type="hidden" default="0" />
+		<param name="default_country" type="hidden" dafault="US" />
+		<param name="default_currency" type="hidden" default="0" />
+		<param name="price_element" type="hidden"/>
+		<param name="new_orderstate" type="hidden" default="1" />
+		<param name="payment_received_orderstate" type="hidden" default="2" />
+		<param name="payment_pending_orderstate" type="hidden" default="1" />
+		<param name="payment_failed_orderstate" type="hidden"  default="6" />
+		<param name="canceled_orderstate" type="hidden" default="7" />
+		<param name="finished_orderstate" type="hidden" default="5" />
+		<param name="checkout_opened" type="hidden" default="1" />
+		<param name="quantity_element" type="hidden" />
+		<param name="price_element" type="hidden" />
+	</params>
+</config>
