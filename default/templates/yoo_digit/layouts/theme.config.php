@@ -155,6 +155,7 @@ $this['asset']->addFile('js', 'warp:vendor/uikit/js/components/notify.js');
 $this['asset']->addFile('js', 'warp:vendor/uikit/js/components/tooltip.js');
 $this['asset']->addFile('js', 'warp:vendor/uikit/js/components/parallax.js');
 $this['asset']->addFile('js', 'warp:vendor/uikit/js/components/sticky.js');
+$this['asset']->addFile('js', 'warp:vendor/uikit/js/components/lightbox.js');
 $this['asset']->addFile('js', '/modules/mod_styleshifttool/assets/styleshifttool.js');
 $this['asset']->addFile('js', 'js:social.js');
 $this['asset']->addFile('js', 'js:theme.js');

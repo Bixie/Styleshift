@@ -1,7 +1,17 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea/
 .vagrant
-/Oudelandkaarten
+/Oudelandkaarten/*
+!/Oudelandkaarten/convert.php
+!/Oudelandkaarten/templates
+!/Oudelandkaarten/media
+/Oudelandkaarten/media/*
+!/Oudelandkaarten/media/zoo
+/Oudelandkaarten/media/zoo/*
+!/Oudelandkaarten/media/zoo/applications
+/Oudelandkaarten/media/zoo/applications/*
+!/Oudelandkaarten/media/zoo/applications/*\blog
+
 /puphpet.zip
 /puphpet/files
 /!puphpet/files/*/empty
