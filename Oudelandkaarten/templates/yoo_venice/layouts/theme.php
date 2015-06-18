@@ -56,7 +56,7 @@ include($this['path']->path('layouts:theme.config.php'));
                 <a href="#offcanvas" class="uk-navbar-toggle uk-hidden-large" data-uk-offcanvas></a>
                 <?php endif; ?>
 
-				<?php if ($this['widgets']->count('offcanvas')) : ?>
+				<?php if ($this['widgets']->count('offcanvas2')) : ?>
 					<a href="#offcanvas2" class="uk-navbar-toggle uk-navbar-flip" data-uk-offcanvas></a>
 				<?php endif; ?>
 
