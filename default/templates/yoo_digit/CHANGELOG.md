@@ -1,5 +1,9 @@
 # Changelog
 
+	1.0.10
+	^ Updated UIkit theme according to UIkit 2.20.0
+	# Fixed Article Navigation (J)
+
 	1.0.9
 	+ Added WooCommerce products per page option (WP)
 

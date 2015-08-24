@@ -256,10 +256,10 @@ class SystemHelper extends AbstractHelper
 
                 // init vars
                 $file = $this['path']->path('theme:') . '/config.json';
-                $config = isset($_POST['config']) ? $_POST['config'] : '{}';
+                $json = isset($_POST['config']) ? $_POST['config'] : '{}';
 
                 // save config file
-                $message = ($config and null !== json_decode($config) and \JFile::write($file, $config)) ? 'success' : 'failed';
+                $message = ($json and null !== $config = json_decode($json, true) and !empty($config) and \JFile::write($file, $json)) ? 'success' : 'failed';
 
                 break;
 

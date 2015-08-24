@@ -26,10 +26,16 @@ class Post
 
             if($type = $ele->attr("data-type")) {
 
-                if($type=="separator") {
+                if($type=="separator-line") {
+
                     $ele->parent()->addClass("uk-nav-divider");
                     $ele->parent()->removeChild($ele);
-                } else {
+
+                } else if ($type=="separator-text") {
+
+                    $ele->removeAttr('data-type');
+
+                } else { // header
 
                     $ele->removeAttr('data-type');
 
@@ -49,7 +55,7 @@ class Post
         }
 
         foreach($element->first("ul:first")->addClass($module->nav_settings["modifier"])->find('ul.level2 ul') as $ul) {
-            if(!$ul->hasClass('uk-nav-sub')) $ul->removeAttr("class");
+            if (!$ul->hasClass('uk-nav-sub')) $ul->removeAttr("class");
         }
 
         foreach ($element->find('li') as $li) {

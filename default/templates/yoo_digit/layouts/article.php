@@ -32,7 +32,7 @@
 
 
 	<?php echo $hook_aftertitle; ?>
-	
+
 	<?php if ($image && $image_alignment != 'none') : ?>
 		<?php if ($url) : ?>
 			<a class="uk-align-<?php echo $image_alignment; ?>" href="<?php echo $url; ?>" title="<?php echo $image_caption; ?>"><img src="<?php echo $image; ?>" alt="<?php echo $image_alt; ?>"></a>
@@ -42,13 +42,13 @@
 	<?php endif; ?>
 
 	<?php echo $hook_beforearticle; ?>
-	
+
 	<?php if ($article) : ?>
 	<div class="tm-article">
 		<?php echo $article; ?>
 	</div>
 	<?php endif; ?>
-	
+
 	<?php if ($author || $category) : ?>
 	<p class="uk-article-meta uk-width-1-1 uk-width-medium-2-3 uk-float-left uk-margin-top-remove">
 
@@ -89,22 +89,26 @@
 	<?php endif; ?>
 
 	<?php if ($previous || $next) : ?>
-	<ul class="uk-pagination">
-		<?php if ($previous) : ?>
-		<li class="uk-pagination-previous">
-			<?php echo $previous; ?>
-			<i class="uk-icon-angle-double-left"></i>
-		</li>
-		<?php endif; ?>
+    <ul class="uk-pagination">
+        <?php if ($previous) : ?>
+        <li class="uk-pagination-previous">
+            <a href="<?php echo $previous; ?>" title="<?php echo JText::_('JPREV') ?>">
+                <i class="uk-icon-arrow-left"></i>
+                <?php echo JText::_('JPREV') ?>
+            </a>
+        </li>
+        <?php endif; ?>
 
-		<?php if ($next) : ?>
-		<li class="uk-pagination-next">
-			<?php echo $next; ?>
-			<i class="uk-icon-angle-double-right"></i>
-		</li>
-		<?php endif; ?>
-	</ul>
-	<?php endif; ?>
+        <?php if ($next) : ?>
+        <li class="uk-pagination-next">
+            <a href="<?php echo $next; ?>" title="<?php echo JText::_('JNEXT') ?>">
+                <?php echo JText::_('JNEXT') ?>
+                <i class="uk-icon-arrow-right"></i>
+            </a>
+        </li>
+        <?php endif; ?>
+    </ul>
+    <?php endif; ?>
 
 	<?php echo $hook_afterarticle; ?>
 
@@ -176,7 +180,7 @@
 	<?php endif; ?>
 
 	<?php echo $hook_beforearticle; ?>
-	
+
 	<?php if ($article) : ?>
 	<div>
 		<?php echo $article; ?>
@@ -198,22 +202,26 @@
 	<?php endif; ?>
 
 	<?php if ($previous || $next) : ?>
-	<ul class="uk-pagination">
-		<?php if ($previous) : ?>
-		<li class="uk-pagination-previous">
-			<?php echo $previous; ?>
-			<i class="uk-icon-angle-double-left"></i>
-		</li>
-		<?php endif; ?>
+    <ul class="uk-pagination">
+        <?php if ($previous) : ?>
+        <li class="uk-pagination-previous">
+            <a href="<?php echo $previous; ?>" title="<?php echo JText::_('JPREV') ?>">
+                <i class="uk-icon-arrow-left"></i>
+                <?php echo JText::_('JPREV') ?>
+            </a>
+        </li>
+        <?php endif; ?>
 
-		<?php if ($next) : ?>
-		<li class="uk-pagination-next">
-			<?php echo $next; ?>
-			<i class="uk-icon-angle-double-right"></i>
-		</li>
-		<?php endif; ?>
-	</ul>
-	<?php endif; ?>
+        <?php if ($next) : ?>
+        <li class="uk-pagination-next">
+            <a href="<?php echo $next; ?>" title="<?php echo JText::_('JNEXT') ?>">
+                <?php echo JText::_('JNEXT') ?>
+                <i class="uk-icon-arrow-right"></i>
+            </a>
+        </li>
+        <?php endif; ?>
+    </ul>
+    <?php endif; ?>
 
 	<?php echo $hook_afterarticle; ?>
 

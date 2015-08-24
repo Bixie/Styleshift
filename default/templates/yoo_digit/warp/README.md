@@ -1,18 +1,39 @@
 # Warp Theme Framework #
 
-- Version: 7.3.4
-- Date: March 2015
+- Version: 7.3.7
+- Date: July 2015
 - Author: YOOtheme GmbH
 - Website: <http://www.yootheme.com/warp>
 
 
 ## Changelog
+
+    7.3.7
+    # Fixed missing closing <a> tag in article override (J)
+    # Fixed saving template settings failed (J 3.4.2)
+    # Fixed 'max_input_vars' error on save/close template settings (J)
+    # Fixed article links override (J)
+    # Fixed empty config saving
     
+    7.3.6
+    ^ Updated UIkit to 2.21.0
+    # Fixed returnURL of hidden articles after user login
+    # Fixed MooTools hide issue
+
+    7.3.5
+    + Added post navigation (WP)
+    ^ Updated UIkit to 2.20.3
+    # Fixed template hierarchy (WP)
+    # Fixed article navigation layout (J)
+    # Fixed menu rendering of separators in offcanvas menu
+    # Added grid layout last doubled
+    - Removed Mootools in layout overrides (J)
+
     7.3.4
-    # Fixed render menu position only if menu assigned (WP)
-    # Fixed validation on front-end editing
     + Added option for WooCommerce products per page (WP)
     + Added option for number of posts on frontpage (WP)
+    # Fixed render menu position only if menu assigned (WP)
+    # Fixed validation on front-end editing
 
     7.3.3
     + Added ARIA support for Navbar
@@ -27,9 +48,9 @@
     7.3.2
     + Added child theme support (WP)
     + Added Widgetkit 2 support
+    + Added Less 1.5.1 for developer mode, to support compiling on IOS 8
     ^ Updated UIkit to 2.15.0
-    # Added Less 1.5.1 for developer mode, to support compiling on IOS 8
-    
+
     7.3.1
     # Fixed input fields height in Woocommerce (WP)
 
@@ -54,10 +75,11 @@
     ^ Updated UIkit to 2.8.0
 
     7.2.6
-    # Fixed cancel comment reply link (WP)
+    + Added transform to CSS RTL conversion
     ^ Updated category override (J)
+    # Fixed cancel comment reply link (WP)
     # Fixed dropdown navbar column width calculation
-    ^ Added transform to CSS RTL conversion
+
 
     7.2.5
     ^ Updated facebook like button
@@ -80,12 +102,12 @@
     # Fixed default Gravatar in recent comments widget (WP)
 
     7.2.2
-    # Fixed Pagination (J3)
     ^ Updated Customizer
     ^ Updated UIkit to 2.3.1
     ^ Changed default Gravatar (WP)
     # Fixed Icon picker (J3)
     # Fixed off-canvas for Windows phones
+    # Fixed Pagination (J3)
 
     7.2.1
     # Fixed linked titles within tags override (J32)
@@ -93,11 +115,11 @@
     # Fixed Smart Search override (J25)
 
     7.2.0
+    + Added comments in CSS files
     ^ Refactored style file structure
     ^ Updated UIkit to 2.0.0
     ^ Updated overrides according to Joomla 3.2.0 (J32)
     ^ Added icons to pagination (J)
-    + Added comments in CSS files
     - Removed /custom folder
     # Fixed leading article (J)
 
@@ -137,31 +159,31 @@
     # Fixed customizer less tree error (J)
 
     7.1.6
-    ^ Updated UIkit to 1.1.0
     + Added Bootstrap layer (J3)
     + Added subtitle support for menu items
+    ^ Updated UIkit to 1.1.0
     # Fixed readmore markup (WP)
     # Fixed author markup (WP)
     # Fixed pagination override (J)
 
     7.1.5
+    ^ Updated UIkit to 1.0.2
     # Menus settings will show items for multiple languages
     # Fixed duplicate attribute class in search widget (WP)
     # Fixed blog layout (J25)
     # Truncate title in widget settings
-    ^ Updated UIkit to 1.0.2
 
     7.1.4
+    ^ Updated UIkit to 1.0.1
     # Fixed customizer support (Safari 6+)
     # Fixed compression settings
     # Fixed search in offcanvas
     # Fixed select elements on theme settings page (J 3.1.4)
-    ^ Updated UIkit to 1.0.1
 
     7.1.3
+    ^ Offcanvas menu refactored
     # Settings show all modules and menus now, independent of access settings (J)
     # Fixed multicolumn layouts in some views (J)
-    ^ Offcanvas menu refactored
 
     7.1.2
     # Fixed grid for multicolumn layout (WP)

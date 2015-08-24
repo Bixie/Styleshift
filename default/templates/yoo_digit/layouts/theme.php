@@ -19,6 +19,7 @@ include($this['path']->path('layouts:theme.config.php'));
 
 <body class="<?php echo $this['config']->get('body_classes'); ?>">
 
+
 	<?php if ($this['widgets']->count('toolbar-l + toolbar-r')) : ?>
 
 		<div class="tm-toolbar uk-clearfix">
